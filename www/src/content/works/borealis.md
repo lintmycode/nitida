@@ -5,7 +5,7 @@ technologies: ["WordPress", "WooCommerce", "Custom Plugin Development"]
 featured: true
 order: 1
 image: "/media/borealis.webp"
-backgroundPosition: "left top"
+backgroundPosition: "7% 0%"
 ---
 
 # Borealis - Adventure Travel Website

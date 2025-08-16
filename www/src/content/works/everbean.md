@@ -4,7 +4,7 @@ description: "Premium children's clothing e-commerce platform for Everbean Kids.
 technologies: ["Shopify", "Node.js", "React"]
 order: 2
 image: "/media/everbeankids.webp"
-backgroundPosition: "center top"
+backgroundPosition: "0% 2%"
 ---
 
 # Everbean Kids - Children's E-Commerce

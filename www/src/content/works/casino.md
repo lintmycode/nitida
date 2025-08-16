@@ -4,7 +4,7 @@ description: "Cultural events management platform for Casino Afifense. Features 
 technologies: ["WordPress", "Custom Theme Development", "Web Design"]
 order: 3
 image: "/media/casino.webp"
-backgroundPosition: "left top"
+backgroundPosition: "0% 0%"
 ---
 
 # Casino Afifense - Cultural Events Hub

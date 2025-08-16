@@ -5,7 +5,7 @@ technologies: ["Brand Development", "WordPress", "Custom Theme Development"]
 featured: true
 order: 4
 image: "/media/inercia.webp"
-backgroundPosition: "left top"
+backgroundPosition: "0% 0%"
 ---
 
 # INERCIA - Climate Solutions Platform
