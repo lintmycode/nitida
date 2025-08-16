@@ -192,17 +192,22 @@ window.addEventListener('resize', () => {
 })
 
 // --- Controls ---
-let intervalTime = document.getElementById("interval").value
-document.getElementById("interval").addEventListener('change', (e) => {
-  intervalTime = e.target.value
-  if (running) {
-    clearInterval(interval)
-    run()
-  }
-})
-
+let intervalTime = 100 // Default value
 let running = false
 let interval = null
+
+// Set up interval control when DOM is ready
+const intervalInput = document.getElementById("interval")
+if (intervalInput) {
+  intervalTime = intervalInput.value
+  intervalInput.addEventListener('change', (e) => {
+    intervalTime = e.target.value
+    if (running) {
+      clearInterval(interval)
+      run()
+    }
+  })
+}
 // Play/Pause control (navigation button) - COMMENTED OUT
 /*
 document.getElementById("play-pause-nav").addEventListener("click", (e) => {
