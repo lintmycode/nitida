@@ -84,26 +84,61 @@ const digitalRow = [LETTERS.D, LETTERS.I, LETTERS.G, LETTERS.I, LETTERS.T, LETTE
   return index === 2 ? letter : removeMiddleBottomRows(letter)
 })
 
-const textRows = [
-  { letters: nitidaRow, letterSpacing: 2 }, // Default spacing for NÍTIDA
-  { letters: digitalRow, letterSpacing: 1, xOffset: 1 } // Tighter spacing for DIGITAL, shifted 1px right
-]
+function getResponsiveTextRows() {
+  const width = window.innerWidth
+  
+  // Adjust spacing based on screen size
+  if (width <= 480) {
+    // Mobile: tighter spacing to fit
+    return [
+      { letters: nitidaRow, letterSpacing: 2 },
+      { letters: digitalRow, letterSpacing: 1, xOffset: 0 }
+    ]
+  } else if (width <= 768) {
+    // Tablet: slightly tighter
+    return [
+      { letters: nitidaRow, letterSpacing: 1 },
+      { letters: digitalRow, letterSpacing: 1, xOffset: 1 }
+    ]
+  } else {
+    // Desktop: original spacing
+    return [
+      { letters: nitidaRow, letterSpacing: 2 },
+      { letters: digitalRow, letterSpacing: 1, xOffset: 1 }
+    ]
+  }
+}
 
 // --- Canvas Setup ---
 const canvas = document.querySelector("#canvas")
-const cellSize = 14 // Pixel size of each Life cell
 
 let life = null
+
+function getResponsiveCellSize() {
+  const width = window.innerWidth
+  const height = window.innerHeight
+  
+  // Responsive cell size based on screen dimensions
+  // Ensure letters fit well within viewport
+  if (width <= 480) return Math.max(6, Math.min(width, height) / 60)   // Mobile: scale to fit
+  if (width <= 768) return Math.max(8, Math.min(width, height) / 55)   // Tablet: proportional scaling
+  if (width <= 1024) return 12 // Small desktop: slightly smaller
+  if (width <= 1440) return 14 // Sweet spot: original size
+  if (width <= 1920) return Math.min(16, width / 90) // Large screens: scale with width
+  return Math.min(20, width / 100) // Very large screens: prevent over-stretching
+}
 
 function setupCanvas() {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
+  const cellSize = getResponsiveCellSize()
   const cols = Math.floor(canvas.width / cellSize)
   const rows = Math.floor(canvas.height / cellSize)
   const sideLength = Math.min(cols, rows)
 
-  // Center all text rows
+  // Get responsive text rows and center them
+  const textRows = getResponsiveTextRows()
   let baseShapes = centerShapes(textRows, sideLength, sideLength)
 
   // Add accent above the first "I" in NÍTIDA (find the second letter in first row)
