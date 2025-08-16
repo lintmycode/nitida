@@ -208,22 +208,7 @@ if (intervalInput) {
     }
   })
 }
-// Play/Pause control (navigation button) - COMMENTED OUT
-/*
-document.getElementById("play-pause-nav").addEventListener("click", (e) => {
-  const btn = e.currentTarget;
-  if (running) {
-    clearInterval(interval)
-    btn.textContent = "Play"
-    document.body.classList.add("paused")
-  } else {
-    run()
-    btn.textContent = "Pause"
-    document.body.classList.remove("paused")
-  }
-  running = !running
-})
-*/
+// Play/Pause control (navigation button) - REMOVED
 
 // Info button functionality (navigation button)
 const infoBtnNav = document.getElementById("info-btn-nav")
