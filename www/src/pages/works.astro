@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../components/Layout.astro';
+import BackButton from '../components/BackButton.astro';
+
+// Get all works from content collections
+const works = await getCollection('works');
+// Sort by order field
+const sortedWorks = works.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+---
+
+<Layout title="Works - NÍTIDA DIGITAL">
+  <div class="container">
+    <h1>Our Works</h1>
+    
+    <div class="works-grid">
+      {sortedWorks.map((work) => (
+        <div class="work-item">
+          {work.data.image && (
+            <div class="work-image" style={`background-image: url('${work.data.image}'); ${work.data.backgroundPosition ? `background-position: ${work.data.backgroundPosition}` : ''}`}>
+            </div>
+          )}
+          <div class="work-content">
+            <h3>{work.data.title}</h3>
+            <p>{work.data.description}</p>
+            <div class="work-tech">{work.data.technologies.join(' • ')}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

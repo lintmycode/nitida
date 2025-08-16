@@ -1,1 +1,25 @@
-.DS_Store
+# build output
+www/dist/
+# generated types
+www/.astro/
+
+# dependencies
+www/node_modules/
+
+# logs
+www/npm-debug.log*
+www/yarn-debug.log*
+www/yarn-error.log*
+www/pnpm-debug.log*
+
+
+# environment variables
+www/.env
+www/.env.production
+www/.env.development
+
+# macOS-specific files
+www/.DS_Store
+
+# jetbrains setting folder
+www/.idea/

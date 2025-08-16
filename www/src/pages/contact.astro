@@ -1,0 +1,113 @@
+---
+import Layout from '../components/Layout.astro';
+import BackButton from '../components/BackButton.astro';
+---
+
+<Layout title="Contact - NÍTIDA DIGITAL">
+  <div class="container contact">
+    <h1>Get In Touch</h1>
+    
+    <div class="contact-form">
+      <h3>Send Message</h3>
+      
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your.email@domain.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Project inquiry">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project..." required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span class="btn-text">Send Message</span>
+          <span class="btn-loading" style="display: none;">Sending...</span>
+        </button>
+      </form>
+      
+      <div id="form-message" class="form-message" style="display: none;"></div>
+    </div>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      // EmailJS configuration constants
+      const EMAILJS_PUBLIC_KEY = '35n5lDzpu_p_TvSBF';
+      const EMAILJS_SERVICE_ID = 'service_wcvn6c8';
+      const EMAILJS_TEMPLATE_ID = 'template_7g6zm0p';
+      
+      // Check if EmailJS is loaded and initialize
+      function initEmailJS() {
+        if (typeof emailjs !== 'undefined') {
+          emailjs.init(EMAILJS_PUBLIC_KEY);
+          setupForm();
+        } else {
+          setTimeout(initEmailJS, 100);
+        }
+      }
+      
+      function setupForm() {
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        const messageDiv = document.getElementById('form-message');
+        
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        submitBtn.disabled = true;
+        messageDiv.style.display = 'none';
+        
+        try {
+          // Send email using EmailJS
+          const result = await emailjs.sendForm(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            form
+          );
+          
+          if (result.status === 200) {
+            messageDiv.className = 'form-message success';
+            messageDiv.textContent = 'Message sent successfully! We\'ll get back to you soon.';
+            form.reset();
+          } else {
+            throw new Error('EmailJS failed');
+          }
+        } catch (error) {
+          console.error('EmailJS error:', error);
+          messageDiv.className = 'form-message error';
+          messageDiv.textContent = 'Failed to send message. Please try again.';
+        } finally {
+          // Reset button state
+          btnText.style.display = 'inline';
+          btnLoading.style.display = 'none';
+          submitBtn.disabled = false;
+          messageDiv.style.display = 'block';
+        }
+        });
+      }
+      
+      // Start initialization when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initEmailJS);
+      } else {
+        initEmailJS();
+      }
+    </script>
+  </div>
+</Layout>

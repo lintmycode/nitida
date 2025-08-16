@@ -1,0 +1,40 @@
+---
+import Layout from '../components/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+---
+
+<Layout title="NÍTIDA DIGITAL" pageClass="homepage">
+  <div class="logo">
+    <img src="/logo.png" alt="NÍTIDA DIGITAL" />
+  </div>
+  
+  <canvas id="canvas"></canvas>
+  
+  <Navigation />
+  
+  <!-- Play/Pause control -->
+  <div class="play-pause-control">
+    <button class="play-pause-btn" id="play-pause">
+      <svg class="pause-icon" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1H2V15H7V1Z" fill="currentColor"/>
+        <path d="M14 1H9V15H14V1Z" fill="currentColor"/>
+      </svg>
+      <svg class="play-icon" width="24" height="24" viewBox="-0.5 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <polygon points="0 0 0 8 7 4" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dev controls (hidden) -->
+  <div class="status dev-controls">
+    Generation: <span id="generation"></span>
+    <br>
+    Interval (ms) <input id="interval" type="number" value="100">
+    <br>
+    <button id="pause">Start</button>
+    <br>
+    <button id="toggle-dev">Hide Controls</button>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</Layout>
