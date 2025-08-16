@@ -12,28 +12,46 @@ import Navigation from '../components/Navigation.astro';
   
   <Navigation />
   
-  <!-- Play/Pause control -->
-  <div class="play-pause-control">
-    <button class="play-pause-btn" id="play-pause">
-      <svg class="pause-icon" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 1H2V15H7V1Z" fill="currentColor"/>
-        <path d="M14 1H9V15H14V1Z" fill="currentColor"/>
-      </svg>
-      <svg class="play-icon" width="24" height="24" viewBox="-0.5 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <polygon points="0 0 0 8 7 4" fill="currentColor"/>
-      </svg>
-    </button>
+
+  <!-- Info Modal -->
+  <div class="info-modal" id="info-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      
+      <h3>About NÍTIDA</h3>
+      <p>Based in Portugal, NÍTIDA DIGITAL delivers world-class digital solutions to clients globally. We combine technical expertise with creative vision to build exceptional web experiences that drive results.</p>
+      <p>Our mission is to transform ideas into powerful digital realities through innovation, craftsmanship, and collaborative partnerships.</p>
+      
+      <h3>Conway's Game of Life</h3>
+      <p>You're witnessing a cellular automaton where simple rules create complex, evolving patterns. Each cell lives or dies based on its neighbors—just like how great ideas emerge from collaboration.</p>
+      <p>This mirrors NÍTIDA's values: <strong>organic growth</strong> through interaction, <strong>evolution</strong> through iteration, and <strong>emergence</strong> of beautiful solutions from simple principles.</p>
+      <p>Like our projects, what starts as individual elements becomes something greater through purposeful connection and thoughtful design.</p>
+      
+      <div class="modal-nav">
+        <a href="/works" class="modal-nav-link">View Recent Work</a>
+        <a href="/contact" class="modal-nav-link">Get In Touch</a>
+      </div>
+    </div>
   </div>
 
   <!-- Dev controls (hidden) -->
   <div class="status dev-controls">
-    Generation: <span id="generation"></span>
-    <br>
-    Interval (ms) <input id="interval" type="number" value="100">
-    <br>
-    <button id="pause">Start</button>
-    <br>
-    <button id="toggle-dev">Hide Controls</button>
+    <button class="control-close" id="control-close">&times;</button>
+    <div class="control-row">
+      <label>Generation:</label>
+      <span id="generation">0</span>
+    </div>
+    <div class="control-row">
+      <label for="interval">Interval (ms):</label>
+      <input id="interval" type="number" value="100" min="10" max="1000">
+    </div>
+    <div class="control-buttons">
+      <button id="pause" class="control-btn">Start</button>
+      <button id="restart" class="control-btn">Restart</button>
+    </div>
+    <div class="control-buttons">
+      <button id="spawn-glider" class="control-btn">Spawn Glider</button>
+    </div>
   </div>
 
   <script type="module" src="/app.js"></script>

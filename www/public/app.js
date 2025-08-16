@@ -166,8 +166,7 @@ setTimeout(() => {
     document.getElementById("pause").innerText = "Pause"
     document.body.classList.add("animating")
     running = true
-    // Show play/pause control
-    document.querySelector('.play-pause-control').classList.add('visible')
+    // Navigation is already visible, no need to show controls
   }
 }, 2500)
 
@@ -194,33 +193,108 @@ document.getElementById("interval").addEventListener('change', (e) => {
 
 let running = false
 let interval = null
-// Play/Pause control
-document.getElementById("play-pause").addEventListener("click", (e) => {
-  const btn = e.currentTarget; // Use currentTarget to get the button element
+// Play/Pause control (navigation button) - COMMENTED OUT
+/*
+document.getElementById("play-pause-nav").addEventListener("click", (e) => {
+  const btn = e.currentTarget;
   if (running) {
     clearInterval(interval)
-    btn.classList.add("paused")
+    btn.textContent = "Play"
     document.body.classList.add("paused")
   } else {
     run()
-    btn.classList.remove("paused")
+    btn.textContent = "Pause"
+    document.body.classList.remove("paused")
+  }
+  running = !running
+})
+*/
+
+// Info button functionality (navigation button)
+document.getElementById("info-btn-nav").addEventListener("click", () => {
+  document.getElementById("info-modal").classList.add("visible")
+})
+
+// Control button functionality (navigation button)
+document.getElementById("control-btn-nav").addEventListener("click", () => {
+  const devControls = document.querySelector('.dev-controls')
+  devControls.classList.toggle('visible')
+})
+
+// Control panel close button
+document.getElementById("control-close").addEventListener("click", () => {
+  document.querySelector('.dev-controls').classList.remove('visible')
+})
+
+// Modal close functionality
+document.getElementById("modal-close").addEventListener("click", () => {
+  document.getElementById("info-modal").classList.remove("visible")
+})
+
+// Close modal when clicking outside content
+document.getElementById("info-modal").addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    document.getElementById("info-modal").classList.remove("visible")
+  }
+})
+
+// Close modal with Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.getElementById("info-modal").classList.remove("visible")
+  }
+})
+
+// Dev controls pause button
+document.getElementById("pause").addEventListener("click", (e) => {
+  if (running) {
+    clearInterval(interval)
+    e.target.innerText = "Start"
+    document.body.classList.add("paused")
+  } else {
+    run()
+    e.target.innerText = "Pause"
     document.body.classList.remove("paused")
   }
   running = !running
 })
 
-// Old pause button (for dev controls)
-document.getElementById("pause").addEventListener("click", (e) => {
+// Restart button functionality
+document.getElementById("restart").addEventListener("click", () => {
+  // Stop current animation
   if (running) {
     clearInterval(interval)
-    e.target.innerText = "Start"
-    document.body.classList.remove("animating")
-  } else {
-    run()
-    e.target.innerText = "Pause"
-    document.body.classList.add("animating")
+    running = false
   }
-  running = !running
+  
+  // Reset and restart the game
+  setupCanvas()
+  
+  // Update button states
+  document.getElementById("pause").innerText = "Pause"
+  // document.getElementById("play-pause-nav").textContent = "Pause" // Commented out
+  
+  // Start animation
+  run()
+  document.body.classList.add("animating")
+  document.body.classList.remove("paused")
+  running = true
+})
+
+// Spawn glider functionality
+document.getElementById("spawn-glider").addEventListener("click", () => {
+  if (life) {
+    // Use GLIDER (moves left to right)
+    const gliderPattern = life.PATTERNS.SPACESHIPS.GLIDER
+    
+    // Always spawn from left side (x = 2), randomize Y position
+    const maxY = life.config.lines - 8 // Leave space for pattern height
+    const randomY = Math.floor(Math.random() * (maxY - 2)) + 2 // Random Y from 2 to maxY
+    
+    // Spawn the glider at random Y position from left side
+    life.insertPattern(randomY, 2, gliderPattern)
+    life.draw() // Redraw to show the new glider immediately
+  }
 })
 
 const run = () => {

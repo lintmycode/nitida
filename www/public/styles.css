@@ -151,6 +151,25 @@ canvas {
   @media (max-width: 1023px) {
     gap: 1rem;
   }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 0.75rem;
+    bottom: 1rem;
+  }
+}
+
+.nav-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-row-secondary {
+  margin-left: 1rem;
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
 }
 
 .nav-btn {
@@ -179,6 +198,14 @@ canvas {
   background: rgba(0, 0, 0, 0.9);
 }
 
+.action-btn {
+  color: #DDFF55 !important;
+}
+
+.action-btn:hover {
+  color: white !important;
+}
+
 @keyframes fadeInNav {
   from { 
     opacity: 0;
@@ -193,67 +220,237 @@ canvas {
 /* Dev controls */
 .dev-controls {
   display: none;
-}
-
-/* Play/Pause control */
-.play-pause-control {
   position: fixed;
-  bottom: 6rem;
+  top: 2rem;
   right: 2rem;
-  z-index: 10;
-  opacity: 0;
-  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1px;
+  font-size: var(--font-size-dev);
+  z-index: 100;
 
-  @media (max-width: 768px) {
-    bottom: 2rem;
+  @media (max-width: 767px) {
+    top: 1rem;
+    right: 1rem;
   }
 }
 
-.play-pause-control.visible {
-  opacity: 1;
+.dev-controls.visible {
+  display: block;
 }
 
-.play-pause-btn {
+.control-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
   background: transparent;
   border: none;
-  color: #000000cc;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.25rem;
   cursor: pointer;
-  /* transition: all 0.3s ease; */
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.3s ease;
 }
 
-.play-pause-btn:hover {
+.control-close:hover {
+  color: white;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.control-row label {
+  font-size: var(--font-size-xs);
+  color: #DDFF55;
+  margin-right: 0.5rem;
+}
+
+.control-row #generation {
+  color: white;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: right;
+}
+
+.control-row input {
+  width: 70px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: inherit;
+  font-size: var(--font-size-xs);
+  border-radius: 1px;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: .5rem;
+}
+
+.control-btn {
+  flex: 1;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: inherit;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 100ms ease;
+  border-radius: 1px;
+}
+
+.control-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #DDFF55;
+  color: #DDFF55;
+}
+
+.control-btn:active {
+  background: rgba(221, 255, 85, 0.2);
+  border-color: #DDFF55;
+  color: #DDFF55;
+  transform: translateY(1px);
+}
+
+
+/* Info Modal */
+.info-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.info-modal.visible {
   opacity: 1;
-  /* transform: scale(1.05); */
-  color: #000;
+  visibility: visible;
 }
 
-.play-pause-btn svg {
-  width: 42px;
-  height: 42px;
-  transition: filter 0.3s ease;
+.modal-content {
+  background: rgba(0, 0, 0, 0.95);
+  width: 96%;
+  max-width: 690px;
+  padding: 2rem;
+  border-radius: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @media (max-width: 767px) {
+    width: 94%;
+    padding: 1.5rem;
+    max-height: 85vh;
+  }
 }
 
-body.animating .play-pause-btn svg {
-  /* filter: brightness(0) saturate(100%) invert(13%) sepia(94%) saturate(7151%) hue-rotate(201deg) brightness(150%) contrast(120%); */
+.info-modal.visible .modal-content {
+  transform: translateY(0);
 }
 
-.play-pause-btn .pause-icon {
-  display: block;
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
 }
 
-.play-pause-btn .play-icon {
-  display: none;
+.modal-close:hover {
+  color: white;
 }
 
-.play-pause-btn.paused .pause-icon {
-  display: none;
+.modal-content h3 {
+  color: #DDFF55;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.play-pause-btn.paused .play-icon {
-  display: block;
+.modal-content p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.modal-content p:last-of-type {
+  margin-bottom: 0;
+}
+
+.modal-content strong {
+  color: #DDFF55;
+}
+
+.modal-nav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.modal-nav-link {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+}
+
+.modal-nav-link:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #DDFF55;
+  color: #DDFF55;
 }
 
 /* Header styles */
@@ -274,6 +471,7 @@ body.animating .play-pause-btn svg {
   
   @media (max-width: 768px) {
     max-width: 100%;
+    padding: var(--spacing-sm) 0;
   }
 }
 
@@ -455,9 +653,10 @@ h1 {
   margin-bottom: var(--spacing-lg);
   text-transform: uppercase;
   letter-spacing: 2px;
+  line-height: 1;
 
   @media (max-width: 1023px) {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
   }
 }
 
