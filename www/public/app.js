@@ -156,6 +156,13 @@ function setupCanvas() {
   life = new Life(canvas, sideLength, shapes)
 }
 
+// Define run function first
+const run = () => {
+  interval = setInterval(() => {
+    life.next()
+  }, intervalTime)
+}
+
 // Initial setup
 setupCanvas()
 
@@ -338,10 +345,4 @@ if (spawnGliderBtn) {
       life.draw() // Redraw to show the new glider immediately
     }
   })
-}
-
-const run = () => {
-  interval = setInterval(() => {
-    life.next()
-  }, intervalTime)
 }
