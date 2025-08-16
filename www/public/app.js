@@ -1,3 +1,5 @@
+console.log('🚀 NÍTIDA app.js v2.0 - Loading...')
+
 import Life from "./life.js"
 import { LETTERS } from "./letters.js";
 
@@ -8,6 +10,8 @@ if (typeof Life === 'undefined') {
 if (typeof LETTERS === 'undefined') {
   console.error('LETTERS module failed to load')
 }
+
+console.log('📦 Modules loaded successfully')
 
 /**
  * Centers multiple rows of letter patterns horizontally and vertically
@@ -131,11 +135,23 @@ function getResponsiveCellSize() {
 }
 
 // --- Global Variables ---
-const canvas = document.querySelector("#canvas")
+let canvas = null
 let life = null
 let intervalTime = 100 // Default value
 let running = false
 let interval = null
+
+// Initialize canvas safely
+function initCanvas() {
+  if (!canvas) {
+    canvas = document.querySelector("#canvas")
+    if (!canvas) {
+      console.warn('Canvas element not found')
+      return false
+    }
+  }
+  return true
+}
 
 // --- Core Functions ---
 function run() {
@@ -153,8 +169,7 @@ function run() {
 
 function setupCanvas() {
   try {
-    if (!canvas) {
-      console.warn('Canvas element not found')
+    if (!initCanvas()) {
       return
     }
     
@@ -365,11 +380,27 @@ function initializeApp() {
 }
 
 // Multiple DOM ready strategies for production compatibility
+function safeInit() {
+  try {
+    console.log('🔄 Starting safe initialization...')
+    
+    // Double check everything is available
+    if (typeof initializeApp !== 'function') {
+      console.error('initializeApp function not available')
+      return
+    }
+    
+    initializeApp()
+  } catch (error) {
+    console.error('Error in safeInit:', error)
+  }
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeApp)
+  document.addEventListener('DOMContentLoaded', safeInit)
 } else {
   // DOM is already ready
-  setTimeout(initializeApp, 0)
+  setTimeout(safeInit, 100) // Slightly longer delay for production
 }
 
 // Handle window resize
