@@ -78,7 +78,6 @@ function removeMiddleBottomRows(pattern) {
 
 // Text to display
 const nitidaRow = [LETTERS.N, LETTERS.I, LETTERS.T, LETTERS.I, LETTERS.D, LETTERS.A]
-// const webDesignRow = [LETTERS.W, LETTERS.E, LETTERS.B, LETTERS.AMPERSAND, LETTERS.D, LETTERS.E, LETTERS.S, LETTERS.I, LETTERS.G, LETTERS.N]
 const digitalRow = [LETTERS.D, LETTERS.I, LETTERS.G, LETTERS.I, LETTERS.T, LETTERS.A, LETTERS.L].map((letter, index) => {
   // Keep G (index 2) as is, modify all others
   return index === 2 ? letter : removeMiddleBottomRows(letter)
@@ -109,11 +108,6 @@ function getResponsiveTextRows() {
   }
 }
 
-// --- Canvas Setup ---
-const canvas = document.querySelector("#canvas")
-
-let life = null
-
 function getResponsiveCellSize() {
   const width = window.innerWidth
   const height = window.innerHeight
@@ -128,7 +122,26 @@ function getResponsiveCellSize() {
   return Math.min(20, width / 100) // Very large screens: prevent over-stretching
 }
 
+// --- Global Variables ---
+const canvas = document.querySelector("#canvas")
+let life = null
+let intervalTime = 100 // Default value
+let running = false
+let interval = null
+
+// --- Core Functions ---
+function run() {
+  if (interval) clearInterval(interval)
+  interval = setInterval(() => {
+    if (life) {
+      life.next()
+    }
+  }, intervalTime)
+}
+
 function setupCanvas() {
+  if (!canvas) return
+  
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
@@ -156,183 +169,174 @@ function setupCanvas() {
   life = new Life(canvas, sideLength, shapes)
 }
 
-// Define run function first
-const run = () => {
-  interval = setInterval(() => {
-    life.next()
-  }, intervalTime)
-}
+// --- Initialization ---
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Initial setup
+  setupCanvas()
 
-// Initial setup
-setupCanvas()
-
-// Auto-start Game of Life after 2.5 seconds
-setTimeout(() => {
-  if (!running) {
-    run()
-    const pauseBtn = document.getElementById("pause")
-    if (pauseBtn) {
-      pauseBtn.innerText = "Pause"
-    }
-    document.body.classList.add("animating")
-    running = true
-    // Navigation is already visible, no need to show controls
+  // Set up interval control
+  const intervalInput = document.getElementById("interval")
+  if (intervalInput) {
+    intervalTime = intervalInput.value || 100
+    intervalInput.addEventListener('change', (e) => {
+      intervalTime = e.target.value || 100
+      if (running) {
+        run() // Restart with new interval
+      }
+    })
   }
-}, 2500)
+
+  // Auto-start Game of Life after 2.5 seconds
+  setTimeout(() => {
+    if (!running) {
+      run()
+      const pauseBtn = document.getElementById("pause")
+      if (pauseBtn) {
+        pauseBtn.innerText = "Pause"
+      }
+      document.body.classList.add("animating")
+      running = true
+    }
+  }, 2500)
+
+  // --- Event Listeners ---
+  
+  // Info button functionality (navigation button)
+  const infoBtnNav = document.getElementById("info-btn-nav")
+  if (infoBtnNav) {
+    infoBtnNav.addEventListener("click", () => {
+      const infoModal = document.getElementById("info-modal")
+      if (infoModal) {
+        infoModal.classList.add("visible")
+      }
+    })
+  }
+
+  // Control button functionality (navigation button)
+  const controlBtnNav = document.getElementById("control-btn-nav")
+  if (controlBtnNav) {
+    controlBtnNav.addEventListener("click", () => {
+      const devControls = document.querySelector('.dev-controls')
+      if (devControls) {
+        devControls.classList.toggle('visible')
+      }
+    })
+  }
+
+  // Control panel close button
+  const controlClose = document.getElementById("control-close")
+  if (controlClose) {
+    controlClose.addEventListener("click", () => {
+      const devControls = document.querySelector('.dev-controls')
+      if (devControls) {
+        devControls.classList.remove('visible')
+      }
+    })
+  }
+
+  // Modal close functionality
+  const modalClose = document.getElementById("modal-close")
+  if (modalClose) {
+    modalClose.addEventListener("click", () => {
+      const infoModal = document.getElementById("info-modal")
+      if (infoModal) {
+        infoModal.classList.remove("visible")
+      }
+    })
+  }
+
+  // Close modal when clicking outside content
+  const infoModal = document.getElementById("info-modal")
+  if (infoModal) {
+    infoModal.addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) {
+        infoModal.classList.remove("visible")
+      }
+    })
+  }
+
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const infoModal = document.getElementById("info-modal")
+      if (infoModal) {
+        infoModal.classList.remove("visible")
+      }
+    }
+  })
+
+  // Dev controls pause button
+  const pauseBtn = document.getElementById("pause")
+  if (pauseBtn) {
+    pauseBtn.addEventListener("click", (e) => {
+      if (running) {
+        clearInterval(interval)
+        e.target.innerText = "Start"
+        document.body.classList.add("paused")
+        running = false
+      } else {
+        run()
+        e.target.innerText = "Pause"
+        document.body.classList.remove("paused")
+        running = true
+      }
+    })
+  }
+
+  // Restart button functionality
+  const restartBtn = document.getElementById("restart")
+  if (restartBtn) {
+    restartBtn.addEventListener("click", () => {
+      // Stop current animation
+      if (running) {
+        clearInterval(interval)
+        running = false
+      }
+      
+      // Reset and restart the game
+      setupCanvas()
+      
+      // Update button states
+      const pauseBtn = document.getElementById("pause")
+      if (pauseBtn) {
+        pauseBtn.innerText = "Pause"
+      }
+      
+      // Start animation
+      run()
+      document.body.classList.add("animating")
+      document.body.classList.remove("paused")
+      running = true
+    })
+  }
+
+  // Spawn glider functionality
+  const spawnGliderBtn = document.getElementById("spawn-glider")
+  if (spawnGliderBtn) {
+    spawnGliderBtn.addEventListener("click", () => {
+      if (life) {
+        // Use GLIDER (moves left to right)
+        const gliderPattern = life.PATTERNS.SPACESHIPS.GLIDER
+        
+        // Always spawn from left side (x = 2), randomize Y position
+        const maxY = life.config.lines - 8 // Leave space for pattern height
+        const randomY = Math.floor(Math.random() * (maxY - 2)) + 2 // Random Y from 2 to maxY
+        
+        // Spawn the glider at random Y position from left side
+        life.insertPattern(randomY, 2, gliderPattern)
+        life.draw() // Redraw to show the new glider immediately
+      }
+    })
+  }
+})
 
 // Handle window resize
 window.addEventListener('resize', () => {
   setupCanvas()
   // Restart animation if it was running
   if (running) {
-    clearInterval(interval)
-    run()
+    run() // This will clear the old interval and start new one
     document.body.classList.add("animating")
   }
 })
-
-// --- Controls ---
-let intervalTime = 100 // Default value
-let running = false
-let interval = null
-
-// Set up interval control when DOM is ready
-const intervalInput = document.getElementById("interval")
-if (intervalInput) {
-  intervalTime = intervalInput.value
-  intervalInput.addEventListener('change', (e) => {
-    intervalTime = e.target.value
-    if (running) {
-      clearInterval(interval)
-      run()
-    }
-  })
-}
-// Play/Pause control (navigation button) - REMOVED
-
-// Info button functionality (navigation button)
-const infoBtnNav = document.getElementById("info-btn-nav")
-if (infoBtnNav) {
-  infoBtnNav.addEventListener("click", () => {
-    const infoModal = document.getElementById("info-modal")
-    if (infoModal) {
-      infoModal.classList.add("visible")
-    }
-  })
-}
-
-// Control button functionality (navigation button)
-const controlBtnNav = document.getElementById("control-btn-nav")
-if (controlBtnNav) {
-  controlBtnNav.addEventListener("click", () => {
-    const devControls = document.querySelector('.dev-controls')
-    if (devControls) {
-      devControls.classList.toggle('visible')
-    }
-  })
-}
-
-// Control panel close button
-const controlClose = document.getElementById("control-close")
-if (controlClose) {
-  controlClose.addEventListener("click", () => {
-    const devControls = document.querySelector('.dev-controls')
-    if (devControls) {
-      devControls.classList.remove('visible')
-    }
-  })
-}
-
-// Modal close functionality
-const modalClose = document.getElementById("modal-close")
-if (modalClose) {
-  modalClose.addEventListener("click", () => {
-    const infoModal = document.getElementById("info-modal")
-    if (infoModal) {
-      infoModal.classList.remove("visible")
-    }
-  })
-}
-
-// Close modal when clicking outside content
-const infoModal = document.getElementById("info-modal")
-if (infoModal) {
-  infoModal.addEventListener("click", (e) => {
-    if (e.target === e.currentTarget) {
-      infoModal.classList.remove("visible")
-    }
-  })
-}
-
-// Close modal with Escape key
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    const infoModal = document.getElementById("info-modal")
-    if (infoModal) {
-      infoModal.classList.remove("visible")
-    }
-  }
-})
-
-// Dev controls pause button
-const pauseBtn = document.getElementById("pause")
-if (pauseBtn) {
-  pauseBtn.addEventListener("click", (e) => {
-    if (running) {
-      clearInterval(interval)
-      e.target.innerText = "Start"
-      document.body.classList.add("paused")
-    } else {
-      run()
-      e.target.innerText = "Pause"
-      document.body.classList.remove("paused")
-    }
-    running = !running
-  })
-}
-
-// Restart button functionality
-const restartBtn = document.getElementById("restart")
-if (restartBtn) {
-  restartBtn.addEventListener("click", () => {
-    // Stop current animation
-    if (running) {
-      clearInterval(interval)
-      running = false
-    }
-    
-    // Reset and restart the game
-    setupCanvas()
-    
-    // Update button states
-    const pauseBtn = document.getElementById("pause")
-    if (pauseBtn) {
-      pauseBtn.innerText = "Pause"
-    }
-    
-    // Start animation
-    run()
-    document.body.classList.add("animating")
-    document.body.classList.remove("paused")
-    running = true
-  })
-}
-
-// Spawn glider functionality
-const spawnGliderBtn = document.getElementById("spawn-glider")
-if (spawnGliderBtn) {
-  spawnGliderBtn.addEventListener("click", () => {
-    if (life) {
-      // Use GLIDER (moves left to right)
-      const gliderPattern = life.PATTERNS.SPACESHIPS.GLIDER
-      
-      // Always spawn from left side (x = 2), randomize Y position
-      const maxY = life.config.lines - 8 // Leave space for pattern height
-      const randomY = Math.floor(Math.random() * (maxY - 2)) + 2 // Random Y from 2 to maxY
-      
-      // Spawn the glider at random Y position from left side
-      life.insertPattern(randomY, 2, gliderPattern)
-      life.draw() // Redraw to show the new glider immediately
-    }
-  })
-}
