@@ -1,6 +1,14 @@
 import Life from "./life.js"
 import { LETTERS } from "./letters.js";
 
+// Production fallback checks
+if (typeof Life === 'undefined') {
+  console.error('Life module failed to load')
+}
+if (typeof LETTERS === 'undefined') {
+  console.error('LETTERS module failed to load')
+}
+
 /**
  * Centers multiple rows of letter patterns horizontally and vertically
  * within a given grid size.
@@ -131,49 +139,71 @@ let interval = null
 
 // --- Core Functions ---
 function run() {
-  if (interval) clearInterval(interval)
-  interval = setInterval(() => {
-    if (life) {
-      life.next()
-    }
-  }, intervalTime)
+  try {
+    if (interval) clearInterval(interval)
+    interval = setInterval(() => {
+      if (life && typeof life.next === 'function') {
+        life.next()
+      }
+    }, intervalTime || 100)
+  } catch (error) {
+    console.warn('Error in run function:', error)
+  }
 }
 
 function setupCanvas() {
-  if (!canvas) return
-  
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  try {
+    if (!canvas) {
+      console.warn('Canvas element not found')
+      return
+    }
+    
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
 
-  const cellSize = getResponsiveCellSize()
-  const cols = Math.floor(canvas.width / cellSize)
-  const rows = Math.floor(canvas.height / cellSize)
-  const sideLength = Math.min(cols, rows)
+    const cellSize = getResponsiveCellSize()
+    const cols = Math.floor(canvas.width / cellSize)
+    const rows = Math.floor(canvas.height / cellSize)
+    const sideLength = Math.min(cols, rows)
 
-  // Get responsive text rows and center them
-  const textRows = getResponsiveTextRows()
-  let baseShapes = centerShapes(textRows, sideLength, sideLength)
+    // Get responsive text rows and center them
+    const textRows = getResponsiveTextRows()
+    let baseShapes = centerShapes(textRows, sideLength, sideLength)
 
-  // Add accent above the first "I" in NÍTIDA (find the second letter in first row)
-  const nitidaShapes = baseShapes.filter((shape, index) => index < textRows[0].letters.length)
-  baseShapes.push({
-    x: nitidaShapes[1].x + 1,
-    y: nitidaShapes[1].y - 3,
-    pattern: LETTERS.ACCENT
-  })
+    // Add accent above the first "I" in NÍTIDA (find the second letter in first row)
+    if (baseShapes.length > 1) {
+      const nitidaShapes = baseShapes.filter((shape, index) => index < textRows[0].letters.length)
+      if (nitidaShapes.length > 1) {
+        baseShapes.push({
+          x: nitidaShapes[1].x + 1,
+          y: nitidaShapes[1].y - 3,
+          pattern: LETTERS.ACCENT
+        })
+      }
+    }
 
-  // Final shapes
-  const shapes = baseShapes
+    // Final shapes
+    const shapes = baseShapes
 
-  // Create or recreate Life instance
-  life = new Life(canvas, sideLength, shapes)
+    // Create or recreate Life instance
+    if (typeof Life === 'function') {
+      life = new Life(canvas, sideLength, shapes)
+    } else {
+      console.warn('Life class not available')
+    }
+  } catch (error) {
+    console.warn('Error in setupCanvas:', error)
+  }
 }
 
 // --- Initialization ---
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Initial setup
-  setupCanvas()
+// Multiple DOM ready strategies for production compatibility
+function initializeApp() {
+  try {
+    console.log('Initializing app...')
+    
+    // Initial setup
+    setupCanvas()
 
   // Set up interval control
   const intervalInput = document.getElementById("interval")
@@ -329,7 +359,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-})
+  } catch (error) {
+    console.error('Error initializing app:', error)
+  }
+}
+
+// Multiple DOM ready strategies for production compatibility
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp)
+} else {
+  // DOM is already ready
+  setTimeout(initializeApp, 0)
+}
 
 // Handle window resize
 window.addEventListener('resize', () => {
