@@ -217,6 +217,14 @@ function initializeApp() {
   try {
     console.log('Initializing app...')
     
+    // Debug: Check if CSS styles are loaded
+    const testElement = document.createElement('div')
+    testElement.className = 'info-modal visible'
+    document.body.appendChild(testElement)
+    const computedStyle = window.getComputedStyle(testElement)
+    console.log('🎨 CSS test - info-modal.visible opacity:', computedStyle.opacity)
+    document.body.removeChild(testElement)
+    
     // Initial setup
     setupCanvas()
 
@@ -249,22 +257,32 @@ function initializeApp() {
   
   // Info button functionality (navigation button)
   const infoBtnNav = document.getElementById("info-btn-nav")
+  console.log('🔍 Info button found:', !!infoBtnNav)
   if (infoBtnNav) {
     infoBtnNav.addEventListener("click", () => {
+      console.log('📱 Info button clicked')
       const infoModal = document.getElementById("info-modal")
+      console.log('🎭 Info modal found:', !!infoModal)
       if (infoModal) {
         infoModal.classList.add("visible")
+        console.log('✅ Info modal should be visible now. Classes:', infoModal.className)
+        console.log('🎨 Modal computed styles opacity:', window.getComputedStyle(infoModal).opacity)
+        console.log('🎨 Modal computed styles visibility:', window.getComputedStyle(infoModal).visibility)
       }
     })
   }
 
   // Control button functionality (navigation button)
   const controlBtnNav = document.getElementById("control-btn-nav")
+  console.log('🎮 Control button found:', !!controlBtnNav)
   if (controlBtnNav) {
     controlBtnNav.addEventListener("click", () => {
+      console.log('🎮 Control button clicked')
       const devControls = document.querySelector('.dev-controls')
+      console.log('🎛️ Dev controls found:', !!devControls)
       if (devControls) {
         devControls.classList.toggle('visible')
+        console.log('✅ Dev controls visibility toggled. Classes:', devControls.className)
       }
     })
   }
