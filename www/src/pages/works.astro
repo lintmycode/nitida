@@ -24,6 +24,19 @@ const sortedWorks = works.sort((a, b) => (a.data.order || 999) - (b.data.order |
             <h3>{work.data.title}</h3>
             <p>{work.data.description}</p>
             <div class="work-tech">{work.data.technologies.join(' • ')}</div>
+            {work.data.link && (
+              <div class="work-link">
+                <a 
+                  href={work.data.link[0]} 
+                  class="work-link-btn"
+                  target={work.data.link[0].includes('nitida.pt') ? undefined : '_blank'}
+                  rel={work.data.link[0].includes('nitida.pt') ? undefined : 'noopener noreferrer'}
+                >
+                  {work.data.link[1]}
+                  {!work.data.link[0].includes('nitida.pt') && <span class="external-icon">↗</span>}
+                </a>
+              </div>
+            )}
           </div>
         </div>
       ))}

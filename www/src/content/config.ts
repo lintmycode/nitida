@@ -10,6 +10,7 @@ const worksCollection = defineCollection({
     order: z.number().optional(),
     image: z.string().optional(),
     backgroundPosition: z.string().optional(),
+    link: z.array(z.string()).length(2).optional(),
   }),
 });
 

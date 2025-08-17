@@ -182,7 +182,7 @@ canvas {
   font-weight: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease-in-out;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   min-width: 140px;
@@ -196,6 +196,8 @@ canvas {
 
 .nav-btn:hover {
   background: rgba(0, 0, 0, 0.9);
+  border-color: #DDFF55;
+  color: #DDFF55;
 }
 
 .action-btn {
@@ -506,7 +508,7 @@ canvas {
   font-size: var(--font-size-base);
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: var(--radius-sm);
@@ -514,6 +516,8 @@ canvas {
 
 .nav-link:hover {
   background: rgba(0, 0, 0, 0.9);
+  border-color: #DDFF55;
+  color: #DDFF55;
 }
 
 .nav-link.back-style {
@@ -763,6 +767,39 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: bold;
+}
+
+.work-link {
+  margin-top: var(--spacing-md);
+}
+
+.work-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.1s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(10px);
+}
+
+.work-link-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #DDFF55;
+  color: #DDFF55;
+}
+
+.external-icon {
+  font-size: 0.85em;
+  opacity: 0.8;
 }
 
 /* Contact page styles */
