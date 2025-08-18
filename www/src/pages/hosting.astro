@@ -1,0 +1,330 @@
+---
+import Layout from '../components/Layout.astro';
+import BackButton from '../components/BackButton.astro';
+---
+
+<Layout title="Hosting - Cloudways Premium Hosting - NÍTIDA DIGITAL">
+  <div class="container hosting">
+    <BackButton />
+    <h1>Premium Cloud Hosting with Cloudways</h1>
+    
+    <div class="hosting-content">
+      <div class="hero-section">
+        <a href="https://platform.cloudways.com/signup?id=1823652&coupon=SUMMER305" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="hero-image-link">
+          <img src="/media/cloudways-summer.jpg" alt="Cloudways Summer Promotion" class="hero-image" />
+        </a>
+        
+        <h2>Supercharged Cloudways 2025</h2>
+        <p>Experience the next generation of cloud hosting. We've revolutionized Cloudways this year with cutting-edge technology and AI-powered tools to accelerate your digital success.</p>
+        
+        <div class="features-grid">
+          <div class="feature">
+            <h3>Lightning Stack Performance</h3>
+            <p>Super-fast performance powered by NGINX and Varnish for unmatched speed</p>
+          </div>
+          
+          <div class="feature">
+            <h3>Effortless Scalability</h3>
+            <p>Cloudways Autonomous with DO and Vultr CPU optimized servers for growing websites</p>
+          </div>
+          
+          <div class="feature">
+            <h3>AI-Powered Growth</h3>
+            <p>Cloudways Copilot ensures hassle-free growth with intelligent automation</p>
+          </div>
+          
+          <div class="feature">
+            <h3>Enterprise Security</h3>
+            <p>Advanced security features, SSL certificates, and regular automated backups</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="summer-offer">
+        <h2>Summer Special: Save Big with SUMMER305</h2>
+        <p>Join thousands of developers and agencies who trust Cloudways for their mission-critical applications. Get started today with our exclusive summer promotion.</p>
+        
+        <div class="cloudways-benefits">
+          <div class="benefit">
+            <h4>Exclusive Savings</h4>
+            <p>Save $305 with our summer coupon code on your hosting journey</p>
+          </div>
+          
+          <div class="benefit">
+            <h4>Performance First</h4>
+            <p>Lightning stack with NGINX, Varnish, and SSD storage</p>
+          </div>
+          
+          <div class="benefit">
+            <h4>AI Assistant</h4>
+            <p>Cloudways Copilot guides you through setup and optimization</p>
+          </div>
+        </div>
+        
+        <div class="cta-section">
+          <a href="https://platform.cloudways.com/signup?id=1823652&coupon=SUMMER305" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="cta-button">
+            Start with Cloudways
+            <span class="cta-subtitle">Use code SUMMER305 - Save $305!</span>
+          </a>
+          
+          <p class="affiliate-notice">
+            * This is an affiliate link. When you sign up through this link, NÍTIDA DIGITAL receives a small commission at no extra cost to you. This helps support our content and recommendations.
+          </p>
+        </div>
+      </div>
+      
+      <div class="why-cloudways">
+        <h2>Why Choose Cloudways in 2025?</h2>
+        <div class="advantages-grid">
+          <div class="advantage">
+            <h4>Developer-Focused</h4>
+            <p>Built by developers, for developers. Advanced tools and integrations that actually work.</p>
+          </div>
+          
+          <div class="advantage">
+            <h4>Global Infrastructure</h4>
+            <p>Deploy on AWS, Google Cloud, DigitalOcean, Linode, or Vultr across 65+ data centers.</p>
+          </div>
+
+          <div class="advantage">
+            <h4>Unmatched Performance</h4>
+            <p>Lightning stack with advanced caching, CDN, and optimization tools built-in.</p>
+          </div>        
+
+          <div class="advantage">
+            <h4>24/7 Expert Support</h4>
+            <p>Get help when you need it with our dedicated support team and comprehensive documentation.</p>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <a href="https://platform.cloudways.com/signup?id=1823652&coupon=SUMMER305" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="cta-button">
+            Start with Cloudways
+            <span class="cta-subtitle">Use code SUMMER305 - Save $305!</span>
+          </a>
+          
+          <p class="affiliate-notice">
+            * This is an affiliate link. When you sign up through this link, NÍTIDA DIGITAL receives a small commission at no extra cost to you. This helps support our content and recommendations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+.hosting {
+  padding: 2rem 0;
+}
+
+.hosting-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxxl);
+  margin-top: var(--spacing-xxl);
+  
+  @media (max-width: 1023px) {
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+  }
+}
+
+.hero-section {
+  text-align: center;
+}
+
+.hero-image-link {
+  display: block;
+  margin: 0 auto 3rem auto;
+  width: fit-content;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-section h2,
+.summer-offer h2,
+.why-cloudways h2 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-size: var(--font-size-large);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  
+  @media (max-width: 1023px) {
+    font-size: 1.5rem;
+  }
+}
+
+.features-grid,
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xxl);
+}
+
+.feature,
+.advantage {
+  height: fit-content;
+  padding: var(--spacing-lg);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-sm);
+}
+
+.feature h3,
+.advantage h4 {
+  font-size: var(--font-size-medium);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  color: #DDFF55;
+  font-weight: bold;
+}
+
+.feature p,
+.advantage p {
+  line-height: 1.8;
+  font-size: var(--font-size-medium);
+  opacity: 0.9;
+}
+
+.summer-offer {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.cloudways-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+
+.benefit {
+  height: fit-content;
+  padding: var(--spacing-md);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-sm);
+}
+
+.benefit h4 {
+  color: #DDFF55;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+
+.benefit p {
+  line-height: 1.8;
+  font-size: var(--font-size-medium);
+  opacity: 0.9;
+}
+
+.cta-section {
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-sm);
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(10px);
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+.cta-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #DDFF55;
+  color: #DDFF55;
+}
+
+.cta-subtitle {
+  display: block;
+  font-size: 0.85em;
+  font-weight: 400;
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+.affiliate-notice {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+.why-cloudways {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .features-grid,
+  .advantages-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cloudways-benefits {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-image {
+    width: 60%;
+    max-width: 300px;
+  }
+}
+</style>
