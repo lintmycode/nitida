@@ -1,0 +1,20 @@
+---
+// WhatsApp redirect page for Nuno
+const whatsappUrl = `https://wa.me/351933734854?text=${encodeURIComponent('Hey Nuno')}`;
+---
+
+<script define:vars={{ whatsappUrl }}>
+  // Redirect immediately when page loads
+  window.location.href = whatsappUrl;
+</script>
+
+<html>
+<head>
+  <title>Redirecting to WhatsApp...</title>
+  <meta http-equiv="refresh" content="0; url={whatsappUrl}">
+</head>
+<body>
+  <p>Redirecting to WhatsApp...</p>
+  <p>If you're not redirected automatically, <a href={whatsappUrl}>click here</a>.</p>
+</body>
+</html>
