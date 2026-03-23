@@ -6,6 +6,7 @@ featured: true
 order: 1
 image: "/media/borealis.webp"
 backgroundPosition: "7% 0%"
+link: ["https://borealis.travel/", "Visit"]
 ---
 
 # Borealis - Adventure Travel Website

@@ -8,7 +8,7 @@ featured: true
 order: 5
 image: "/media/console-invaders.png"
 backgroundPosition: "0% 0%"
-link: ["https://lintmycode.github.io/console-invaders/", "Play!"]
+link: ["https://github.com/lintmycode/console-invaders", "GitHub"]
 ---
 
 # Console Invaders - Retro Browser Game

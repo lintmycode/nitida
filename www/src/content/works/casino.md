@@ -5,6 +5,7 @@ technologies: ["WordPress", "Custom Theme Development", "Web Design"]
 order: 3
 image: "/media/casino.webp"
 backgroundPosition: "0% 0%"
+link: ["https://casinoafifense.com/", "Visit"]
 ---
 
 # Casino Afifense - Cultural Events Hub
