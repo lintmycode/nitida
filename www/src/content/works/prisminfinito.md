@@ -4,7 +4,7 @@ description: "Custom WordPress website for Prisminfinito, a Portuguese optics an
 technologies: ["WordPress", "Custom Theme Development"]
 featured: true
 order: 7
-image: "/media/prisminfinito.png"
+image: "/media/prisminfinito.webp"
 backgroundPosition: "7% 0%"
 link: ["https://prisminfinito.pt/", "Visit"]
 ---

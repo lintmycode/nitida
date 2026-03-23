@@ -3,7 +3,7 @@ title: "Everbean Kids - Children's E-Commerce"
 description: "Premium children's clothing e-commerce platform for Everbean Kids. Features age-based shopping, size recommendations, wishlist functionality, and family-friendly checkout process."
 technologies: ["Shopify", "Node.js", "React"]
 order: 2
-image: "/media/everbeankids.png"
+image: "/media/everbeankids.webp"
 backgroundPosition: "0% 2%"
 link: ["https://everbeankids.com/", "Visit"]
 ---

@@ -4,7 +4,7 @@ description: "Professional landing page for a Portuguese law practice. Clean, co
 technologies: ["Landing page", "SEO"]
 featured: true
 order: 6
-image: "/media/jna.png"
+image: "/media/jna.webp"
 backgroundPosition: "0% 0%"
 link: ["https://julianevesadvogada.pt/", "Visit"]
 ---

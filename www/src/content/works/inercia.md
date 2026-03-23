@@ -4,7 +4,7 @@ description: "Professional climate control solutions platform for INERCIA. Compl
 technologies: ["Brand Development", "WordPress", "Custom Theme Development"]
 featured: true
 order: 4
-image: "/media/inercia.png"
+image: "/media/inercia.webp"
 backgroundPosition: "0% 0%"
 link: ["https://inercia-climatizacao.pt/", "Visit"]
 ---

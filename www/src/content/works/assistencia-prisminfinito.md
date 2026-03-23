@@ -4,7 +4,7 @@ description: "Dedicated support and repair portal for Prisminfinito. A focused W
 technologies: ["WordPress", "Custom Theme Development"]
 featured: true
 order: 8
-image: "/media/assistencia-prisminfinito.png"
+image: "/media/assistencia-prisminfinito.webp"
 backgroundPosition: "7% 0%"
 link: ["https://assistencia-prisminfinito.pt/", "Visit"]
 ---
