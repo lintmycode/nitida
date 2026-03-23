@@ -17,7 +17,7 @@ const sortedWorks = works.sort((a, b) => (a.data.order || 999) - (b.data.order |
       {sortedWorks.map((work) => (
         <div class="work-item">
           {work.data.image && (
-            <div class="work-image" style={`background-image: url('${work.data.image}'); ${work.data.backgroundPosition ? `background-position: ${work.data.backgroundPosition}` : ''}`}>
+            <div class="work-image" style={`background-image: url('${work.data.image}?v=2'); ${work.data.backgroundPosition ? `background-position: ${work.data.backgroundPosition}` : ''}`}>
             </div>
           )}
           <div class="work-content">
