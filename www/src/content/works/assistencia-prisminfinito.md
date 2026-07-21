@@ -3,7 +3,7 @@ title: "Assistência Prisminfinito"
 description: "Dedicated support and repair portal for Prisminfinito. A focused WordPress site to handle customer service requests, warranty claims, and technical assistance."
 technologies: ["WordPress", "Custom Theme Development"]
 featured: true
-order: 8
+order: 6
 image: "/media/assistencia-prisminfinito.webp"
 backgroundPosition: "7% 0%"
 link: ["https://assistencia-prisminfinito.pt/", "Visit"]

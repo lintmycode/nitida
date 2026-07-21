@@ -5,7 +5,7 @@ browser console. Features progressive difficulty, score system, and
 retro styling with zero dependencies."
 technologies: ["JavaScript", "Browser Console API", "Nostalgia"]
 featured: true
-order: 5
+order: 8
 image: "/media/console-invaders.webp"
 backgroundPosition: "0% 0%"
 link: ["https://github.com/lintmycode/console-invaders", "GitHub"]
