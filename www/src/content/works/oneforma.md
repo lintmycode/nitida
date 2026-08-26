@@ -1,6 +1,6 @@
 ---
 title: "OneForma - Expert Marketplace Platform"
-description: "Expert marketplace platform connecting professionals with paid AI training and data projects. Features project matching across 40+ expert domains, application workflows, and a global expert community."
+description: "Expert marketplace platform for Centific, a US multinational headquartered in Redmond, WA, connecting professionals with paid AI training and data projects. Features project matching across 40+ expert domains, application workflows, and a global expert community."
 technologies: ["WordPress", "Custom Theme Development"]
 featured: true
 order: 9
@@ -11,7 +11,7 @@ link: ["https://www.oneforma.com/", "Visit"]
 
 # OneForma - Expert Marketplace Platform
 
-A marketplace platform for OneForma, matching subject-matter experts with paid projects that put their knowledge to work, from AI safety evaluation to specialized data tasks.
+A marketplace platform for OneForma, owned by Centific, a US multinational headquartered in Redmond, WA, matching subject-matter experts with paid projects that put their knowledge to work, from AI safety evaluation to specialized data tasks.
 
 ## Scope of Work
 
