@@ -1,7 +1,7 @@
 ---
 title: "OneForma - Expert Marketplace Platform"
 description: "Expert marketplace platform connecting professionals with paid AI training and data projects. Features project matching across 40+ expert domains, application workflows, and a global expert community."
-technologies: ["Web Design", "Custom Development"]
+technologies: ["WordPress", "Custom Theme Development"]
 featured: true
 order: 9
 image: "/media/oneforma.webp"
@@ -15,8 +15,8 @@ A marketplace platform for OneForma, matching subject-matter experts with paid p
 
 ## Scope of Work
 
-- Full build from provided design, delivered in under a month
+- Pixel perfect build from provided design, delivered in under a month
 - Project discovery and domain filtering across 40+ expert domains
+- Automated job intake workflow using REST API
 - Application and onboarding flows for experts
-- Community and content hub for the OneForma network
 - Responsive, high-performance marketing site
