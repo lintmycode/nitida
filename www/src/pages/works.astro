@@ -7,6 +7,8 @@ import BackButton from '../components/BackButton.astro';
 const works = await getCollection('works');
 // Sort by order field
 const sortedWorks = works.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+// Cache-bust images per build so stale browser/CDN caches don't serve outdated assets
+const buildVersion = Date.now();
 ---
 
 <Layout title="Works - NÍTIDA DIGITAL">
@@ -17,7 +19,14 @@ const sortedWorks = works.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?
       {sortedWorks.map((work) => (
         <div class="work-item">
           {work.data.image && (
-            <div class="work-image" style={`background-image: url('${work.data.image}?v=2'); ${work.data.backgroundPosition ? `background-position: ${work.data.backgroundPosition}` : ''}`}>
+            <div class="work-image">
+              <img
+                src={`${work.data.image}?v=${buildVersion}`}
+                alt={work.data.title}
+                style={work.data.backgroundPosition ? `object-position: ${work.data.backgroundPosition}` : undefined}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           )}
           <div class="work-content">
