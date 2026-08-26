@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import { getCollection } from 'astro:content';
 import Layout from '../components/Layout.astro';
 import BackButton from '../components/BackButton.astro';
@@ -9,6 +11,15 @@ const works = await getCollection('works');
 const sortedWorks = works.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 // Cache-bust images per build so stale browser/CDN caches don't serve outdated assets
 const buildVersion = Date.now();
+
+// If a `<name>@2x.<ext>` companion file exists in public/, serve it as the 2x
+// srcset candidate so high-DPI screens get real detail instead of the browser
+// upscaling/downscaling a single asset to fit every pixel density.
+function twoXSrc(imagePath: string): string | null {
+  const ext = path.extname(imagePath);
+  const twoX = `${imagePath.slice(0, -ext.length)}@2x${ext}`;
+  return fs.existsSync(path.join(process.cwd(), 'public', twoX)) ? twoX : null;
+}
 ---
 
 <Layout title="Works - NÍTIDA DIGITAL">
@@ -18,17 +29,21 @@ const buildVersion = Date.now();
     <div class="works-grid">
       {sortedWorks.map((work) => (
         <div class="work-item">
-          {work.data.image && (
-            <div class="work-image">
-              <img
-                src={`${work.data.image}?v=${buildVersion}`}
-                alt={work.data.title}
-                style={work.data.backgroundPosition ? `object-position: ${work.data.backgroundPosition}` : undefined}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          )}
+          {work.data.image && (() => {
+            const twoX = twoXSrc(work.data.image);
+            return (
+              <div class="work-image">
+                <img
+                  src={`${work.data.image}?v=${buildVersion}`}
+                  srcset={twoX ? `${work.data.image}?v=${buildVersion} 1x, ${twoX}?v=${buildVersion} 2x` : undefined}
+                  alt={work.data.title}
+                  style={work.data.backgroundPosition ? `object-position: ${work.data.backgroundPosition}` : undefined}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            );
+          })()}
           <div class="work-content">
             <h3>{work.data.title}</h3>
             <p>{work.data.description}</p>
