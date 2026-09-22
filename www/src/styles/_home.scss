@@ -1,1 +1,228 @@
-// Home page styles — filled in by the Home page build.
+// Home page — mockup 2a. The life stage (canvas + header + hero + status
+// bar) fills the viewport; the footer (rendered by Layout) follows after.
+
+.home-stage {
+  position: relative; // containing block for the absolute canvas
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // Own stacking context, so the canvas's z-index:-1 stays above the body
+  // background instead of dropping behind it (cells were invisible).
+  isolation: isolate;
+  background: var(--blue); // ground shows through before life.js paints
+}
+
+.home-stage__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  // Negative z-index (within .home-stage's own stacking context, since it's
+  // position:relative) keeps the canvas below the header/hero/status bar,
+  // which are plain static-flow content and would otherwise sit *under* an
+  // absolutely-positioned sibling regardless of DOM order.
+  z-index: -1;
+}
+
+// Hero — bottom-left, max-width 660 (spec). `.home-hero` just carries the
+// shared `.container` gutter; `__inner` carries the mockup's own max-width
+// so the two don't fight over the `max-width` declaration.
+.home-hero {
+  padding-bottom: 18px;
+  margin-top: auto; // push hero down to sit just above the status bar (mockup 2a)
+}
+
+// .container centres itself with auto margins, which in a flex column also
+// shrink-wraps it to its content; force full width so hero and status bar
+// share the header's left/right edges.
+.home-stage > .container {
+  width: 100%;
+}
+
+.home-hero__inner {
+  max-width: 660px;
+}
+
+.home-hero__eyebrow {
+  margin-bottom: 20px;
+}
+
+.home-hero__title {
+  margin-bottom: 22px;
+}
+
+.home-hero__lead {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: 520px;
+  margin: 0 0 30px;
+}
+
+.home-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap; // no-overflow safety net on narrow screens
+}
+
+// Status bar — transparent, bottom of the stage.
+.home-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 30px 16px;
+  flex-wrap: wrap;
+}
+
+.home-status__left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.home-status__life {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-status__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+  border-radius: 50%;
+  display: block;
+  flex: none;
+}
+
+.home-status__gen b {
+  font-weight: 700;
+}
+
+.home-status__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+// INFO — a secondary-style link (not `.btn--secondary`: the mockup uses a
+// smaller size/padding here than the shared button utility).
+.home-status__info {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: transparent;
+  border: 1.5px solid rgba(15, 26, 23, 0.35);
+  padding: 9px 14px;
+  border-radius: var(--radius-4);
+  transition: border-color 150ms ease;
+
+  &:hover {
+    border-color: var(--ink);
+  }
+}
+
+// CONTROL +/CLOSE ✕ toggle — lime-on-ink, matches the mockup's dark chip.
+.home-status__toggle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lime);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: 9px 14px;
+  border-radius: var(--radius-4);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+
+  &:hover {
+    background: var(--panel);
+    border-color: var(--panel);
+  }
+}
+
+// Control tray — closed by default (life.js toggles `.is-open`).
+.home-tray {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap; // keep tray buttons from overflowing on mobile
+  background: var(--ink);
+  padding: 7px;
+  border-radius: var(--radius-5);
+
+  &.is-open {
+    display: flex;
+  }
+}
+
+.home-tray__btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lime);
+  background: transparent;
+  border: 1px solid rgba(200, 238, 58, 0.45);
+  padding: 8px 13px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background: rgba(200, 238, 58, 0.14);
+  }
+}
+
+@media (max-width: 640px) {
+  // Hide the "CONWAY'S GAME OF LIFE" label (dot included — it's meaningless
+  // floating on its own); GEN and B3/S23 stay.
+  .home-status__life {
+    display: none;
+  }
+
+  // Stack the controls under the GEN/rules row instead of squeezing both
+  // groups onto one line, so the tray never has to fight for width.
+  .home-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .home-status__right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  // Touch targets >=44px (README "Responsive").
+  .home-status__info,
+  .home-status__toggle,
+  .home-tray__btn {
+    min-height: 44px;
+  }
+}

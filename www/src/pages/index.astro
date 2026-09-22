@@ -1,54 +1,67 @@
 ---
 import Layout from '../components/Layout.astro';
+import Header from '../components/Header.astro';
+
+// Mockup 2a. Layout is given `stageHeader` so it skips rendering <Header>
+// itself — we render it here, inside `.home-stage`, so it sits over the
+// Game of Life canvas together with the hero and status bar.
 ---
 
-<Layout title="NÍTIDA DIGITAL" pageClass="homepage">
-  <div class="logo">
-    <img src="/logo.png" alt="NÍTIDA DIGITAL" />
-  </div>
-  
-  <canvas id="canvas"></canvas>
+<Layout
+  title="NÍTIDA DIGITAL"
+  description="Custom WordPress, Shopify, apps and integrations — designed, built, measured and maintained by the same people who shipped them."
+  stageHeader
+>
+  <div class="home-stage">
+    <canvas id="life-canvas" class="home-stage__canvas"></canvas>
 
-  <!-- Info Modal -->
-  <div class="info-modal" id="info-modal">
-    <div class="modal-content">
-      <button class="modal-close" id="modal-close">&times;</button>
-      
-      <h3>About NÍTIDA</h3>
-      <p>Based in Portugal, NÍTIDA DIGITAL delivers world-class digital solutions to clients globally. We combine technical expertise with creative vision to build exceptional web experiences that drive results.</p>
-      <p>Our mission is to transform ideas into powerful digital realities through innovation, craftsmanship, and collaborative partnerships.</p>
-      
-      <h3>Conway's Game of Life</h3>
-      <p>You're witnessing a cellular automaton where simple rules create complex, evolving patterns. Each cell lives or dies based on its neighbors—just like how great ideas emerge from collaboration.</p>
-      <p>This mirrors NÍTIDA's values: <strong>organic growth</strong> through interaction, <strong>evolution</strong> through iteration, and <strong>emergence</strong> of beautiful solutions from simple principles.</p>
-      <p>Like our projects, what starts as individual elements becomes something greater through purposeful connection and thoughtful design.</p>
-      
-      <div class="modal-nav">
-        <a href="/works" class="modal-nav-link">View Recent Work</a>
-        <a href="/contact" class="modal-nav-link">Get In Touch</a>
+    <Header />
+
+    <div class="home-hero container">
+      <div class="home-hero__inner">
+        <p class="eyebrow home-hero__eyebrow">DIGITAL STUDIO · PORTUGAL → WORLDWIDE</p>
+        <h1 class="h1 h1--hero home-hero__title">
+          Sharp builds for companies that can't afford a vague one.
+        </h1>
+        <p class="home-hero__lead">
+          Custom WordPress, Shopify, apps and integrations — designed, built, measured and
+          maintained by the same people who shipped them.
+        </p>
+        <div class="home-hero__actions">
+          <a href="/works" class="btn btn--primary">SEE THE WORK →</a>
+          <a href="/services" class="btn btn--secondary">WHAT WE DO</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-status container">
+      <div class="home-status__left">
+        <span class="home-status__life">
+          <i class="home-status__dot" aria-hidden="true"></i>CONWAY'S GAME OF LIFE
+        </span>
+        <span class="home-status__gen">GEN <b id="life-gen">0</b></span>
+        <span class="home-status__rules">B3/S23</span>
+      </div>
+
+      <div class="home-status__right">
+        <div class="home-tray" id="life-tray">
+          <button type="button" id="life-pause" class="home-tray__btn">PAUSE</button>
+          <button type="button" id="life-glider" class="home-tray__btn">SPAWN GLIDER</button>
+          <button type="button" id="life-restart" class="home-tray__btn">RESTART</button>
+        </div>
+        <a href="/about" class="home-status__info">INFO</a>
+        <button
+          type="button"
+          id="life-toggle"
+          class="home-status__toggle"
+          aria-expanded="false"
+          aria-controls="life-tray"
+        >
+          CONTROL +
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Dev controls (hidden) -->
-  <div class="status dev-controls">
-    <button class="control-close" id="control-close">&times;</button>
-    <div class="control-row">
-      <label>Generation:</label>
-      <span id="generation">0</span>
-    </div>
-    <div class="control-row">
-      <label for="interval">Interval (ms):</label>
-      <input id="interval" type="number" value="100" min="10" max="1000">
-    </div>
-    <div class="control-buttons">
-      <button id="pause" class="control-btn">Start</button>
-      <button id="restart" class="control-btn">Restart</button>
-    </div>
-    <div class="control-buttons">
-      <button id="spawn-glider" class="control-btn">Spawn Glider</button>
-    </div>
-  </div>
-
-  <script type="module" src="/app.js?v=2.1"></script>
+  <script type="module" src="/life.js"></script>
 </Layout>
