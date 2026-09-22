@@ -1,1 +1,247 @@
-// Services page styles — filled in by the Services page build.
+// Services page — mockup 1c. Values (colours, sizes, opacities) copied
+// verbatim from Nitida Site Mockups.dc.html #1c so the card grid matches
+// the handoff exactly; several rgba() stops here (e.g. the kind-tag and
+// item-copy opacities) don't line up with the shared --white-secondary /
+// --white-muted tokens, so they're hardcoded rather than forced onto a
+// nearby token.
+
+// --- Intro: eyebrow + H1 beside a lead paragraph, bottom-aligned ---------
+.services-intro {
+  padding-top: 56px;
+  padding-bottom: 30px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+    align-items: end;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 18px;
+    }
+  }
+
+  &__eyebrow {
+    margin-bottom: 18px;
+  }
+
+  &__title {
+    max-width: 660px;
+  }
+
+  &__lead {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+}
+
+// --- Card grid -------------------------------------------------------------
+.services-grid {
+  padding-top: 38px;
+  padding-bottom: 44px;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.services-card {
+  background: var(--panel);
+  border-radius: var(--radius-8);
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 290px;
+  transition: background-color 150ms ease;
+
+  // Single column: cards no longer need to line up, so drop the equal height
+  // that otherwise leaves empty gaps in short cards.
+  @media (max-width: 640px) {
+    min-height: 0;
+  }
+
+  &:hover {
+    background: var(--panel-hover);
+  }
+
+  &__top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__no {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--lime);
+  }
+
+  // Standalone (no kind tag beside it) on the 08 card.
+  &__no--cta {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  &__kind {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  &__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #fff;
+    margin: 0;
+  }
+
+  &__title--cta {
+    margin-bottom: 10px;
+  }
+
+  &__line {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.68);
+    flex: 1;
+    margin: 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.82);
+    }
+  }
+
+  &__bullet {
+    width: 5px;
+    height: 5px;
+    background: var(--lime);
+    display: block;
+    margin-top: 6px;
+    flex: none;
+  }
+
+  &__proof {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    padding-top: 12px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--lime);
+    text-decoration: none;
+    transition: color 150ms ease;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// The 08 "not sure which one" card: pinned to the ink ground, its content
+// pushed to top/bottom instead of following the standard card gap.
+.services-card--cta {
+  background: var(--ink);
+  justify-content: space-between;
+}
+
+.services-card__cta-btn {
+  width: 100%;
+  text-align: center;
+
+  // Overrides .btn--primary's default lime-hover: the mockup's 08 card CTA
+  // hovers to white instead (redesign-spec.md "Services").
+  &.btn--primary:hover {
+    background: #fff;
+  }
+}
+
+// --- Closing ink band --------------------------------------------------
+.services-band {
+  background: var(--ink);
+  padding: 34px 0;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__text {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    max-width: 480px;
+    margin: 0;
+  }
+
+  // Lime-outline button per the mockup: not a shared .btn variant (it's the
+  // only place this lime/alpha-border combo appears), so it's kept local.
+  &__cta {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--lime);
+    border: 1.5px solid rgba(200, 238, 58, 0.5);
+    padding: 13px 18px;
+    border-radius: var(--radius-4);
+    white-space: nowrap;
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease;
+
+    &:hover {
+      background: rgba(200, 238, 58, 0.12);
+    }
+  }
+}
