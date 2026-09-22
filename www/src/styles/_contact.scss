@@ -1,1 +1,311 @@
-// Contact page styles — filled in by the Contact page build.
+// Contact page — mockup 1h. BEM prefix `.contact`.
+
+.contact {
+  // Section-top spacing per README ("Section tops: 44-56px"); generous
+  // bottom gap before the footer band.
+  padding-block: 48px 64px;
+}
+
+.contact__intro {
+  margin-bottom: 34px;
+}
+
+.contact__eyebrow {
+  margin-bottom: 16px;
+}
+
+.contact__h1 {
+  margin: 0 0 12px;
+  max-width: 560px;
+}
+
+.contact__reply {
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 520px;
+  margin: 0;
+}
+
+// 1fr / 250px per spec, stacked at 1024 and below.
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 20px;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__form-card {
+  background: var(--panel);
+  border-radius: var(--radius-8);
+  padding: 26px;
+}
+
+.contact__row--2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact__field--needs {
+  margin-bottom: 18px;
+}
+
+.contact__field--project {
+  margin-bottom: 20px;
+}
+
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+// Shared field chrome for text inputs, textarea and selects.
+.contact__input,
+.contact__textarea,
+.contact__select {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #fff;
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-4);
+  padding: 12px 13px;
+  outline: none;
+  width: 100%;
+  transition: border-color 150ms ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    border-color: var(--lime);
+  }
+
+  // Inline-error state (spec: aria-invalid + inline text under the field;
+  // the mockup itself has no error state to copy, so this red is new).
+  &[aria-invalid='true'] {
+    border-color: #ff8a80;
+  }
+}
+
+.contact__textarea {
+  min-height: 110px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+// Custom lime chevron, since a native <select> arrow can't be recoloured.
+.contact__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 34px;
+  color: rgba(255, 255, 255, 0.5);
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C8EE3A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  option {
+    color: #fff;
+    background: var(--ink);
+  }
+}
+
+.contact__error {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: #ff8a80;
+  margin: 0;
+}
+
+.contact__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.contact__chip {
+  position: relative;
+  display: inline-flex;
+}
+
+// Visually hidden but still focusable/clickable for a11y — the label is
+// the visible chip, `:checked`/`:focus-visible` are read off the input
+// via the adjacent-sibling selectors below.
+.contact__chip-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contact__chip-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 18px;
+  padding: 8px 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+
+  &:hover {
+    border-color: var(--lime);
+    color: var(--lime);
+  }
+}
+
+// Checked state: lime border/text plus a subtle lime-alpha fill.
+.contact__chip-input:checked + .contact__chip-label {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: rgba(200, 238, 58, 0.14);
+}
+
+// Visible keyboard focus ring on the hidden input's sibling label.
+.contact__chip-input:focus-visible + .contact__chip-label {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  // 44px touch target for the chip row.
+  .contact__chip-label {
+    min-height: 44px;
+    padding-inline: 14px;
+  }
+}
+
+.contact__submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contact__submit {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.contact__small-print {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.contact__status {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+
+  &:empty {
+    margin: 0;
+  }
+
+  &[data-state='success'] {
+    color: var(--lime);
+  }
+
+  &[data-state='error'] {
+    color: #ff8a80;
+  }
+}
+
+.contact__side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact__side-card {
+  background: var(--ink);
+  border-radius: var(--radius-8);
+  padding: 20px;
+}
+
+.contact__side-heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 12px;
+}
+
+.contact__side-link {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  transition: color 150ms ease;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    color: var(--lime);
+  }
+}
+
+// The email link is lime by default, hover to white — opposite of the
+// LinkedIn link — matching the mockup exactly.
+.contact__side-link--lime {
+  color: var(--lime);
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.contact__side-text {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
