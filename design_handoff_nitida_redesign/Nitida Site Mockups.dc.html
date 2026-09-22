@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics=""><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+body{margin:0;background:#e7e5de;font-family:'Instrument Sans',system-ui,sans-serif;color:#0F1A17}
+a{color:inherit;text-decoration:none}
+a:hover{color:#0F1A17}
+.dv-brief{padding:38px 44px 30px;border-bottom:1px solid rgba(0,0,0,.1);max-width:1180px}
+.dv-turn{padding:40px 44px 34px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 22px}
+.dv-tid{font:700 10px 'Fira Code',ui-monospace,monospace;padding:4px 8px;background:#0F1A17;color:#C8EE3A;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 'Instrument Sans',system-ui,sans-serif;color:#0F1A17}
+.dv-opts{display:flex;flex-wrap:wrap;gap:34px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:700 10.5px 'Fira Code',ui-monospace,monospace;padding:4px 8px;background:rgba(0,0,0,.09);color:#0F1A17;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:9px;font:400 11.5px/1.35 'Instrument Sans',system-ui,sans-serif;color:rgba(0,0,0,.58)}
+.dv-card{flex:none;border:1px solid rgba(0,0,0,.1);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.07);overflow:hidden;background:#fff}
+.dv-opt:target .dv-oid{background:#2EACFF;color:#fff}
+.dv-next{margin:26px 0 0;font:12px/1.6 'Instrument Sans',system-ui,sans-serif;color:rgba(0,0,0,.52)}
+</style></helmet>
+
+<div class="dv-brief">
+<div style="display:flex;align-items:baseline;gap:12px;margin:0 0 18px">
+<span style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;padding:5px 9px;background:#0F1A17;color:#C8EE3A;border-radius:4px">NÍTIDA · UI MOCKUPS</span>
+<span style="font:400 12px 'Fira Code',ui-monospace,monospace;color:rgba(0,0,0,.45)">rounds 1–4 · 6 screens · brand values from the repo</span>
+</div>
+<h1 style="font:600 27px/1.2 'Instrument Sans',system-ui,sans-serif;margin:0 0 14px;letter-spacing:-.015em;max-width:820px;text-wrap:pretty">One system, applied: brand blue field, ink type, lime for action — and services finally treated as a real page.</h1>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px 34px;max-width:1120px;margin:22px 0 0">
+<div>
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.16em;color:#2EACFF;margin-bottom:8px">WHAT I READ ON THE LIVE SITE</div>
+<p style="font:400 13px/1.6 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(0,0,0,.7);text-wrap:pretty">Astro site, Fira Code throughout, lime #C8EE3A over a blue→lime gradient that animates while the sim runs. Nav is inconsistent — Hosting shows on Works but not the homepage, and it is a Cloudways affiliate page rather than a service. Services exist only as tech tags under each project.</p>
+</div>
+<div>
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.16em;color:#2EACFF;margin-bottom:8px">WHAT MAKES IT FEEL UNPOLISHED</div>
+<p style="font:400 13px/1.6 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(0,0,0,.7);text-wrap:pretty">The 45° gradient animating under everything, mono used for body copy so nothing gets hierarchy, chip-shaped nav buttons that read as debug UI, and a hero with no proposition in it.</p>
+</div>
+<div>
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.16em;color:#2EACFF;margin-bottom:8px">THE SYSTEM I'M PROPOSING</div>
+<p style="font:400 13px/1.6 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(0,0,0,.7);text-wrap:pretty">Flat brand blue everywhere, cells a half-step lighter so the field reads as texture not flicker. Ink for words, lime for actions only. Fira Code keeps the labels, meta, numbers and nav; a grotesk takes the prose so headlines and paragraphs finally have a scale.</p>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;align-items:center">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-right:6px">PALETTE</span>
+<span style="display:flex;align-items:center;gap:7px;font:500 11px 'Fira Code',ui-monospace,monospace;color:rgba(0,0,0,.6);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:5px 9px"><i style="width:12px;height:12px;background:#4AB7FF;border-radius:2px;display:block"></i>#4AB7FF</span>
+<span style="display:flex;align-items:center;gap:7px;font:500 11px 'Fira Code',ui-monospace,monospace;color:rgba(0,0,0,.6);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:5px 9px"><i style="width:12px;height:12px;background:#2EACFF;border-radius:2px;display:block"></i>#2EACFF</span>
+<span style="display:flex;align-items:center;gap:7px;font:500 11px 'Fira Code',ui-monospace,monospace;color:rgba(0,0,0,.6);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:5px 9px"><i style="width:12px;height:12px;background:#14262B;border-radius:2px;display:block"></i>#14262B</span>
+<span style="display:flex;align-items:center;gap:7px;font:500 11px 'Fira Code',ui-monospace,monospace;color:rgba(0,0,0,.6);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:5px 9px"><i style="width:12px;height:12px;background:#C8EE3A;border-radius:2px;display:block"></i>#C8EE3A</span>
+<span style="display:flex;align-items:center;gap:7px;font:500 11px 'Fira Code',ui-monospace,monospace;color:rgba(0,0,0,.6);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:4px;padding:5px 9px"><i style="width:12px;height:12px;background:#0F1A17;border-radius:2px;display:block"></i>#0F1A17</span>
+</div>
+</div>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Homepage — chosen direction</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Brand blue field, cells a half-step lighter, ink type, lime for action. Real logo, Fira Code, transparent chrome.</div>
+<div class="dv-card" style="width:1180px;background:#2EACFF">
+<div style="position:relative;height:660px;overflow:hidden">
+<canvas ref="{{ canvasC }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:0">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 34px 30px">
+<img src="assets/logo-lime.png" alt="NÍTIDA" style="height:62px;width:auto;display:block">
+<nav style="display:flex;align-items:center;gap:26px">
+<a href="#1c" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">SERVICES</a>
+<a href="#1e" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">WORKS</a>
+<a href="#1g" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">ABOUT</a>
+<a href="#1h" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;background:#C8EE3A;padding:10px 16px;border-radius:4px" style-hover="background:#D4F55A">START A PROJECT</a>
+</nav>
+</div>
+<div style="max-width:660px;padding:0 34px 18px">
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.18em;color:#0F1A17;margin-bottom:20px">DIGITAL STUDIO · PORTUGAL → WORLDWIDE</div>
+<h1 style="font:600 56px/1.06 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.028em;margin:0 0 22px;color:#0F1A17;text-wrap:pretty">Sharp builds for companies that can't afford a vague one.</h1>
+<p style="font:400 17px/1.62 'Instrument Sans',system-ui,sans-serif;margin:0 0 30px;color:#0F1A17;max-width:520px;text-wrap:pretty">Custom WordPress, Shopify, apps and integrations — designed, built, measured and maintained by the same people who shipped them.</p>
+<div style="display:flex;gap:12px;align-items:center">
+<a href="#1e" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;background:#C8EE3A;padding:15px 24px;border-radius:5px" style-hover="background:#D4F55A">SEE THE WORK →</a>
+<a href="#1c" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;border:1.5px solid rgba(15,26,23,.4);padding:14px 22px;border-radius:5px" style-hover="border-color:#0F1A17">WHAT WE DO</a>
+</div>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:30px 34px 16px">
+<div style="display:flex;align-items:center;gap:22px;font:500 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17">
+<span style="display:flex;align-items:center;gap:8px"><i style="width:6px;height:6px;background:#0F1A17;border-radius:50%;display:block"></i>CONWAY'S GAME OF LIFE</span>
+<span>GEN <b ref="{{ genRefC }}" style="font-weight:700">0</b></span>
+<span>B3/S23</span>
+</div>
+<div style="display:flex;gap:8px;align-items:center">
+<sc-if value="{{ controlsOpen }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:8px;align-items:center;background:#0F1A17;padding:7px;border-radius:5px">
+<button onClick="{{ toggleLife }}" style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#C8EE3A;background:transparent;border:1px solid rgba(200,238,58,.45);padding:8px 13px;border-radius:3px;cursor:pointer" style-hover="background:rgba(200,238,58,.14)">{{ runLabel }}</button>
+<button onClick="{{ spawnGlider }}" style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#C8EE3A;background:transparent;border:1px solid rgba(200,238,58,.45);padding:8px 13px;border-radius:3px;cursor:pointer" style-hover="background:rgba(200,238,58,.14)">SPAWN GLIDER</button>
+<button onClick="{{ reseed }}" style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#C8EE3A;background:transparent;border:1px solid rgba(200,238,58,.45);padding:8px 13px;border-radius:3px;cursor:pointer" style-hover="background:rgba(200,238,58,.14)">RESTART</button>
+</div>
+</sc-if>
+<button style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;background:transparent;border:1.5px solid rgba(15,26,23,.35);padding:9px 14px;border-radius:4px;cursor:pointer" style-hover="border-color:#0F1A17">INFO</button>
+<button onClick="{{ toggleControls }}" style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#C8EE3A;background:#0F1A17;border:1.5px solid #0F1A17;padding:9px 14px;border-radius:4px;cursor:pointer" style-hover="background:#14262B;border-color:#14262B">{{ controlsLabel }}</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "go with <a class="dv-oid" href="#2b">2b</a> and reskin the interior pages to match" · "blue on the homepage, green only on About" · "try the field in white on blue"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Homepage · Services · Works · Case study · About · Contact</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Services — capability grid, no icons, no prices. Every card carries the proof project underneath it.</div>
+<div class="dv-card" style="width: 1180px; background:#2EACFF">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 30px">
+<img src="assets/logo-lime.png" alt="NÍTIDA" style="height:62px;width:auto;display:block">
+<nav style="display:flex;align-items:center;gap:24px">
+<a href="#1c" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid #0F1A17">SERVICES</a>
+<a href="#1e" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">WORKS</a>
+<a href="#1g" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">ABOUT</a>
+<a href="#1h" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;background:#C8EE3A;padding:10px 16px;border-radius:4px" style-hover="background:#D4F55A">START A PROJECT</a>
+</nav>
+</div>
+<div style="padding:56px 30px 30px;display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:end">
+<div>
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.18em;color:#0F1A17;margin-bottom:18px">SERVICES · 07</div>
+<h1 style="font:600 48px/1.06 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.028em;margin:0;color:#0F1A17;max-width:660px;text-wrap:pretty">Seven things we do properly, instead of forty we'd do badly.</h1>
+</div>
+<p style="font:400 15px/1.65 'Instrument Sans',system-ui,sans-serif;margin:0;color:#0F1A17;text-wrap:pretty">Every engagement starts the same way: a call, a written scope, a fixed first milestone. Then we build. Each capability below links to a project where you can see it running in production.</p>
+</div>
+<div style="padding:38px 30px 44px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+<sc-for list="{{ services }}" as="s" hint-placeholder-count="7">
+<div style="background:#14262B;border-radius:8px;padding:22px 20px 20px;display:flex;flex-direction:column;gap:14px;min-height:290px" style-hover="background:#1B333B">
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<span style="font:700 11px 'Fira Code',ui-monospace,monospace;color:#C8EE3A">{{ s.no }}</span>
+<span style="font:500 9.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.12em;color:rgba(255,255,255,.38)">{{ s.kind }}</span>
+</div>
+<h3 style="font:600 20px/1.2 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.015em;margin:0;color:#fff;text-wrap:pretty">{{ s.title }}</h3>
+<p style="font:400 13.5px/1.55 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(255,255,255,.68);flex:1;text-wrap:pretty">{{ s.line }}</p>
+<div style="display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{ s.items }}" as="it" hint-placeholder-count="3">
+<span style="display:flex;gap:9px;align-items:flex-start;font:400 12px/1.45 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.82)"><i style="width:5px;height:5px;background:#C8EE3A;display:block;margin-top:6px;flex:none"></i>{{ it }}</span>
+</sc-for>
+</div>
+<a href="#1f" style="display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.16);padding-top:12px;font:500 10.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#C8EE3A" style-hover="color:#fff"><span>{{ s.proof }}</span><span>→</span></a>
+</div>
+</sc-for>
+<div style="background:#0F1A17;border-radius:8px;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;min-height:290px">
+<div>
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;color:#C8EE3A;margin-bottom:14px">08</div>
+<h3 style="font:600 20px/1.2 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.015em;margin:0 0 10px;color:#fff">Not sure which one you need?</h3>
+<p style="font:400 13.5px/1.55 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(255,255,255,.68);text-wrap:pretty">Send the problem, not the spec. We'll tell you what it actually takes — and if it isn't us, we'll say so.</p>
+</div>
+<a href="#1h" style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;background:#C8EE3A;padding:13px 16px;border-radius:4px;text-align:center" style-hover="background:#fff">BOOK A 20-MIN CALL →</a>
+</div>
+</div>
+<div style="background:#0F1A17;padding:34px 30px">
+<div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:center">
+<p style="font:500 15px/1.5 'Instrument Sans',system-ui,sans-serif;margin:0;color:#fff;max-width:480px">Already running something that needs looking after? Hosting, backups, updates and monitoring are a service too.</p>
+<a href="#1c" style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.1em;color:#C8EE3A;border:1.5px solid rgba(200,238,58,.5);padding:13px 18px;border-radius:4px" style-hover="background:rgba(200,238,58,.12)">CARE PLANS — TO BE DESIGNED</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1e">
+<div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Works — two-up grid, filterable by service, screenshot given room. Replaces the stacked full-width rows.</div>
+<div class="dv-card" style="width:1180px;background:#2EACFF">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 30px">
+<img src="assets/logo-lime.png" alt="NÍTIDA" style="height:62px;width:auto;display:block">
+<nav style="display:flex;align-items:center;gap:24px">
+<a href="#1c" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">SERVICES</a>
+<a href="#1e" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid #0F1A17">WORKS</a>
+<a href="#1g" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">ABOUT</a>
+<a href="#1h" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;background:#C8EE3A;padding:10px 16px;border-radius:4px" style-hover="background:#D4F55A">START A PROJECT</a>
+</nav>
+</div>
+<div style="padding:52px 30px 26px;display:flex;flex-wrap:wrap;gap:30px;align-items:flex-end;justify-content:space-between">
+<div>
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.18em;color:#0F1A17;margin-bottom:16px">SELECTED WORK · 09</div>
+<h1 style="font:600 44px/1.06 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.028em;margin:0;color:#0F1A17;max-width:600px;text-wrap:pretty">Built, launched, and still in production.</h1>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+<button style="font:500 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;background:transparent;border:1px solid rgba(15,26,23,.35);padding:9px 13px;border-radius:20px;cursor:pointer" style-hover="background:#0F1A17;border-color:#0F1A17;color:#fff">{{ f }}</button>
+</sc-for>
+</div>
+</div>
+<div style="padding:14px 30px 44px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<sc-for list="{{ works }}" as="w" hint-placeholder-count="6">
+<a href="#1f" style="background:#14262B;border-radius:8px;overflow:hidden;display:flex;flex-direction:column" style-hover="background:#1B333B">
+<div style="aspect-ratio:16/10;overflow:hidden;background:#0F1A17;background-image:{{ w.bg }};background-size:cover;background-position:top center;background-repeat:no-repeat"></div>
+<div style="padding:22px 22px 20px;display:flex;flex-direction:column;gap:12px;flex:1">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px">
+<h3 style="font:600 19px/1.2 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.015em;margin:0;color:#fff">{{ w.name }}</h3>
+<span style="font:500 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.1em;color:rgba(255,255,255,.5);white-space:nowrap">{{ w.sub }}</span>
+</div>
+<p style="font:400 13.5px/1.55 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(255,255,255,.66);flex:1;text-wrap:pretty">{{ w.line }}</p>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid rgba(255,255,255,.14);padding-top:12px">
+<span style="font:500 10.5px/1.5 'Fira Code',ui-monospace,monospace;letter-spacing:.04em;color:#C8EE3A">{{ w.stack }}</span>
+<span style="font:600 10.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#fff;white-space:nowrap">CASE →</span>
+</div>
+</div>
+</a>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1f">
+<div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Case study — the page Works currently links away from. Spec column, real screens, outcome numbers left as placeholders for you to fill.</div>
+<div class="dv-card" style="width:1180px;background:#F2F1EA">
+<div style="background:#2EACFF;padding:22px 30px;display:flex;align-items:center;justify-content:space-between">
+<img src="assets/logo-lime.png" alt="NÍTIDA" style="height:62px;width:auto;display:block">
+<a href="#1e" style="font:500 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">← ALL WORKS</a>
+</div>
+<div style="background:#2EACFF;padding:10px 30px 54px">
+<div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:end">
+<div>
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.18em;color:#0F1A17;margin-bottom:18px">CASE STUDY · TRAVEL &amp; BOOKING</div>
+<h1 style="font:600 50px/1.05 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.03em;margin:0 0 16px;color:#0F1A17;text-wrap:pretty">Borealis On Trekking</h1>
+<p style="font:400 17px/1.6 'Instrument Sans',system-ui,sans-serif;margin:0;color:#0F1A17;max-width:560px;text-wrap:pretty">Adventure travel booking for Borealis On Trekking: trip scheduling, destination filtering, group management and a seamless booking experience, in one platform.</p>
+</div>
+<div style="border-left:1px solid rgba(15,26,23,.25);padding-left:24px;display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{ caseSpec }}" as="c" hint-placeholder-count="4">
+<div>
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#0F1A17;margin-bottom:5px">{{ c.k }}</div>
+<div style="font:500 13.5px/1.45 'Instrument Sans',system-ui,sans-serif;color:#0F1A17">{{ c.v }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="padding:34px 30px;display:grid;grid-template-columns:2fr 1fr;gap:18px">
+<div style="aspect-ratio:16/10;overflow:hidden;border:1px solid rgba(0,0,0,.1);border-radius:6px;background:#0F1A17">
+<img src="assets/works/borealis@2x.webp" alt="Borealis On Trekking — trip listing" style="width:100%;height:100%;object-fit:cover;object-position:7% 0%;display:block">
+</div>
+<div style="display:grid;gap:18px">
+<div style="border:1px dashed rgba(0,0,0,.3);border-radius:6px;background:#e6e4dc;min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:16px;text-align:center">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(0,0,0,.5)">MOBILE — CHECKOUT</span>
+<span style="font:400 12px/1.45 'Instrument Sans',system-ui,sans-serif;color:rgba(0,0,0,.55)">Screenshot needed</span>
+</div>
+<div style="background:#C8EE3A;border-radius:6px;padding:20px;display:flex;flex-direction:column;justify-content:center">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(15,26,23,.6);margin-bottom:8px">ROLE</div>
+<p style="font:500 15px/1.45 'Instrument Sans',system-ui,sans-serif;margin:0;color:#0F1A17">Custom WordPress plugin, WooCommerce, payment and invoicing integrations, normalised SQL architecture.</p>
+</div>
+</div>
+</div>
+<div style="padding:14px 30px 40px;display:grid;grid-template-columns:1.2fr 1fr;gap:44px">
+<div>
+<h2 style="font:600 22px/1.2 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 14px">The problem</h2>
+<p style="font:400 15px/1.68 'Instrument Sans',system-ui,sans-serif;margin:0 0 26px;color:rgba(0,0,0,.55);border-left:2px solid rgba(0,0,0,.25);padding-left:14px;text-wrap:pretty">[How were trips scheduled and booked before? What broke as the catalogue grew? One paragraph on the before-state — this is the part that makes the build look inevitable, and it needs to come from you rather than be assumed.]</p>
+<h2 style="font:600 22px/1.2 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 14px">What we built</h2>
+<p style="font:400 15px/1.68 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(0,0,0,.72);text-wrap:pretty">A custom WordPress plugin manages Trips and Trip Packages, and packages convert to WooCommerce products so reservations and stock are handled by machinery the client already understands. It integrates with payment gateways and invoicing software. Critically, it bypasses WP postmeta entirely and builds on a real, normalised SQL architecture — which is why multi-destination trip planning stays fast as the catalogue grows.</p>
+</div>
+<div>
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(0,0,0,.45);margin-bottom:14px">OUTCOME — ADD YOUR NUMBERS</div>
+<div style="display:flex;flex-direction:column;gap:2px;border-top:1px solid rgba(0,0,0,.14)">
+<sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="3">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.14)">
+<span style="font:400 13.5px/1.45 'Instrument Sans',system-ui,sans-serif;color:rgba(0,0,0,.7)">{{ o.k }}</span>
+<span style="font:700 24px 'Fira Code',ui-monospace,monospace;color:#0F1A17;white-space:nowrap">{{ o.v }}</span>
+</div>
+</sc-for>
+</div>
+<div style="margin-top:24px;background:#14262B;border-radius:6px;padding:20px">
+<p style="font:400 14px/1.55 'Instrument Sans',system-ui,sans-serif;margin:0 0 14px;color:rgba(255,255,255,.8);text-wrap:pretty">"[One client sentence goes here — the thing they said when it went live.]"</p>
+<div style="font:500 10.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#C8EE3A">— CLIENT NAME, ROLE</div>
+</div>
+</div>
+</div>
+<div style="background:#0F1A17;padding:30px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+<p style="font:500 18px/1.35 'Instrument Sans',system-ui,sans-serif;margin:0;color:#fff;max-width:520px;text-wrap:pretty">Got a catalogue, a calendar or a checkout that fights you?</p>
+<div style="display:flex;gap:10px">
+<a href="#1h" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;background:#C8EE3A;padding:14px 20px;border-radius:5px" style-hover="background:#D4F55A">START A PROJECT</a>
+<a href="#1e" style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:13px 18px;border-radius:5px" style-hover="border-color:#fff">NEXT CASE →</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1g">
+<div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a>About — the Info panel promoted to a page. Keeps the Game of Life analogy but earns it with principles.</div>
+<div class="dv-card" style="width:900px;background:#2EACFF">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:20px 26px">
+<img src="assets/logo-lime.png" alt="NÍTIDA" style="height:62px;width:auto;display:block">
+<nav style="display:flex;align-items:center;gap:20px">
+<a href="#1c" style="font:500 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">SERVICES</a>
+<a href="#1e" style="font:500 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">WORKS</a>
+<a href="#1g" style="font:600 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid #0F1A17">ABOUT</a>
+<a href="#1h" style="font:600 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;background:#C8EE3A;padding:9px 14px;border-radius:4px" style-hover="background:#D4F55A">CONTACT</a>
+</nav>
+</div>
+<div style="padding:48px 26px 34px">
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.18em;color:#0F1A17;margin-bottom:18px">ABOUT NÍTIDA</div>
+<h1 style="font:600 40px/1.07 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.028em;margin:0 0 20px;color:#0F1A17;max-width:620px;text-wrap:pretty">A small studio in Portugal that builds for clients anywhere.</h1>
+<p style="font:400 16.5px/1.65 'Instrument Sans',system-ui,sans-serif;margin:0;color:#0F1A17;max-width:600px;text-wrap:pretty">We take on a handful of projects at a time so the person who scoped your build is the person writing it. Fifteen years of web work sits behind that: WordPress and Shopify done properly, integrations that hold, and sites we're still maintaining years after launch.</p>
+</div>
+<div style="padding:0 26px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+<sc-for list="{{ principles }}" as="p" hint-placeholder-count="3">
+<div style="background:#0F1A17;border-radius:8px;padding:20px">
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;color:#C8EE3A;margin-bottom:12px">{{ p.no }}</div>
+<h3 style="font:600 17px/1.25 'Instrument Sans',system-ui,sans-serif;margin:0 0 9px;color:#fff">{{ p.title }}</h3>
+<p style="font:400 13px/1.55 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(255,255,255,.68);text-wrap:pretty">{{ p.body }}</p>
+</div>
+</sc-for>
+</div>
+<div style="margin:0 26px 40px;border:1.5px solid rgba(15,26,23,.25);border-radius:8px;padding:26px;display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center">
+<div style="aspect-ratio:1;background:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 2px,transparent 2px 10px),repeating-linear-gradient(0deg,rgba(255,255,255,.3) 0 2px,transparent 2px 10px);border-radius:4px"></div>
+<div>
+<h3 style="font:600 19px/1.25 'Instrument Sans',system-ui,sans-serif;margin:0 0 10px;color:#0F1A17">Why the grid on the homepage</h3>
+<p style="font:400 14.5px/1.6 'Instrument Sans',system-ui,sans-serif;margin:0;color:#0F1A17;text-wrap:pretty">Conway's Game of Life: four rules, no designer, endlessly complex results. It's the closest thing we've found to how a good build behaves — small correct decisions, compounding. It also means the homepage is never the same twice.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1h">
+<div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a>Contact — qualifies the enquiry instead of four blank fields, and shows a human way to reach you.</div>
+<div class="dv-card" style="width:900px;background:#2EACFF">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:20px 26px">
+<img src="assets/logo-lime.png" alt="NÍTIDA" style="height:62px;width:auto;display:block">
+<nav style="display:flex;align-items:center;gap:20px">
+<a href="#1c" style="font:500 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">SERVICES</a>
+<a href="#1e" style="font:500 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">WORKS</a>
+<a href="#1g" style="font:500 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;padding-bottom:3px;border-bottom:1.5px solid transparent" style-hover="border-bottom-color:#0F1A17">ABOUT</a>
+<a href="#1h" style="font:600 11.5px 'Fira Code',ui-monospace,monospace;letter-spacing:.06em;color:#0F1A17;background:#C8EE3A;padding:9px 14px;border-radius:4px" style-hover="background:#D4F55A">CONTACT</a>
+</nav>
+</div>
+<div style="padding:44px 26px 30px">
+<div style="font:700 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.18em;color:#0F1A17;margin-bottom:16px">CONTACT</div>
+<h1 style="font:600 38px/1.07 'Instrument Sans',system-ui,sans-serif;letter-spacing:-.028em;margin:0 0 12px;color:#0F1A17;max-width:560px;text-wrap:pretty">Tell us what's broken, or what you want to exist.</h1>
+<p style="font:400 15.5px/1.6 'Instrument Sans',system-ui,sans-serif;margin:0;color:#0F1A17;max-width:520px">Replies within one working day. If it isn't a fit, we'll point you somewhere it is.</p>
+</div>
+<div style="padding:0 26px 34px;display:grid;grid-template-columns:1fr 250px;gap:20px;align-items:start">
+<div style="background:#14262B;border-radius:8px;padding:26px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+<label style="display:flex;flex-direction:column;gap:8px">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A">NAME</span>
+<input placeholder="Your name" style="font:400 14px 'Instrument Sans',system-ui,sans-serif;color:#fff;background:#0F1A17;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:12px 13px;outline:none" style-focus="border-color:#C8EE3A">
+</label>
+<label style="display:flex;flex-direction:column;gap:8px">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A">EMAIL</span>
+<input placeholder="you@company.com" style="font:400 14px 'Instrument Sans',system-ui,sans-serif;color:#fff;background:#0F1A17;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:12px 13px;outline:none" style-focus="border-color:#C8EE3A">
+</label>
+</div>
+<div style="margin-bottom:18px">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A;margin-bottom:10px">WHAT DO YOU NEED?</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<sc-for list="{{ needs }}" as="n" hint-placeholder-count="6">
+<button style="font:500 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.04em;color:rgba(255,255,255,.85);background:transparent;border:1px solid rgba(255,255,255,.28);border-radius:18px;padding:8px 13px;cursor:pointer" style-hover="border-color:#C8EE3A;color:#C8EE3A">{{ n }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+<label style="display:flex;flex-direction:column;gap:8px">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A">TIMELINE</span>
+<div style="font:400 14px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.5);background:#0F1A17;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:12px 13px;display:flex;justify-content:space-between">Choose one<span style="color:#C8EE3A">▾</span></div>
+</label>
+<label style="display:flex;flex-direction:column;gap:8px">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A">BUDGET RANGE</span>
+<div style="font:400 14px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.5);background:#0F1A17;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:12px 13px;display:flex;justify-content:space-between">Optional<span style="color:#C8EE3A">▾</span></div>
+</label>
+</div>
+<label style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+<span style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A">THE PROJECT</span>
+<textarea placeholder="What it is, who it's for, and what's in the way." style="font:400 14px/1.55 'Instrument Sans',system-ui,sans-serif;color:#fff;background:#0F1A17;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:12px 13px;min-height:110px;outline:none;resize:vertical" style-focus="border-color:#C8EE3A"></textarea>
+</label>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+<button style="font:600 12px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;background:#C8EE3A;border:none;padding:15px 22px;border-radius:5px;cursor:pointer" style-hover="background:#fff">SEND ENQUIRY →</button>
+<span style="font:400 11px/1.5 'Fira Code',ui-monospace,monospace;color:rgba(255,255,255,.45)">NO NEWSLETTER. NO CRM SEQUENCE.</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="background:#0F1A17;border-radius:8px;padding:20px">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(255,255,255,.45);margin-bottom:12px">DIRECT</div>
+<a href="#1h" style="font:500 14px 'Instrument Sans',system-ui,sans-serif;color:#C8EE3A;display:block;margin-bottom:8px" style-hover="color:#fff">info@nitida.pt</a>
+<a href="#1h" style="font:500 14px 'Instrument Sans',system-ui,sans-serif;color:#fff;display:block" style-hover="color:#C8EE3A">LinkedIn ↗</a>
+</div>
+<div style="background:#0F1A17;border-radius:8px;padding:20px">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(255,255,255,.45);margin-bottom:12px">BASED</div>
+<p style="font:400 13.5px/1.55 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(255,255,255,.8)">Portugal (WET/WEST). We work with teams across Europe and the US.</p>
+</div>
+<div style="background:#C8EE3A;border-radius:8px;padding:20px">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:rgba(15,26,23,.6);margin-bottom:10px">ALREADY A CLIENT?</div>
+<p style="font:500 13.5px/1.5 'Instrument Sans',system-ui,sans-serif;margin:0 0 12px;color:#0F1A17">Support requests go straight to the maintenance queue.</p>
+<a href="#1c" style="font:600 11px 'Fira Code',ui-monospace,monospace;letter-spacing:.08em;color:#0F1A17;border-bottom:1.5px solid #0F1A17">OPEN A TICKET →</a>
+</div>
+</div>
+</div>
+<div style="background:#0F1A17;padding:26px 26px 22px">
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.14)">
+<div>
+<img src="assets/logo.png" alt="NÍTIDA" style="height:54px;width:auto;display:block;margin-bottom:14px;filter:invert(1) brightness(2)">
+<p style="font:400 13px/1.5 'Instrument Sans',system-ui,sans-serif;margin:0;color:rgba(255,255,255,.55);max-width:240px">Sharp digital work, built to keep working.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A;margin-bottom:2px">PAGES</div>
+<a href="#1a" style="font:400 13px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.75)" style-hover="color:#fff">Home</a>
+<a href="#1c" style="font:400 13px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.75)" style-hover="color:#fff">Services</a>
+<a href="#1e" style="font:400 13px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.75)" style-hover="color:#fff">Works</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="font:700 10px 'Fira Code',ui-monospace,monospace;letter-spacing:.14em;color:#C8EE3A;margin-bottom:2px">CONNECT</div>
+<a href="#1h" style="font:400 13px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.75)" style-hover="color:#fff">info@nitida.pt</a>
+<a href="#1h" style="font:400 13px 'Instrument Sans',system-ui,sans-serif;color:rgba(255,255,255,.75)" style-hover="color:#fff">LinkedIn</a>
+</div>
+</div>
+<div style="padding-top:16px;font:400 11px 'Fira Code',ui-monospace,monospace;color:rgba(255,255,255,.4)">© 2026 NÍTIDA DIGITAL · NIF 000 000 000 · LIVRO DE RECLAMAÇÕES</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "add a real Hosting &amp; care page, separate from the Cloudways affiliate page" · "add the four-step process strip back into <a class="dv-oid" href="#1c">1c</a>" · "add a Hosting page with care tiers" · "show <a class="dv-oid" href="#1a">1a</a> and <a class="dv-oid" href="#1e">1e</a> at mobile width" · "reskin <a class="dv-oid" href="#1e">1e</a> and <a class="dv-oid" href="#1f">1f</a> to match <a class="dv-oid" href="#2b">2b</a>"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C8EE3A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C8EE3A&quot;,&quot;#FFFFFF&quot;,&quot;#2EACFF&quot;,&quot;#0F1A17&quot;],&quot;section&quot;:&quot;Life grid&quot;},&quot;speed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:240,&quot;min&quot;:80,&quot;max&quot;:600,&quot;step&quot;:20,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Life grid&quot;}}">
+class Component extends DCLogic {
+  state = { running: true, controlsOpen: false };
+  canvasC = React.createRef();
+  genRef = React.createRef();
+  genRefC = React.createRef();
+
+  paintGen() {
+    const t = this.gen.toLocaleString();
+    [this.genRef, this.genRefC].forEach(r => { if (r.current) r.current.textContent = t; });
+  }
+
+  componentDidMount() {
+    this.sims = [
+      { ref: this.canvasC, cols: 118, rows: 66, cell: 10, bg: "#2EACFF", fg: "#4AB7FF", density: 0.13 }
+    ];
+    this.sims.forEach(s => {
+      const c = s.ref.current;
+      if (!c) { s.grid = this.seed(s.cols, s.rows, s.density); return; }
+      const w = c.clientWidth, h = c.clientHeight;
+      if (w > 0 && h > 0) {
+        s.cell = Math.max(4, Math.round(w / s.cols));
+        s.cols = Math.round(w / s.cell);
+        s.rows = Math.max(8, Math.round(h / s.cell));
+      }
+      s.grid = this.seed(s.cols, s.rows, s.density);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      c.width = s.cols * s.cell * dpr;
+      c.height = s.rows * s.cell * dpr;
+      s.ctx = c.getContext("2d");
+      s.ctx.scale(dpr, dpr);
+    });
+    this.gen = 0;
+    this.draw();
+    this.start();
+  }
+
+  componentDidUpdate(prev) {
+    if (prev.speed !== this.props.speed) this.start();
+    if (prev.accent !== this.props.accent) this.draw();
+  }
+
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  start() {
+    clearInterval(this.timer);
+    const ms = Math.max(40, Number(this.props.speed) || 240);
+    this.timer = setInterval(() => {
+      if (!this.state.running) return;
+      this.sims.forEach(s => { s.grid = this.step(s); });
+      this.gen++;
+      this.paintGen();
+      this.draw();
+    }, ms);
+  }
+
+  seed(cols, rows, density) {
+    const d = density || 0.16;
+    const g = [];
+    for (let y = 0; y < rows; y++) {
+      const row = [];
+      for (let x = 0; x < cols; x++) row.push(Math.random() < d ? 1 : 0);
+      g.push(row);
+    }
+    return g;
+  }
+
+  step(s) {
+    const g = s.grid, rows = s.rows, cols = s.cols, out = [];
+    for (let y = 0; y < rows; y++) {
+      const row = [];
+      for (let x = 0; x < cols; x++) {
+        let n = 0;
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (!dx && !dy) continue;
+            n += g[(y + dy + rows) % rows][(x + dx + cols) % cols];
+          }
+        }
+        row.push(g[y][x] ? (n === 2 || n === 3 ? 1 : 0) : (n === 3 ? 1 : 0));
+      }
+      out.push(row);
+    }
+    return out;
+  }
+
+  draw() {
+    const accent = this.props.accent || "#C8EE3A";
+    this.sims.forEach(s => {
+      if (!s.ctx) return;
+      const c = s.cell;
+      s.ctx.fillStyle = s.bg;
+      s.ctx.fillRect(0, 0, s.cols * c, s.rows * c);
+      s.ctx.fillStyle = s.fg || accent;
+      for (let y = 0; y < s.rows; y++) {
+        for (let x = 0; x < s.cols; x++) {
+          if (s.grid[y][x]) s.ctx.fillRect(x * c, y * c, c - 1, c - 1);
+        }
+      }
+    });
+  }
+
+  renderVals() {
+    return {
+      canvasC: this.canvasC,
+      genRef: this.genRef,
+      genRefC: this.genRefC,
+      runLabel: this.state.running ? "PAUSE" : "START",
+      controlsOpen: this.state.controlsOpen,
+      controlsLabel: this.state.controlsOpen ? "CLOSE ✕" : "CONTROL +",
+      toggleControls: () => this.setState(s => ({ controlsOpen: !s.controlsOpen })),
+      toggleLife: () => this.setState(s => ({ running: !s.running })),
+      reseed: () => {
+        this.sims.forEach(s => { s.grid = this.seed(s.cols, s.rows, s.density); });
+        this.gen = 0;
+        this.paintGen();
+        this.draw();
+      },
+      spawnGlider: () => {
+        const pts = [[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]];
+        this.sims.forEach(s => {
+          const ox = 2 + Math.floor(Math.random() * (s.cols - 8));
+          const oy = 2 + Math.floor(Math.random() * (s.rows - 8));
+          pts.forEach(([dx, dy]) => { s.grid[oy + dy][ox + dx] = 1; });
+        });
+        this.draw();
+      },
+      services: [
+        { no: "01", kind: "BUILD", title: "Custom WordPress", line: "Bespoke themes and plugins built to your brand, not bent out of a template.", long: "Bespoke theme built to the design, custom post types and editor blocks your team can actually use, plugin work where the plugin doesn't exist yet.", stack: "WordPress · PHP · ACF", proof: "Borealis, INERCIA", items: ["Custom theme from design", "Editor-friendly blocks", "Plugin development"] },
+        { no: "02", kind: "BUILD", title: "Shopify & e-commerce", line: "Storefronts that sell — catalogue, variants, checkout, and the boring parts done right.", long: "Theme development, product architecture for large catalogues, size and age filtering, checkout tuning and post-purchase flows.", stack: "Shopify · Liquid · Woo", proof: "Everbean Kids", items: ["Theme development", "Catalogue architecture", "Checkout & post-purchase"] },
+        { no: "03", kind: "BUILD", title: "Apps & integrations", line: "Web apps, portals and the plumbing that connects them to the systems running the business.", long: "Internal tools, customer portals and product front-ends, plus the ERP, CRM, payment and booking integrations behind them — queued, logged and retried, so a failed call doesn't become a lost order.", stack: "Node · React · REST", proof: "OneForma, Borealis engine", items: ["Web apps & portals", "Third-party APIs & webhooks", "Payments, bookings, data sync"] },
+        { no: "04", kind: "GROWTH", title: "SEO, local & performance", line: "A report you can act on, then the work that moves the numbers — search, local and speed.", long: "Technical audit, Core Web Vitals and content mapping, plus Google Business Profile setup, local schema and review flow. Delivered as a prioritised list, then implemented.", stack: "GSC · CWV · GBP", proof: "Júlia Neves, Prisminfinito", items: ["Technical audit & report", "Core Web Vitals work", "Google Business Profile & local schema"] },
+        { no: "05", kind: "BUILD", title: "AI in the workflow", line: "Models put to work on real problems — search, recommendations, and the content grind.", long: "Search by image, recommendation engines, and LLM pipelines that clean, tag and enrich CMS data. Scoped to a measurable job, not bolted on as a feature.", stack: "Vision · LLM · Vector search", proof: "Cinca, Everbean Kids", items: ["Search by image", "Recommendation engines", "LLM data processing in the CMS"] },
+        { no: "06", kind: "RESCUE", title: "Cleanup & rescue", line: "Inherited a half-finished, AI-generated codebase? We make it something you can actually ship.", long: "Audit of what's there, what's dead and what's dangerous. Then we stabilise: real data models, removed duplication, tests where they earn their keep, and a deploy that doesn't need luck. You get a written verdict before any rebuild.", stack: "Audit · Refactor · Handover", proof: "[add a rescue case]", items: ["Codebase audit & written verdict", "Refactor, de-duplicate, secure", "Take over or hand back clean"] },
+        { no: "07", kind: "CARE", title: "Hosting & care", line: "Managed hosting, updates, backups and monitoring on sites we know inside out.", long: "Managed hosting with staging, weekly updates, off-site backups, uptime and error monitoring, and a named person who answers.", stack: "Managed · Staging · Backups", proof: "Assistência Prisminfinito", items: ["Managed hosting + staging", "Updates & backups", "Monitoring & support SLA"] }
+      ],
+      steps: [
+        { no: "01", when: "DAY 0", title: "Call", body: "Twenty minutes on what you need and whether we're the right studio for it." },
+        { no: "02", when: "WEEK 1", title: "Written scope", body: "Deliverables, stack, milestones and a fixed price for the first one. No moving targets." },
+        { no: "03", when: "WEEKS 2–8", title: "Build in the open", body: "Staging link from day one. You see it grow instead of waiting for a reveal." },
+        { no: "04", when: "ONGOING", title: "Launch & care", body: "Handover, documentation, and optional hosting and maintenance from the people who built it." }
+      ],
+      filters: ["ALL", "WORDPRESS", "SHOPIFY", "SEO", "BRAND", "APPS"],
+      works: [
+        { name: "OneForma", sub: "Expert Marketplace Platform", line: "Expert marketplace for Centific, a US multinational — project matching across 40+ expert domains, application workflows and a global expert community.", stack: "WORDPRESS · CUSTOM THEME", img: "assets/works/oneforma.webp" },
+        { name: "Borealis On Trekking", sub: "Adventure Travel Platform", line: "Adventure travel booking: trip scheduling, destination filtering, group management and a seamless booking experience.", stack: "WORDPRESS · WOOCOMMERCE · CUSTOM PLUGIN", img: "assets/works/borealis.webp" },
+        { name: "Everbean Kids", sub: "Children's E-Commerce", line: "Premium children's clothing store where customers can become sellers and consign items — age-based shopping, size guidance, automated seller payouts.", stack: "SHOPIFY · NODE.JS · REACT", img: "assets/works/everbeankids.webp" },
+        { name: "Casino Afifense", sub: "Cultural Events Hub", line: "Cultural events platform for one of North Portugal's premier venues — event scheduling, multi-category management and venue information.", stack: "WORDPRESS · CUSTOM THEME · WEB DESIGN", img: "assets/works/casino.webp" },
+        { name: "Prisminfinito", sub: "Brand Site", line: "Custom WordPress site with a bespoke theme built from scratch — brand-aligned typography, product and service showcase, SEO-ready structure.", stack: "WORDPRESS · CUSTOM THEME", img: "assets/works/prisminfinito.webp" },
+        { name: "INERCIA", sub: "Climate Solutions Platform", line: "Complete digital transformation: brand design, multi-brand catalogue (Jaga, ESBE, CTC, Eurotherm), dealer network and a technical documentation portal.", stack: "BRAND DEVELOPMENT · WORDPRESS", img: "assets/works/inercia.webp" },
+        { name: "Assistência Prisminfinito", sub: "Support Portal", line: "Dedicated support and repair portal handling service requests, warranty claims and technical assistance, separate from the main brand site.", stack: "WORDPRESS · CUSTOM THEME", img: "assets/works/assistencia-prisminfinito.webp" },
+        { name: "Júlia Neves Advogada", sub: "Law Practice Landing Page", line: "Conversion-focused landing page for a Portuguese law practice, with on-page SEO and structured data built in to attract clients organically.", stack: "LANDING PAGE · SEO", img: "assets/works/jna.webp" },
+        { name: "Console Invaders", sub: "Retro Browser Game", line: "Space Invaders that runs entirely in the browser console. Zero dependencies, progressive difficulty, distributed via jsDelivr.", stack: "JAVASCRIPT · CONSOLE API · NOSTALGIA", img: "assets/works/console-invaders.webp" }
+      ].map(w => ({ ...w, bg: 'url("' + w.img + '")' })),
+      caseSpec: [
+        { k: "CLIENT", v: "Borealis On Trekking" },
+        { k: "SERVICES", v: "Custom WordPress · WooCommerce · Custom plugin development" },
+        { k: "LIVE", v: "borealis.travel ↗" }
+      ],
+      outcomes: [
+        { k: "Manual booking admin per week", v: "[—]" },
+        { k: "Bookings completed online", v: "[—]" },
+        { k: "Largest Contentful Paint", v: "[—]" }
+      ],
+      principles: [
+        { no: "01", title: "Small on purpose", body: "A few projects at a time. The person who scoped it is the person building it." },
+        { no: "02", title: "Custom, not clever", body: "We write what the project needs and nothing it doesn't. Boring code ages well." },
+        { no: "03", title: "Still here after launch", body: "Most of our sites are ones we still maintain. That changes how you build them." }
+      ],
+      needs: ["WordPress site", "Shopify store", "App or integration", "SEO, local & performance", "AI in the workflow", "Cleanup & rescue", "Hosting & care"]
+    };
+  }
+}
+</script>
+</body>
+</html>
