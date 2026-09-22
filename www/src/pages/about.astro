@@ -1,0 +1,75 @@
+---
+import Layout from '../components/Layout.astro';
+
+// Copy verbatim from renderVals().principles in the mockup (mockup artboard
+// 1g). Kept local since it's only used on this one page.
+const principles = [
+  {
+    no: '01',
+    title: 'Small on purpose',
+    body: 'A few projects at a time. The person who scoped it is the person building it.',
+  },
+  {
+    no: '02',
+    title: 'Custom, not clever',
+    body: "We write what the project needs and nothing it doesn't. Boring code ages well.",
+  },
+  {
+    no: '03',
+    title: 'Still here after launch',
+    body: 'Most of our sites are ones we still maintain. That changes how you build them.',
+  },
+];
+---
+
+<Layout
+  title="About - NÍTIDA DIGITAL"
+  description="A small studio in Portugal that builds for clients anywhere: ten years of WordPress, Shopify and web work, still maintained after launch."
+  active="about"
+  cta="contact"
+>
+  <div class="container container--narrow about">
+    <section class="about-intro">
+      <p class="eyebrow about-intro__eyebrow">ABOUT NÍTIDA</p>
+      <h1 class="h1 h1--40 about-intro__title">
+        A small studio in Portugal that builds for clients anywhere.
+      </h1>
+      <p class="about-intro__lead">
+        We take on a handful of projects at a time so the person who scoped
+        your build is the person writing it. Ten years of web work sits
+        behind that: WordPress and Shopify done properly, integrations that
+        hold, and sites we're still maintaining years after launch.
+      </p>
+    </section>
+
+    <div class="about-principles">
+      {
+        principles.map((p) => (
+          <div class="about-principles__card">
+            <div class="about-principles__no">{p.no}</div>
+            <h3 class="about-principles__title">{p.title}</h3>
+            <p class="about-principles__body">{p.body}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="about-grid-box">
+      {
+        /* Decorative echo of the homepage's Game of Life grid; the copy
+           beside it explains the reference, so the square itself carries
+           no information for assistive tech. */
+      }
+      <div class="about-grid-box__square" aria-hidden="true"></div>
+      <div class="about-grid-box__text">
+        <h3>Why the grid on the homepage</h3>
+        <p>
+          Conway's Game of Life: four rules, no designer, endlessly complex
+          results. It's the closest thing we've found to how a good build
+          behaves — small correct decisions, compounding. It also means the
+          homepage is never the same twice.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

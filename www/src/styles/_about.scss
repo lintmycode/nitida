@@ -1,1 +1,124 @@
-// About page styles — filled in by the About page build.
+// About page — mockup artboard 1g. Content sits in .container.container--narrow
+// (900px, from _base.scss), so this partial only adds page-specific spacing
+// and the ink principle cards / grid explainer box.
+
+.about {
+  padding-block: 56px 64px;
+}
+
+.about-intro__eyebrow {
+  margin-bottom: 18px;
+}
+
+.about-intro__title {
+  max-width: 620px;
+  margin-bottom: 20px;
+}
+
+.about-intro__lead {
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.65;
+  max-width: 600px;
+  color: var(--ink);
+}
+
+// Three ink principle cards.
+.about-principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.about-principles__card {
+  background: var(--ink);
+  border-radius: var(--radius-8);
+  padding: 20px;
+}
+
+.about-principles__no {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--lime);
+  margin-bottom: 12px;
+}
+
+.about-principles__title {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 9px;
+}
+
+.about-principles__body {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  // Mockup uses .68 here specifically, distinct from the --white-secondary/
+  // --white-muted tokens (.85/.62), so it's hardcoded to match exactly.
+  color: rgba(255, 255, 255, 0.68);
+}
+
+// "Why the grid on the homepage" explainer box.
+.about-grid-box {
+  margin-top: 40px;
+  border: 1.5px solid rgba(15, 26, 23, 0.25); // ink-alpha
+  border-radius: var(--radius-8);
+  padding: 26px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 26px;
+  align-items: center;
+}
+
+// Echoes the homepage Game of Life grid texture: two repeating linear
+// gradients crossed to form a fine grid, per the mockup exactly.
+.about-grid-box__square {
+  aspect-ratio: 1;
+  border-radius: var(--radius-4);
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0 2px, transparent 2px 10px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0 2px, transparent 2px 10px);
+}
+
+.about-grid-box__text h3 {
+  font-family: var(--font-sans);
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+.about-grid-box__text p {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .about {
+    padding-block: 40px 48px;
+  }
+
+  .about-principles {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid-box {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .about-grid-box__square {
+    // Stacked layout: without a fixed width the square would stretch to
+    // fill the single grid column, so pin it down to roughly 120px.
+    width: 120px;
+  }
+}
