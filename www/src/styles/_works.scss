@@ -1,1 +1,174 @@
-// Works page styles — filled in by the Works page build.
+// Works page — mockup 1e: eyebrow + H1 + filter chips, then a 2-up card grid.
+
+.works {
+  padding-block: 52px 44px;
+}
+
+.works-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 14px;
+}
+
+.works-intro__eyebrow {
+  margin-bottom: 16px;
+}
+
+.works-intro .h1 {
+  max-width: 600px;
+}
+
+// Filter chips: pill, ink border, ink fill + white text on hover/active.
+.works-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  button {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid rgba(15, 26, 23, 0.35);
+    padding: 9px 13px;
+    border-radius: var(--radius-20);
+    cursor: pointer;
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease;
+
+    &:hover,
+    &[aria-pressed='true'] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+  }
+}
+
+// No-JS fallback: filtering only works with the page script, so hide the
+// chips and let every card show (per redesign-spec.md "Works").
+html:not(.js) .works-filters {
+  display: none;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-top: 14px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-radius: var(--radius-8);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 150ms ease;
+  // So a same-page anchor (e.g. /works#cinca from a Services proof link)
+  // doesn't land the card flush against the viewport top.
+  scroll-margin-top: 24px;
+
+  &:hover {
+    background: var(--panel-hover);
+  }
+}
+
+.work-card__image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ink);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; // overridden inline per-card via backgroundPosition
+  }
+}
+
+.work-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  padding: 22px 22px 20px;
+}
+
+.work-card__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.work-card__heading h3 {
+  font-family: var(--font-sans);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+
+.work-card__subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+  white-space: nowrap;
+}
+
+.work-card__desc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.55;
+  // Mockup uses rgba(255,255,255,.66), closer to --white-muted (.62) than
+  // --white-secondary (.85) — reuse the token instead of a one-off rgba().
+  color: var(--white-muted);
+  flex: 1;
+}
+
+.work-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 12px;
+}
+
+.work-card__tech {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--lime);
+}
+
+.work-card__link {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}

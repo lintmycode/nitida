@@ -1,68 +1,138 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import { getCollection } from 'astro:content';
 import Layout from '../components/Layout.astro';
+import { twoXSrc } from '../lib/media.ts';
 
-// Get all works from content collections
 const works = await getCollection('works');
-// Sort by order field
+// `??` only falls back on null/undefined, so order: 0 (OneForma) and negative
+// orders (CINCA's -1, so it leads without renumbering every other entry)
+// still sort correctly ahead of unordered items.
 const sortedWorks = works.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
-// Cache-bust images per build so stale browser/CDN caches don't serve outdated assets
+
+// Cache-bust images per build so stale browser/CDN caches don't serve outdated assets.
 const buildVersion = Date.now();
 
-// If a `<name>@2x.<ext>` companion file exists in public/, serve it as the 2x
-// srcset candidate so high-DPI screens get real detail instead of the browser
-// upscaling/downscaling a single asset to fit every pixel density.
-function twoXSrc(imagePath: string): string | null {
-  const ext = path.extname(imagePath);
-  const twoX = `${imagePath.slice(0, -ext.length)}@2x${ext}`;
-  return fs.existsSync(path.join(process.cwd(), 'public', twoX)) ? twoX : null;
-}
+// Filter chip labels + the data-services key they match against.
+const filters = [
+  { label: 'ALL', value: 'all' },
+  { label: 'WORDPRESS', value: 'wordpress' },
+  { label: 'SHOPIFY', value: 'shopify' },
+  { label: 'SEO', value: 'seo' },
+  { label: 'BRAND', value: 'brand' },
+  { label: 'APPS', value: 'apps' },
+];
+
+const count = String(sortedWorks.length).padStart(2, '0');
 ---
 
-<Layout title="Works - NÍTIDA DIGITAL">
-  <div class="container works">
-    <h1>Recent Works</h1>
-    
-    <div class="works-grid">
-      {sortedWorks.map((work) => (
-        <div class="work-item">
-          {work.data.image && (() => {
-            const twoX = twoXSrc(work.data.image);
-            return (
-              <div class="work-image">
-                <img
-                  src={`${work.data.image}?v=${buildVersion}`}
-                  srcset={twoX ? `${work.data.image}?v=${buildVersion} 1x, ${twoX}?v=${buildVersion} 2x` : undefined}
-                  alt={work.data.title}
-                  style={work.data.backgroundPosition ? `object-position: ${work.data.backgroundPosition}` : undefined}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            );
-          })()}
-          <div class="work-content">
-            <h3>{work.data.title}</h3>
-            <p>{work.data.description}</p>
-            <div class="work-tech">{work.data.technologies.join(' • ')}</div>
-            {work.data.link && (
-              <div class="work-link">
-                <a 
-                  href={work.data.link[0]} 
-                  class="work-link-btn"
-                  target={work.data.link[0].includes('nitida.pt') ? undefined : '_blank'}
-                  rel={work.data.link[0].includes('nitida.pt') ? undefined : 'noopener noreferrer'}
-                >
-                  {work.data.link[1]}
-                  {!work.data.link[0].includes('nitida.pt') && <span class="external-icon">↗</span>}
-                </a>
-              </div>
-            )}
-          </div>
+<Layout
+  title="Works - NÍTIDA DIGITAL"
+  description="Selected work from NÍTIDA DIGITAL — WordPress, Shopify, SEO and custom apps, built and still in production."
+  active="works"
+>
+  <div class="works">
+    <div class="container">
+      <div class="works-intro">
+        <div>
+          <div class="eyebrow works-intro__eyebrow">SELECTED WORK · {count}</div>
+          <h1 class="h1 h1--44">Built, launched, and still in production.</h1>
         </div>
-      ))}
+        <!-- Hidden without JS (see _works.scss `html:not(.js)`) since filtering
+             only works client-side; all cards show unfiltered in that case. -->
+        <div class="works-filters" data-filters>
+          {filters.map((f) => (
+            <button type="button" data-filter={f.value} aria-pressed={f.value === 'all' ? 'true' : 'false'}>
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="works-grid">
+        {sortedWorks.map((work) => {
+          const { data, slug } = work;
+          const twoX = data.image ? twoXSrc(data.image) : null;
+          const src = data.image ? `${data.image}?v=${buildVersion}` : undefined;
+          const srcset = twoX
+            ? `${data.image}?v=${buildVersion} 1x, ${twoX}?v=${buildVersion} 2x`
+            : undefined;
+          const href = data.link?.[0] ?? '#';
+          const isExternal = !href.includes('nitida.pt');
+          return (
+            <a
+              class="work-card"
+              id={slug}
+              href={href}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noopener noreferrer' : undefined}
+              data-services={data.services.join(' ')}
+            >
+              {data.image && (
+                <div class="work-card__image">
+                  <img
+                    src={src}
+                    srcset={srcset}
+                    alt={data.title}
+                    style={data.backgroundPosition ? `object-position: ${data.backgroundPosition}` : undefined}
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="500"
+                  />
+                </div>
+              )}
+              <div class="work-card__body">
+                <div class="work-card__heading">
+                  <h3>{data.title}</h3>
+                  <span class="work-card__subtitle">{data.subtitle}</span>
+                </div>
+                <p class="work-card__desc">{data.description}</p>
+                <div class="work-card__footer">
+                  <span class="work-card__tech">{data.technologies.join(' · ').toUpperCase()}</span>
+                  {data.link && <span class="work-card__link">{data.link[1].toUpperCase()} ↗</span>}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
     </div>
   </div>
+
+  <script>
+    // Client-side filter: toggles the `hidden` attribute on cards whose
+    // data-services list doesn't include the active filter, and syncs the
+    // choice to ?filter= via replaceState so /works?filter=shopify loads
+    // pre-filtered and reloading keeps the chosen chip.
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('.work-card');
+
+    function applyFilter(value) {
+      filterButtons.forEach((btn) => {
+        btn.setAttribute('aria-pressed', btn.dataset.filter === value ? 'true' : 'false');
+      });
+      cards.forEach((card) => {
+        const services = (card.dataset.services || '').split(' ');
+        card.hidden = value !== 'all' && !services.includes(value);
+      });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    applyFilter(params.get('filter') || 'all');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const value = btn.dataset.filter || 'all';
+        applyFilter(value);
+
+        const url = new URL(window.location.href);
+        if (value === 'all') {
+          url.searchParams.delete('filter');
+        } else {
+          url.searchParams.set('filter', value);
+        }
+        window.history.replaceState({}, '', url);
+      });
+    });
+  </script>
 </Layout>

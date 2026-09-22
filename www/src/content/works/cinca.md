@@ -1,7 +1,9 @@
 ---
-title: "CINCA - Ceramic Tile Catalogue"
+title: "CINCA"
+subtitle: "Ceramic Tile Catalogue"
 description: "Custom-designed, multilingual product catalogue for CINCA, a Portuguese ceramic tile manufacturer partnering with professionals in 60+ markets. Bespoke WordPress theme, thousands of SKUs, filterable collections, a professionals area, and a downloads library."
 technologies: ["Web Design", "WordPress", "Custom Theme Development", "Custom Gutenberg Blocks", "Custom Plugin Development", "Polylang"]
+services: ["wordpress", "apps"]
 featured: true
 # Negative so it sorts ahead of OneForma (order 0) without renumbering every entry
 order: -1

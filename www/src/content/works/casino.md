@@ -1,7 +1,9 @@
 ---
-title: "Casino Afifense - Cultural Events Hub"
-description: "Cultural events management platform for Casino Afifense. Features event scheduling, ticket sales, venue management, and audience engagement tools."
+title: "Casino Afifense"
+subtitle: "Cultural Events Hub"
+description: "Cultural events platform for one of North Portugal's premier venues — event scheduling, multi-category management and venue information."
 technologies: ["WordPress", "Custom Theme Development", "Web Design"]
+services: ["wordpress"]
 order: 3
 image: "/media/casino.webp"
 backgroundPosition: "0% 0%"

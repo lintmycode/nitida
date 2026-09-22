@@ -1,9 +1,9 @@
 ---
-title: "Console Invaders - Retro Browser Game"
-description: "A nostalgic Space Invaders game that runs entirely in the
-browser console. Features progressive difficulty, score system, and
-retro styling with zero dependencies."
+title: "Console Invaders"
+subtitle: "Retro Browser Game"
+description: "Space Invaders that runs entirely in the browser console. Zero dependencies, progressive difficulty, distributed via jsDelivr."
 technologies: ["JavaScript", "Browser Console API", "Nostalgia"]
+services: ["apps"]
 featured: true
 order: 8
 image: "/media/console-invaders.webp"

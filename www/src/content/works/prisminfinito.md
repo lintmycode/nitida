@@ -1,7 +1,9 @@
 ---
 title: "Prisminfinito"
-description: "Custom WordPress website for Prisminfinito, a Portuguese optics and eyewear brand. Bespoke theme built to reflect the brand's identity and showcase their product range."
+subtitle: "Brand Site"
+description: "Custom WordPress site with a bespoke theme built from scratch — brand-aligned typography, product and service showcase, SEO-ready structure."
 technologies: ["WordPress", "Custom Theme Development"]
+services: ["wordpress", "seo"]
 featured: true
 order: 4
 image: "/media/prisminfinito.webp"

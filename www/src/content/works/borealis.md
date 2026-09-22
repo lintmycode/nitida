@@ -1,7 +1,9 @@
 ---
-title: "Borealis - Adventure Travel Platform"
-description: "Adventure travel booking platform for Borealis On Trekking. Features trip scheduling, destination filtering, group management, and seamless booking experience."
+title: "Borealis On Trekking"
+subtitle: "Adventure Travel Platform"
+description: "Adventure travel booking: trip scheduling, destination filtering, group management and a seamless booking experience."
 technologies: ["WordPress", "WooCommerce", "Custom Theme", "Custom Plugin Development"]
+services: ["wordpress", "apps"]
 featured: true
 order: 1
 image: "/media/borealis.webp"

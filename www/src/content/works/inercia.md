@@ -1,7 +1,9 @@
 ---
-title: "INERCIA - Climate Solutions Platform"
-description: "Professional climate control solutions platform for INERCIA. Complete digital transformation with product catalog, technical support, and dealer network management."
+title: "INERCIA"
+subtitle: "Climate Solutions Platform"
+description: "Complete digital transformation: brand design, multi-brand catalogue (Jaga, ESBE, CTC, Eurotherm), dealer network and a technical documentation portal."
 technologies: ["Brand Development", "WordPress", "Custom Theme Development"]
+services: ["wordpress", "brand"]
 featured: true
 order: 5
 image: "/media/inercia.webp"

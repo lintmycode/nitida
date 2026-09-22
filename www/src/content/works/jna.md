@@ -1,7 +1,9 @@
 ---
 title: "Júlia Neves Advogada"
-description: "Professional landing page for a Portuguese law practice. Clean, conversion-focused design with strong SEO foundations to attract new clients organically."
+subtitle: "Law Practice Landing Page"
+description: "Conversion-focused landing page for a Portuguese law practice, with on-page SEO and structured data built in to attract clients organically."
 technologies: ["Landing page", "SEO"]
+services: ["seo"]
 featured: true
 order: 7
 image: "/media/jna.webp"

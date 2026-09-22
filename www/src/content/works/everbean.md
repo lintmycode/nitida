@@ -1,7 +1,9 @@
 ---
-title: "Everbean Kids - Children's E-Commerce"
-description: "Premium children's clothing e-commerce platform for Everbean Kids. Features age-based shopping, size recommendations, wishlist functionality, and family-friendly checkout process."
+title: "Everbean Kids"
+subtitle: "Children's E-Commerce"
+description: "Premium children's clothing store where customers can become sellers and consign items — age-based shopping, size guidance, automated seller payouts."
 technologies: ["Shopify", "Node.js", "React"]
+services: ["shopify", "apps"]
 order: 2
 image: "/media/everbeankids.webp"
 backgroundPosition: "0% 2%"
