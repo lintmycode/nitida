@@ -21,7 +21,9 @@
 .site-footer__logo {
   height: 54px;
   width: auto;
-  filter: invert(1) brightness(2); // white wordmark on the ink band
+  // logo-white.png: logo-lime.png recoloured white (lime dot kept). Inverting
+  // logo.png instead showed its stray guide line and turned the dot orange.
+  display: block;
   margin-bottom: 14px;
 }
 
