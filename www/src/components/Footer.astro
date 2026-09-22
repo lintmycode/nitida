@@ -1,28 +1,36 @@
-<footer class="main-footer">
-  <div class="footer-container">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <p class="footer-tagline">Digital solutions that make a difference</p>
+---
+// Shared site footer — ink band, shown on every page including Home
+// (redesign-spec.md §Footer). No NIF: dropped from the design.
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div>
+        <img src="/logo.png" alt="NÍTIDA" class="site-footer__logo" />
+        <p class="site-footer__tagline">Sharp digital work, built to keep working.</p>
       </div>
-      
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Navigation</h4>
-          <a href="/">Home</a>
-          <a href="/works">Works</a>
-          <a href="/contact">Contact</a>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Connect</h4>
-          <a href="mailto:info@nitida.pt">info@nitida.pt</a>
-          <a href="https://linkedin.com/in/nunomp" target="_blank">LinkedIn</a>
-        </div>
+
+      <div class="site-footer__col">
+        <div class="site-footer__heading">Pages</div>
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/works">Works</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+
+      <div class="site-footer__col">
+        <div class="site-footer__heading">Connect</div>
+        <a href="mailto:info@nitida.pt">info@nitida.pt</a>
+        <a href="https://linkedin.com/in/nunomp" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; {new Date().getFullYear()} NÍTIDA DIGITAL. All rights reserved.</p>
+
+    <div class="site-footer__legal">
+      &copy; {year} NÍTIDA DIGITAL ·{' '}
+      <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer">Livro de Reclamações</a>
     </div>
   </div>
 </footer>

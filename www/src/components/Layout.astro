@@ -1,8 +1,23 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import '../styles/global.scss';
 
-const { title, pageClass = "page" } = Astro.props;
+// Props per redesign-spec.md "Layout.astro":
+// - description: new, becomes <meta name="description">.
+// - active: which nav link is current (services|works|about|contact|null).
+// - cta: header CTA label, 'project' (default) or 'contact'.
+// - stageHeader: true only on Home, where the page renders its own header
+//   inside the life-canvas stage; Layout skips rendering <Header> for it.
+interface Props {
+  title: string;
+  description?: string;
+  active?: 'services' | 'works' | 'about' | 'contact' | null;
+  cta?: 'project' | 'contact';
+  stageHeader?: boolean;
+}
+
+const { title, description, active = null, cta = 'project', stageHeader = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -12,12 +27,13 @@ const { title, pageClass = "page" } = Astro.props;
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  {description && <meta name="description" content={description}>}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="/styles.css?v=2">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JX2904MC2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -26,12 +42,18 @@ const { title, pageClass = "page" } = Astro.props;
 
     gtag('config', 'G-2JX2904MC2');
   </script>
+
+  <script>
+    // Flags JS-enabled clients so no-JS fallbacks (e.g. Works filter chips)
+    // can hide/show via CSS instead of assuming script always runs.
+    document.documentElement.classList.add('js');
+  </script>
 </head>
-<body class={pageClass}>
-  {pageClass !== "homepage" && <Header />}
+<body>
+  {!stageHeader && <Header active={active} cta={cta} />}
   <main>
     <slot />
   </main>
-  {pageClass !== "homepage" && <Footer />}
+  <Footer />
 </body>
 </html>

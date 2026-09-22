@@ -1,0 +1,113 @@
+// Reset, page ground, container and small cross-page utilities.
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--blue); // flat ground on every page; the old animated gradient is gone
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100svh;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  text-wrap: pretty;
+}
+
+// Page gutter: 34px desktop, 20px at <=640px (README "Responsive").
+.container {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 34px;
+
+  @media (max-width: 640px) {
+    padding-inline: 20px;
+  }
+}
+
+// About and Contact are the 900px artboards; they centre in the viewport
+// instead of going full-width like the 1180px pages. Combine with
+// `.container` on the same element so the gutter/media query still apply.
+.container--narrow {
+  max-width: 900px;
+}
+
+// Eyebrow label: small uppercase mono tag used above every page H1.
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+// Page H1 utilities. Base sets the shared Instrument Sans heading voice;
+// modifiers set the per-page size from the README type scale / spec.
+.h1 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.06;
+  color: var(--ink);
+}
+
+// Home hero H1 — 56px desktop, scales down per spec's responsive clamp.
+.h1--hero {
+  font-size: clamp(36px, 5vw, 56px);
+}
+
+// Services H1 (48px).
+.h1--48 {
+  font-size: 48px;
+}
+
+// Works H1 (44px).
+.h1--44 {
+  font-size: 44px;
+}
+
+// Narrow-page (About/Contact) H1s: 38-40px, slightly looser line-height.
+.h1--40 {
+  font-size: 40px;
+  line-height: 1.07;
+}
+
+.h1--38 {
+  font-size: 38px;
+  line-height: 1.07;
+}

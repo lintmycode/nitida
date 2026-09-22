@@ -1,0 +1,133 @@
+// Header — transparent over the page ground, no band or border (README §Global components).
+
+.site-header {
+  position: relative;
+  z-index: 30;
+}
+
+.site-header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 22px;
+}
+
+.site-header__logo {
+  display: block;
+  line-height: 0;
+}
+
+.site-header__logo img {
+  height: 62px;
+  width: auto;
+  display: block;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  // Push nav right so it sits next to the CTA, as in the mockup (not centered).
+  margin-left: auto;
+}
+
+.site-header__link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding-bottom: 3px; // 3px gap between text and underline, per README
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 150ms ease;
+
+  &:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  // Active link keeps a persistent underline (not just on hover).
+  &[aria-current='page'] {
+    font-weight: 600;
+    border-bottom-color: var(--ink);
+  }
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+// Nav CTA is a smaller button than the general primary (radius 4, not 5;
+// tighter padding) — see README "Radius: 4px: nav CTA, small buttons…".
+.site-header__cta {
+  padding: 10px 16px;
+  border-radius: var(--radius-4);
+}
+
+// Mobile menu toggle: hidden on desktop, shown only at <=640px.
+.site-header__menu {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1.5px solid rgba(15, 26, 23, 0.35);
+  border-radius: var(--radius-4);
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: border-color 150ms ease;
+
+  &:hover {
+    border-color: var(--ink);
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header__menu {
+    display: inline-flex;
+    min-height: 44px; // touch target
+  }
+
+  .site-header__cta {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  // The nav panel doubles as the mobile toggle menu: hidden by default,
+  // shown full-width under the header row when `.is-open` is toggled by
+  // the small inline script in Header.astro.
+  .site-header__nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    background: var(--blue);
+    padding: 4px 20px 16px;
+
+    &.is-open {
+      display: flex;
+    }
+  }
+
+  .site-header__link {
+    padding: 14px 0; // >=44px touch target with line-height
+    border-bottom: 1px solid rgba(15, 26, 23, 0.12);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

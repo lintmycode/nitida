@@ -1,0 +1,57 @@
+// Buttons — README §Buttons. Primary/secondary, plus an on-dark modifier
+// for secondary buttons sitting on ink/panel backgrounds instead of blue.
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+// Primary: lime background, ink text. Same on any background per README.
+.btn--primary {
+  background: var(--lime);
+  color: var(--ink);
+  padding: 15px 24px;
+  border-radius: var(--radius-5);
+
+  &:hover {
+    background: var(--lime-hover);
+  }
+}
+
+// Secondary: transparent with an ink border, for use on the blue ground.
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(15, 26, 23, 0.4);
+  padding: 14px 22px;
+  border-radius: var(--radius-5);
+
+  &:hover {
+    border-color: var(--ink);
+  }
+}
+
+// On-dark modifier: combine with .btn--secondary for use on ink/panel
+// bands, where an ink border would disappear. White text, white-alpha border.
+.btn--on-dark {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+
+  &:hover {
+    border-color: #fff;
+  }
+}

@@ -1,0 +1,68 @@
+// Design tokens: colours, type families and radii.
+// Source: design_handoff_nitida_redesign/README.md "Design tokens" section.
+// Values (hex, sizes) are copied verbatim from the handoff and must not drift.
+
+:root {
+  // Colour
+  --blue: #2eacff; // page ground, every page, flat (no gradient)
+  --cell: #4ab7ff; // Game of Life cells, a half-step lighter than the ground
+  --ink: #0f1a17; // all text on blue; darkest panels; the control tray
+  --panel: #14262b; // cards (services, works, contact form)
+  --panel-hover: #1b333b; // card hover
+  --lime: #c8ee3a; // actions only: primary buttons, CONTROL toggle, logo dot
+  --lime-hover: #d4f55a; // primary button hover
+  --paper: #f2f1ea; // case-study body section (phase 2)
+
+  // White text on dark panels reads at varying opacity depending on role
+  // (secondary copy vs. faint meta). README gives a range, not fixed stops;
+  // these are the two most-used values so partials don't hardcode rgba().
+  --white-secondary: rgba(255, 255, 255, 0.85);
+  --white-muted: rgba(255, 255, 255, 0.62);
+
+  // Type families
+  --font-mono: 'Fira Code', ui-monospace, monospace; // nav, eyebrows, labels, buttons, meta, numbers
+  --font-sans: 'Instrument Sans', system-ui, sans-serif; // prose and headings
+
+  // Radius — named by px value to avoid clashing with the legacy --radius-sm below,
+  // which is a different, older value still consumed by hosting.astro.
+  --radius-4: 4px; // nav CTA, small buttons, inputs
+  --radius-5: 5px; // primary/secondary buttons, control tray
+  --radius-6: 6px; // case-study image frames (phase 2)
+  --radius-8: 8px; // cards
+  --radius-20: 20px; // filter chips
+
+  // ---------------------------------------------------------------------
+  // LEGACY block. These are the variables from the old public/styles.css.
+  // hosting.astro keeps its old scoped <style> and old markup for phase 1
+  // (see redesign-spec.md "Unchanged"), so it still reads these names.
+  // Do not rename or repurpose them; add new tokens above instead.
+  // ---------------------------------------------------------------------
+  --font-size-large: 1.9rem;
+  --font-size-medium: 1rem;
+  --font-size-small: 0.9rem;
+  --font-size-xs: 0.9rem;
+  --font-size-h1: 3rem;
+  --font-size-h3-contact: 1.5rem;
+  --font-size-base: 14px;
+  --font-size-nav: 16px;
+  --font-size-dev: 12px;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+  --spacing-xxl: 3rem;
+  --spacing-xxxl: 4rem;
+
+  --radius-sm: 1px;
+  --radius-md: 8px;
+
+  --padding-sm: 10px;
+  --padding-md: 12px;
+  --padding-lg: 15px;
+  --padding-xl: 20px;
+  --padding-xxl: 25px;
+
+  --accent-color: #c8ee3a; // legacy name for lime, used by hosting.astro
+}
