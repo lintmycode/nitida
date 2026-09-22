@@ -1,43 +1,34 @@
-# Astro Starter Kit: Minimal
+# nitida.pt
+
+The NÍTIDA DIGITAL studio website, built with Astro and SCSS.
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static output in dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Where things live
 
-## 🚀 Project Structure
+| What | Where |
+|---|---|
+| Design tokens (colours, fonts, radii) | `src/styles/_tokens.scss` |
+| Shared styles (base, buttons, header, footer) | `src/styles/_*.scss` |
+| Page styles | `src/styles/_home.scss`, `_services.scss`, `_works.scss`, `_about.scss`, `_contact.scss` |
+| Services copy and contact "needs" list | `src/data/services.ts` |
+| Portfolio entries | `src/content/works/*.md` (schema in `src/content/config.ts`) |
+| Work screenshots | `public/media/` (900×517, plus optional `@2x` at 1800×1033) |
+| Game of Life | `public/life.js` |
+| Redesign spec | `docs/redesign-spec.md` |
+| Design handoff | `../design_handoff_nitida_redesign/` |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Adding a work
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+1. Add `src/content/works/<slug>.md` with `title`, `subtitle`, `description`, `technologies`, `services` (any of `wordpress`, `shopify`, `seo`, `brand`, `apps`), `order`, `image`, `backgroundPosition` and `link: [url, label]`.
+2. Put a 900×517 screenshot in `public/media/`. For sharp high-DPI display, also add `<name>@2x.webp` at 1800×1033.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Version history
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Date | Change |
+|---|---|
+| 2026-09-22 | Redesign phase 1: flat blue system, new Home, Services, Works (with filters), About and Contact pages, SCSS design system. CINCA added to works. |

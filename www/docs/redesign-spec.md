@@ -1,6 +1,6 @@
 # Spec: nitida.pt redesign, phase 1
 
-**Status:** specced, not built · **Branch:** `feature/redesign` · **Design source:** `design_handoff_nitida_redesign/` (README + `Nitida Site Mockups.dc.html`)
+**Status:** phase 1 built (2026-09-22) · **Branch:** `feature/redesign` · **Design source:** `design_handoff_nitida_redesign/` (README + `Nitida Site Mockups.dc.html`)
 
 The handoff README is the source for tokens, type scale, spacing and copy. This spec covers how that design maps onto this codebase, and the decisions the handoff leaves open. Where this spec and the README disagree, this spec wins.
 
