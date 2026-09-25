@@ -12,17 +12,6 @@ const sortedWorks = works.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?
 // Cache-bust images per build so stale browser/CDN caches don't serve outdated assets.
 const buildVersion = Date.now();
 
-// Filter chip labels + the data-services key they match against.
-const filters = [
-  { label: 'ALL', value: 'all' },
-  { label: 'WORDPRESS', value: 'wordpress' },
-  { label: 'SHOPIFY', value: 'shopify' },
-  { label: 'SEO', value: 'seo' },
-  { label: 'BRAND', value: 'brand' },
-  { label: 'APPS', value: 'apps' },
-];
-
-const count = String(sortedWorks.length).padStart(2, '0');
 ---
 
 <Layout
@@ -34,17 +23,11 @@ const count = String(sortedWorks.length).padStart(2, '0');
     <div class="container">
       <div class="works-intro">
         <div>
-          <div class="eyebrow works-intro__eyebrow">SELECTED WORK · {count}</div>
-          <h1 class="h1 h1--44">Built, launched, and still in production.</h1>
-        </div>
-        <!-- Hidden without JS (see _works.scss `html:not(.js)`) since filtering
-             only works client-side; all cards show unfiltered in that case. -->
-        <div class="works-filters" data-filters>
-          {filters.map((f) => (
-            <button type="button" data-filter={f.value} aria-pressed={f.value === 'all' ? 'true' : 'false'}>
-              {f.label}
-            </button>
-          ))}
+          <div class="eyebrow works-intro__eyebrow">SELECTED WORKS</div>
+          <h1 class="h1 h1--44">Built, launched, and still alive.</h1>
+          <p class="works-intro__lead">
+            A selection of old and new projects that still make us proud.
+          </p>
         </div>
       </div>
 
@@ -65,7 +48,6 @@ const count = String(sortedWorks.length).padStart(2, '0');
               href={href}
               target={isExternal ? '_blank' : undefined}
               rel={isExternal ? 'noopener noreferrer' : undefined}
-              data-services={data.services.join(' ')}
             >
               {data.image && (
                 <div class="work-card__image">
@@ -99,40 +81,4 @@ const count = String(sortedWorks.length).padStart(2, '0');
     </div>
   </div>
 
-  <script>
-    // Client-side filter: toggles the `hidden` attribute on cards whose
-    // data-services list doesn't include the active filter, and syncs the
-    // choice to ?filter= via replaceState so /works?filter=shopify loads
-    // pre-filtered and reloading keeps the chosen chip.
-    const filterButtons = document.querySelectorAll('[data-filter]');
-    const cards = document.querySelectorAll('.work-card');
-
-    function applyFilter(value) {
-      filterButtons.forEach((btn) => {
-        btn.setAttribute('aria-pressed', btn.dataset.filter === value ? 'true' : 'false');
-      });
-      cards.forEach((card) => {
-        const services = (card.dataset.services || '').split(' ');
-        card.hidden = value !== 'all' && !services.includes(value);
-      });
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    applyFilter(params.get('filter') || 'all');
-
-    filterButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const value = btn.dataset.filter || 'all';
-        applyFilter(value);
-
-        const url = new URL(window.location.href);
-        if (value === 'all') {
-          url.searchParams.delete('filter');
-        } else {
-          url.searchParams.set('filter', value);
-        }
-        window.history.replaceState({}, '', url);
-      });
-    });
-  </script>
 </Layout>

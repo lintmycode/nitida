@@ -25,13 +25,13 @@ Phase 1 (Home, Services, Works, About, Contact) is built. Phase 2 (case study pa
 - **src/pages/**:
   - `index.astro`: Home, the life stage.
   - `services.astro`
-  - `works.astro`: filter chips synced to `?filter=`; each card has `id={slug}` for `/works#slug` links.
+  - `works.astro`: card grid, no filters (removed 2026-09-25); each card has `id={slug}` for `/works#slug` links.
   - `about.astro`
-  - `contact.astro`: EmailJS form.
+  - `contact.astro`: EmailJS form (name, email, needs chips, project text; timeline/budget removed 2026-09-25).
   - `hosting.astro`: Cloudways affiliate page, kept live but not in the nav.
   - `qrn.astro`: WhatsApp redirect.
 - **src/content/works/*.md**: portfolio entries. The schema is in `src/content/config.ts`: `title`, `subtitle`, `description`, `technologies`, `services` (the filter keys wordpress/shopify/seo/brand/apps), `order`, `image`, `backgroundPosition`, `link`. Entries sort by `order` ascending, and negative numbers are allowed.
-- **src/data/services.ts**: the seven services and the contact form's "needs" list. Each service's `proof` links to a Works card by slug, or is `null`, which hides the proof row.
+- **src/data/services.ts**: the seven services and the contact form's "needs" list (ends with "Other"). Each card shows its own `kind` tag (CREATE, SELL, RUN…; no numbers). `title` may contain `<br>` to balance titles on two lines (rendered with `set:html`). `proof` links to a Works card by slug, or is `null`, which hides the proof row.
 - **src/lib/media.ts**: `twoXSrc()` finds `<name>@2x.<ext>` next to a `/media` image to build a 2x srcset.
 - **src/styles/**: SCSS compiled by Astro through `sass`.
   - `global.scss` pulls in `_tokens`, `_base`, `_buttons`, `_header`, `_footer`, plus one partial per page (`_home`, `_services`, `_works`, `_about`, `_contact`).
@@ -49,9 +49,15 @@ Phase 1 (Home, Services, Works, About, Contact) is built. Phase 2 (case study pa
 - Game of Life cells (`--cell`) are always lighter than the ground.
 - Lime (`--lime`) is used only for actions and for accents on dark panels.
 - Fonts: Instrument Sans for prose and headings; Fira Code, uppercase and tracked, for nav, labels, buttons and meta.
-- Every CTA is either `START A PROJECT` or `CONTACT`, and both go to `/contact`. No tickets and no call booking.
+- Every CTA goes to `/contact`. Labels are `START A PROJECT` or `CONTACT`, except the Services MORE card, which uses `ASK ABOUT IT` (an invitation to talk, not a project start). No tickets and no call booking.
 - `--paper` and `--radius-6` are reserved for the phase 2 case studies.
 - `_tokens.scss` also keeps a legacy variable block because `hosting.astro`'s scoped styles still use it. Don't remove it while that page exists.
+
+## Copy
+
+- The brand name is always uppercase: NÍTIDA.
+- Prefer subject-less phrasing over "we do…"; plain, with a little wit. Avoid slogan-y lines and "X, not Y" constructions.
+- No reply-time promises on Contact.
 
 ## Development Commands
 

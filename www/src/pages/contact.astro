@@ -4,26 +4,22 @@ import { needs } from '../data/services';
 
 // Slugs for each `needs[]` entry, same order as src/data/services.ts.
 // Used as stable checkbox ids and to support `?need=<slug>` pre-checking a
-// chip from a Services-page CTA (only `care` is used today, but every
-// need gets a slug so the mechanism isn't a one-off special case).
-const needSlugs = ['wordpress', 'shopify', 'app', 'seo', 'ai', 'rescue', 'care'];
-
-// Timeline/budget option text, verbatim from redesign-spec.md "Contact" field table.
-const timelineOptions = ['As soon as possible', 'Within a month', '1–3 months', 'Just exploring'];
-const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 'Not sure yet'];
+// chip from a link (no page uses it since the Services band went, but the
+// mechanism stays for future links).
+const needSlugs = ['wordpress', 'shopify', 'app', 'seo', 'ai', 'rescue', 'care', 'other'];
 ---
 
 <Layout
   title="Contact - NÍTIDA DIGITAL"
-  description="Tell us what's broken, or what you want to exist. Replies within one working day."
+  description="Tell us about the project."
   active="contact"
   cta="contact"
 >
   <div class="container container--narrow contact">
     <div class="contact__intro">
       <div class="eyebrow contact__eyebrow">CONTACT</div>
-      <h1 class="h1 h1--38 contact__h1">Tell us what's broken, or what you want to exist.</h1>
-      <p class="contact__reply">Replies within one working day. If it isn't a fit, we'll point you somewhere it is.</p>
+      <h1 class="h1 h1--38 contact__h1">Tell us about the project.</h1>
+      <p class="contact__reply">A few lines are enough to start. Details can come later.</p>
     </div>
 
     <div class="contact__grid">
@@ -81,23 +77,6 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
             </div>
           </div>
 
-          <div class="contact__row contact__row--2">
-            <div class="contact__field">
-              <label for="timeline" class="contact__label">TIMELINE</label>
-              <select id="timeline" name="timeline" class="contact__select">
-                <option value="">Choose one</option>
-                {timelineOptions.map((opt) => <option value={opt}>{opt}</option>)}
-              </select>
-            </div>
-            <div class="contact__field">
-              <label for="budget" class="contact__label">BUDGET RANGE</label>
-              <select id="budget" name="budget" class="contact__select">
-                <option value="">Optional</option>
-                {budgetOptions.map((opt) => <option value={opt}>{opt}</option>)}
-              </select>
-            </div>
-          </div>
-
           <div class="contact__field contact__field--project">
             <label for="project" class="contact__label">THE PROJECT</label>
             <textarea
@@ -115,7 +94,7 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
             <button type="submit" class="btn btn--primary contact__submit" id="contact-submit">
               <span class="contact__submit-label">SEND ENQUIRY →</span>
             </button>
-            <span class="contact__small-print">NO NEWSLETTER. NO CRM SEQUENCE.</span>
+            <span class="contact__small-print">NO NEWSLETTER. NO SPAM.</span>
           </div>
 
           <p class="contact__status" id="contact-status" aria-live="polite"></p>
@@ -133,6 +112,14 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
             class="contact__side-link"
           >
             LinkedIn ↗
+          </a>
+          <a
+            href="https://github.com/lintmycode"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__side-link"
+          >
+            GitHub ↗
           </a>
         </div>
         <div class="contact__side-card">
@@ -209,8 +196,6 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
     const nameField = document.getElementById('name');
     const emailField = document.getElementById('email');
     const projectField = document.getElementById('project');
-    const timelineField = document.getElementById('timeline');
-    const budgetField = document.getElementById('budget');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -220,7 +205,7 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
         missing: 'Enter your email.',
         invalid: 'Enter a valid email address.',
       });
-      const projectValid = validateField(projectField, { missing: 'Tell us about the project.' });
+      const projectValid = validateField(projectField, { missing: 'Add a few words about the project.' });
 
       if (!nameValid || !emailValid || !projectValid) {
         // Focus the first invalid field so it's announced/visible.
@@ -234,9 +219,7 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
       // subject/message built exactly per redesign-spec.md "Handler", so the
       // existing EmailJS template's {{subject}}/{{message}} keep working.
       const subject = needsJoined ? `Project enquiry: ${needsJoined}` : 'Project enquiry';
-      const message = `${projectField.value}\n\nNeeds: ${needsJoined || '—'}\nTimeline: ${
-        timelineField.value || '—'
-      }\nBudget: ${budgetField.value || '—'}`;
+      const message = `${projectField.value}\n\nNeeds: ${needsJoined || '—'}`;
 
       submitBtn.setAttribute('disabled', 'true');
       submitLabel.textContent = 'SENDING…';
@@ -252,7 +235,7 @@ const budgetOptions = ['Under €5k', '€5k–15k', '€15k–40k', '€40k+', 
         });
 
         if (result.status === 200) {
-          statusEl.textContent = "Message sent. We'll get back to you within one working day.";
+          statusEl.textContent = 'Message sent. Talk soon.';
           statusEl.setAttribute('data-state', 'success');
           form.reset();
         } else {

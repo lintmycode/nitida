@@ -87,7 +87,7 @@ The handoff README is the source for tokens, type scale, spacing and copy. This 
 | inercia | INERCIA | Climate Solutions Platform | wordpress, brand |
 | assistencia-prisminfinito | Assistência Prisminfinito | Support Portal | wordpress |
 | jna | Júlia Neves Advogada | Law Practice Landing Page | seo |
-| console-invaders | Console Invaders | Retro Browser Game | apps |
+| console-invaders | Console Invaders | Retro Browser Game | apps | *(removed from Works 2026-09-25: a side project, not portfolio)*
 | cinca | CINCA | Ceramic Tile Catalogue | wordpress, apps |
 
 CINCA isn't in the mockup, so it keeps its current `description`.
@@ -122,7 +122,7 @@ One ES module, loaded with `<script type="module" src="/life.js">`. It follows R
   - Intro paragraph.
 - 4-column card grid with gap 16: seven service cards, then the 08 card "Not sure which one you need?" with `START A PROJECT →` → `/contact`. This replaces the mockup's "BOOK A 20-MIN CALL →" (see the CTA rule).
 - Each card shows: number (lime), kind tag, H3, line, three items with 5px lime square bullets, and the proof row (top rule, label, `→`), per the Data section.
-- Closing ink band: the care copy, plus a `CONTACT →` CTA to `/contact?need=care`. It replaces the mockup's "CARE PLANS — TO BE DESIGNED" placeholder.
+- ~~Closing ink band~~: removed 2026-09-25 (it repeated the Hosting & Care card). The `?need=` pre-check on Contact stays available for future links.
 
 ### Works (`works.astro`) — mockup 1e
 - Eyebrow `SELECTED WORK · {count}` (10 now, not the mockup's 09). H1 at 44px.

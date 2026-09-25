@@ -1,4 +1,4 @@
-// Works page — mockup 1e: eyebrow + H1 + filter chips, then a 2-up card grid.
+// Works page — mockup 1e: eyebrow + H1, then a 2-up card grid (filter chips removed 2026-09-25).
 
 .works {
   padding-block: 52px 44px;
@@ -21,42 +21,14 @@
   max-width: 600px;
 }
 
-// Filter chips: pill, ink border, ink fill + white text on hover/active.
-.works-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  button {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink);
-    background: transparent;
-    border: 1px solid rgba(15, 26, 23, 0.35);
-    padding: 9px 13px;
-    border-radius: var(--radius-20);
-    cursor: pointer;
-    transition:
-      background-color 150ms ease,
-      border-color 150ms ease,
-      color 150ms ease;
-
-    &:hover,
-    &[aria-pressed='true'] {
-      background: var(--ink);
-      border-color: var(--ink);
-      color: #fff;
-    }
-  }
-}
-
-// No-JS fallback: filtering only works with the page script, so hide the
-// chips and let every card show (per redesign-spec.md "Works").
-html:not(.js) .works-filters {
-  display: none;
+// Same type as the Services lead, so the two intros match.
+.works-intro__lead {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 560px;
+  margin: 18px 0 0;
 }
 
 .works-grid {

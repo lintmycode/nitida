@@ -2,7 +2,7 @@
 title: "Borealis On Trekking"
 subtitle: "Adventure Travel Platform"
 description: "Adventure travel booking: trip scheduling, destination filtering, group management and a seamless booking experience."
-technologies: ["WordPress", "WooCommerce", "Custom Theme", "Custom Plugin Development"]
+technologies: ["WordPress", "WooCommerce", "Custom Theme and Plugin Development"]
 services: ["wordpress", "apps"]
 featured: true
 order: 1

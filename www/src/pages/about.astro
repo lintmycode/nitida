@@ -5,26 +5,26 @@ import Layout from '../components/Layout.astro';
 // 1g). Kept local since it's only used on this one page.
 const principles = [
   {
-    no: '01',
-    title: 'Small on purpose',
-    body: 'A few projects at a time. The person who scoped it is the person building it.',
+    tag: 'FOCUS',
+    title: 'Simple by design',
+    body: 'A few projects at a time, each with full attention. Spec it accurately, build it right, deliver it fast.',
   },
   {
-    no: '02',
-    title: 'Custom, not clever',
-    body: "We write what the project needs and nothing it doesn't. Boring code ages well.",
+    tag: 'TECH',
+    title: 'Trendless',
+    body: "We know the stack behind the latest shiny thing. Odds are we built something like it years ago.",
   },
   {
-    no: '03',
-    title: 'Still here after launch',
-    body: 'Most of our sites are ones we still maintain. That changes how you build them.',
+    tag: 'SOLID',
+    title: 'Longevity',
+    body: 'Clean code, sane updates, no fragile hacks. Built to still work in ten years. So are we.',
   },
 ];
 ---
 
 <Layout
   title="About - NÍTIDA DIGITAL"
-  description="A small studio in Portugal that builds for clients anywhere: ten years of WordPress, Shopify and web work, still maintained after launch."
+  description="A small studio in Portugal that builds for clients around the world: ten years of WordPress, Shopify and web work, still maintained after launch."
   active="about"
   cta="contact"
 >
@@ -32,13 +32,11 @@ const principles = [
     <section class="about-intro">
       <p class="eyebrow about-intro__eyebrow">ABOUT NÍTIDA</p>
       <h1 class="h1 h1--40 about-intro__title">
-        A small studio in Portugal that builds for clients anywhere.
+        A small studio in Portugal that builds for clients around the world.
       </h1>
       <p class="about-intro__lead">
-        We take on a handful of projects at a time so the person who scoped
-        your build is the person writing it. Ten years of web work sits
-        behind that: WordPress and Shopify done properly, integrations that
-        hold, and sites we're still maintaining years after launch.
+        Ten years as NÍTIDA, twenty in the trade. WordPress and Shopify done properly,
+        integrations that hold, and sites we're still maintaining years after launch.
       </p>
     </section>
 
@@ -46,7 +44,7 @@ const principles = [
       {
         principles.map((p) => (
           <div class="about-principles__card">
-            <div class="about-principles__no">{p.no}</div>
+            <div class="about-principles__tag">{p.tag}</div>
             <h3 class="about-principles__title">{p.title}</h3>
             <p class="about-principles__body">{p.body}</p>
           </div>
@@ -62,12 +60,14 @@ const principles = [
       }
       <div class="about-grid-box__square" aria-hidden="true"></div>
       <div class="about-grid-box__text">
-        <h3>Why the grid on the homepage</h3>
+        <h3>About that grid on the homepage</h3>
         <p>
-          Conway's Game of Life: four rules, no designer, endlessly complex
-          results. It's the closest thing we've found to how a good build
-          behaves — small correct decisions, compounding. It also means the
-          homepage is never the same twice.
+          Conway's Game of Life: a grid of cells, four simple rules, and complex outcomes that
+          keep growing. The patterns never repeat. The homepage is never the same twice. Neither
+          are the projects.
+        </p>
+        <p>
+          A reminder that simple systems, built well, go a long way. Also, it's fun to watch.
         </p>
       </div>
     </div>

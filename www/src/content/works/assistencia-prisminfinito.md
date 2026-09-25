@@ -7,7 +7,7 @@ services: ["wordpress"]
 featured: true
 order: 6
 image: "/media/assistencia-prisminfinito.webp"
-backgroundPosition: "7% 0%"
+backgroundPosition: "0% 0%"
 link: ["https://assistencia-prisminfinito.pt/", "Visit"]
 ---
 

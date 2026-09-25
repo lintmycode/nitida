@@ -1,13 +1,13 @@
 ---
 title: "Prisminfinito"
 subtitle: "Brand Site"
-description: "Custom WordPress site with a bespoke theme built from scratch — brand-aligned typography, product and service showcase, SEO-ready structure."
-technologies: ["WordPress", "Custom Theme Development"]
+description: "WordPress site for an engineering and construction company, built on Kadence with custom work on top: project showcase, service pages and an SEO-ready structure."
+technologies: ["WordPress", "Kadence", "Custom Development"]
 services: ["wordpress", "seo"]
 featured: true
 order: 4
 image: "/media/prisminfinito.webp"
-backgroundPosition: "7% 0%"
+backgroundPosition: "0% 0%"
 link: ["https://prisminfinito.pt/", "Visit"]
 ---
 
@@ -17,7 +17,7 @@ Custom WordPress website for Prisminfinito, a building company focused on qualit
 
 ## Scope of Work
 
-- Bespoke WordPress theme developed from scratch
+- Kadence-based build with custom development on top
 - Brand-aligned design and typography
 - Product and service showcase
 - SEO-ready structure and performance optimisation

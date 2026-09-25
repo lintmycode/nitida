@@ -2,10 +2,6 @@
 import Layout from '../components/Layout.astro';
 import { services } from '../data/services.ts';
 
-// Eyebrow count is computed from the data, zero-padded, per redesign-spec.md
-// "Services" (`SERVICES · 07`, driven by services.length so it never drifts
-// from the data file as services are added/removed).
-const count = String(services.length).padStart(2, '0');
 ---
 
 <Layout
@@ -16,15 +12,13 @@ const count = String(services.length).padStart(2, '0');
   <section class="services-intro container">
     <div class="services-intro__grid">
       <div>
-        <p class="eyebrow services-intro__eyebrow">SERVICES · {count}</p>
+        <p class="eyebrow services-intro__eyebrow">SERVICES</p>
         <h1 class="h1 h1--48 services-intro__title">
-          Seven things we do properly, instead of forty we'd do badly.
+          Design, build, connect, keep running.
         </h1>
       </div>
       <p class="services-intro__lead">
-        Every engagement starts the same way: a call, a written scope, a fixed first milestone.
-        Then we build. Each capability below links to a project where you can see it running in
-        production.
+        Ten years of shipping for the web, and a clear idea of what's worth doing.
       </p>
     </div>
   </section>
@@ -35,10 +29,9 @@ const count = String(services.length).padStart(2, '0');
         services.map((s) => (
           <div class="services-card">
             <div class="services-card__top">
-              <span class="services-card__no">{s.no}</span>
               <span class="services-card__kind">{s.kind}</span>
             </div>
-            <h3 class="services-card__title">{s.title}</h3>
+            <h3 class="services-card__title" set:html={s.title} />
             <p class="services-card__line">{s.line}</p>
             <ul class="services-card__items">
               {s.items.map((item) => (
@@ -60,27 +53,18 @@ const count = String(services.length).padStart(2, '0');
 
       <div class="services-card services-card--cta">
         <div>
-          <span class="services-card__no services-card__no--cta">08</span>
+          <div class="services-card__top services-card__top--cta">
+            <span class="services-card__kind">MORE</span>
+          </div>
           <h3 class="services-card__title services-card__title--cta">
-            Not sure which one you need?
+            Something else in mind?
           </h3>
           <p class="services-card__line">
-            Send the problem, not the spec. We'll tell you what it actually takes — and if it
-            isn't us, we'll say so.
+            If it lives on a screen, it's probably doable. We love challenges.
           </p>
         </div>
-        <a href="/contact" class="btn btn--primary services-card__cta-btn">START A PROJECT →</a>
+        <a href="/contact" class="btn btn--primary services-card__cta-btn">ASK ABOUT IT →</a>
       </div>
-    </div>
-  </section>
-
-  <section class="services-band">
-    <div class="container services-band__inner">
-      <p class="services-band__text">
-        Already running something that needs looking after? Hosting, backups, updates and
-        monitoring are a service too.
-      </p>
-      <a href="/contact?need=care" class="services-band__cta">CONTACT →</a>
     </div>
   </section>
 </Layout>

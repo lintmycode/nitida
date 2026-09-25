@@ -1,8 +1,8 @@
 ---
 title: "OneForma"
 subtitle: "Expert Marketplace Platform"
-description: "Expert marketplace for Centific, a US multinational — project matching across 40+ expert domains, application workflows and a global expert community."
-technologies: ["WordPress", "Custom Theme Development"]
+description: "Expert marketplace for Centific, a US multinational, built pixel-perfect from the client's Figma designs: project matching across 40+ expert domains, application workflows and a global expert community."
+technologies: ["Figma to WordPress", "Custom Theme Development"]
 services: ["wordpress", "apps"]
 featured: true
 order: 0
@@ -17,7 +17,7 @@ A marketplace platform for OneForma, owned by Centific, a US multinational headq
 
 ## Scope of Work
 
-- Pixel perfect build from provided design, delivered in under a month
+- Pixel-perfect build from the client's Figma designs, delivered in under a month
 - Project discovery and domain filtering across 40+ expert domains
 - Automated job intake workflow using REST API
 - Application and onboarding flows for experts

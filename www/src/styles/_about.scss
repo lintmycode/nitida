@@ -37,10 +37,12 @@
   padding: 20px;
 }
 
-.about-principles__no {
+// One-word tag in place of the old 01–03 numbers (dropped: order meant nothing).
+.about-principles__tag {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.12em;
   color: var(--lime);
   margin-bottom: 12px;
 }
@@ -66,7 +68,7 @@
 // "Why the grid on the homepage" explainer box.
 .about-grid-box {
   margin-top: 40px;
-  border: 1.5px solid rgba(15, 26, 23, 0.25); // ink-alpha
+  border: 1.5px solid rgba(0, 0, 0, 0.25); // ink-alpha
   border-radius: var(--radius-8);
   padding: 26px;
   display: grid;
@@ -99,6 +101,10 @@
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--ink);
+}
+
+.about-grid-box__text p + p {
+  margin-top: 10px;
 }
 
 @media (max-width: 640px) {

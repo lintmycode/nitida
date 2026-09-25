@@ -7,7 +7,7 @@
 
 .site-footer__top {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr; // brand column wider than the link columns
   gap: 24px;
   padding-block: 40px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
@@ -16,6 +16,10 @@
     grid-template-columns: 1fr;
     gap: 28px;
   }
+}
+
+.site-footer__logo-link {
+  display: inline-block; // so the focus ring wraps the block-level logo
 }
 
 .site-footer__logo {
@@ -32,7 +36,7 @@
   font-size: 13px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.55);
-  max-width: 240px;
+  max-width: 320px;
 }
 
 .site-footer__col {
