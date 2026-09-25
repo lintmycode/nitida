@@ -27,7 +27,11 @@ const { title, description, active = null, cta = 'project', stageHeader = false 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
+  <!-- Favicon: the logo's N. SVG for modern browsers, ICO/PNG fallbacks,
+       and a square 180px icon for iOS home screens. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   {description && <meta name="description" content={description}>}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
