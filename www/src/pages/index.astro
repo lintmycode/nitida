@@ -5,6 +5,9 @@ import Header from '../components/Header.astro';
 // Mockup 2a. Layout is given `stageHeader` so it skips rendering <Header>
 // itself — we render it here, inside `.home-stage`, so it sits over the
 // Game of Life canvas together with the hero and status bar.
+// public/ files aren't hashed by Astro, so bust caches per build; otherwise
+// browsers can pair new HTML with an old cached life.js.
+const buildVersion = Date.now();
 ---
 
 <Layout
@@ -43,11 +46,14 @@ import Header from '../components/Header.astro';
 
       <div class="home-status__right">
         <div class="home-tray" id="life-tray">
-          <button type="button" id="life-pause" class="home-tray__btn">PAUSE</button>
+          {/* Generation speed in ms, like the old site's "Interval (ms)" input.
+               Default matches TICK_MS in life.js. */}
+          <label class="home-tray__speed">
+            <span>MS</span>
+            <input type="number" id="life-speed" value="240" min="10" max="1000" step="10" inputmode="numeric" />
+          </label>
           <button type="button" id="life-glider" class="home-tray__btn">SPAWN GLIDER</button>
-          <button type="button" id="life-restart" class="home-tray__btn">RESTART</button>
         </div>
-        <a href="/about" class="home-status__info">INFO</a>
         <button
           type="button"
           id="life-toggle"
@@ -55,11 +61,11 @@ import Header from '../components/Header.astro';
           aria-expanded="false"
           aria-controls="life-tray"
         >
-          CONTROL +
+          CONTROL
         </button>
       </div>
     </div>
   </div>
 
-  <script type="module" src="/life.js"></script>
+  <script type="module" src={`/life.js?v=${buildVersion}`}></script>
 </Layout>

@@ -40,6 +40,10 @@ Phase 1 (Home, Services, Works, About, Contact) is built. Phase 2 (case study pa
   - Two `Uint8Array` buffers, 10px cells, B3/S23 with wraparound edges, 13% random seed, 240ms per generation.
   - It reseeds only when the width changes, because mobile URL-bar height changes would otherwise flash the grid.
   - It starts paused under reduced motion and pauses while the tab is hidden.
+  - Tray: an MS speed input and SPAWN GLIDER (no pause button) (10–1000, default 240; applied live on `input`).
+  - Spawned gliders are lime and stay lime (Immigration colouring: survivors keep their colour, a newborn takes its parents' majority colour). They spawn in the top 10–45% of the stage, clear of the hero.
+  - Loaded as `/life.js?v=<build time>` from `index.astro`, because `public/` files aren't hashed and a stale cached copy breaks the page.
+- **public/app.js**: stub loaded only by the pre-2026 homepage; if a browser still has that page cached, it refreshes it once. Delete a few months after the 2026-09-25 launch.
 - **public/media/**: work screenshots at 900×517, with optional `@2x` versions at 1800×1033.
 
 ## Design rules
