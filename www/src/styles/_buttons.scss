@@ -45,6 +45,21 @@
   }
 }
 
+// Ink button: lime text on black. Used for the homepage's WHAT WE DO.
+.btn--ink {
+  background: var(--ink);
+  color: var(--lime);
+  border-color: var(--ink);
+  padding: 15px 24px; // same box as .btn--primary (padding lives on the variants)
+  font-weight: 400; // lime on black reads heavier than ink on lime
+  border-radius: var(--radius-5);
+
+  &:hover {
+    background: var(--panel);
+    border-color: var(--panel);
+  }
+}
+
 // On-dark modifier: combine with .btn--secondary for use on ink/panel
 // bands, where an ink border would disappear. White text, white-alpha border.
 .btn--on-dark {
