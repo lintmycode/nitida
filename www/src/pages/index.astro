@@ -42,18 +42,7 @@ const buildVersion = Date.now();
           <i class="home-status__dot" aria-hidden="true"></i>CONWAY'S GAME OF LIFE
         </span>
         <span class="home-status__gen">GEN <b id="life-gen">0</b></span>
-      </div>
-
-      <div class="home-status__right">
-        <div class="home-tray" id="life-tray">
-          {/* Generation speed in ms, like the old site's "Interval (ms)" input.
-               Default matches TICK_MS in life.js. */}
-          <label class="home-tray__speed">
-            <span>MS</span>
-            <input type="number" id="life-speed" value="240" min="10" max="1000" step="10" inputmode="numeric" />
-          </label>
-          <button type="button" id="life-glider" class="home-tray__btn">SPAWN GLIDER</button>
-        </div>
+        {/* Styled as a text link, but stays a <button>: it toggles the tray, it doesn't navigate. */}
         <button
           type="button"
           id="life-toggle"
@@ -63,6 +52,15 @@ const buildVersion = Date.now();
         >
           CONTROL
         </button>
+        <div class="home-tray" id="life-tray">
+          {/* Generation speed in ms, like the old site's "Interval (ms)" input.
+               Default matches TICK_MS in life.js. */}
+          <label class="home-tray__speed">
+            <span>MS</span>
+            <input type="number" id="life-speed" value="240" min="10" max="1000" step="10" inputmode="numeric" />
+          </label>
+          <button type="button" id="life-glider" class="home-tray__btn">SPAWN GLIDER</button>
+        </div>
       </div>
     </div>
   </div>

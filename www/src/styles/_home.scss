@@ -82,6 +82,9 @@
 .home-status__left {
   display: flex;
   align-items: center;
+  // Same as $tray-chip-h: the row is already chip-tall while the tray is
+  // closed, so opening it doesn't push the bottom edge down (no jump).
+  min-height: 26px;
   gap: 22px;
   flex-wrap: wrap;
   row-gap: 8px;
@@ -116,41 +119,23 @@
   font-weight: 700;
 }
 
-.home-status__right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-// CONTROL/CLOSE ✕ toggle — transparent outline chip.
+// CONTROL/CLOSE ✕ toggle — plain underlined text link after GEN.
+// Inherits the left group's mono 11px; starts muted like the Game of Life
+// label and GEN; opening the tray (life.js sets aria-expanded) brings all
+// three back to full strength.
 .home-status__toggle {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font: inherit;
+  letter-spacing: inherit;
   text-transform: uppercase;
   color: var(--ink);
-  background: transparent;
-  border: 1.5px solid rgba(0, 0, 0, 0.35);
-  padding: 9px 14px;
-  border-radius: var(--radius-4);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   cursor: pointer;
-  transition: border-color 150ms ease;
-
-  &:hover {
-    border-color: var(--ink);
-  }
-}
-
-// CONTROL starts muted like the Game of Life label and GEN; opening the
-// tray (life.js sets aria-expanded) brings all three back to full strength.
-.home-status__toggle {
   opacity: 0.5;
-  transition:
-    border-color 150ms ease,
-    opacity 150ms ease;
+  transition: opacity 150ms ease;
 
   &:hover,
   &[aria-expanded='true'] {
@@ -170,7 +155,8 @@
   }
 }
 
-// Control tray — closed by default (life.js toggles `.is-open`).
+// Control tray — sits inline after CONTROL/CLOSE; closed by default
+// (life.js toggles `.is-open`).
 .home-tray {
   display: none;
   align-items: center;
@@ -182,7 +168,13 @@
   }
 }
 
+// Fixed chip height shared by the tray button and MS input (and reserved
+// by .home-status__left's min-height).
+$tray-chip-h: 26px;
+
 .home-tray__btn {
+  box-sizing: border-box;
+  height: $tray-chip-h;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
@@ -192,7 +184,7 @@
   // Each button carries its own ink ground now the tray has none.
   background: var(--ink);
   border: 1.5px solid var(--ink);
-  padding: 9px 14px; // same box as the CONTROL toggle beside it
+  padding: 0 10px;
   border-radius: var(--radius-4);
   cursor: pointer;
   transition:
@@ -217,23 +209,31 @@
   color: var(--lime);
   background: var(--ink);
   border: 1.5px solid var(--ink);
-  padding: 0 0 0 14px;
+  box-sizing: border-box;
+  height: $tray-chip-h;
+  padding: 0 3px 0 10px;
   border-radius: var(--radius-4);
 
+  // Inset field so the number reads as editable, not as a label.
   input {
+    box-sizing: border-box;
     width: 8ch; // 4 digits plus the native spin arrows
+    height: $tray-chip-h - 7px;
     font: inherit;
     color: inherit;
-    background: transparent;
-    border: 0;
-    padding: 9px 8px 9px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid color-mix(in srgb, var(--lime) 45%, transparent);
+    border-radius: 2px;
+    padding: 0 4px;
     outline: none;
     color-scheme: dark; // renders the native spin arrows light-on-dark
-    cursor: pointer;
-  }
+    cursor: text;
+    transition: border-color 150ms ease;
 
-  &:focus-within {
-    border-color: var(--lime);
+    &:hover,
+    &:focus {
+      border-color: var(--lime);
+    }
   }
 }
 
@@ -244,23 +244,32 @@
     display: none;
   }
 
-  // Stack the controls under the GEN/rules row instead of squeezing both
-  // groups onto one line, so the tray never has to fight for width.
+  // Stack the status row's children; the left group wraps the tray onto
+  // its own line when it doesn't fit after CLOSE.
   .home-status {
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
   }
 
-  .home-status__right {
-    width: 100%;
-    justify-content: flex-end;
+  // Touch targets >=44px (README "Responsive"). The CONTROL link gets
+  // extra hit height via padding so the text row doesn't shift.
+  .home-status__toggle {
+    padding-block: 16px;
+    margin-block: -16px;
   }
 
-  // Touch targets >=44px (README "Responsive").
-  .home-status__toggle,
+  // Tray chips are compact on desktop but keep full touch height here.
+  .home-status__left {
+    min-height: 44px; // match the mobile chip height (no jump on open)
+  }
+
   .home-tray__btn,
   .home-tray__speed {
-    min-height: 44px;
+    height: 44px;
+  }
+
+  .home-tray__speed input {
+    height: 36px;
   }
 }
