@@ -177,14 +177,16 @@ $tray-chip-h: 26px;
   height: $tray-chip-h;
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--lime);
   // Each button carries its own ink ground now the tray has none.
   background: var(--ink);
-  border: 1.5px solid var(--ink);
-  padding: 0 10px;
+  border: 1px solid var(--ink); // whole px: 1.5px rounds unevenly on 1x screens
+  // Fira Code caps sit 1px high in the line box (measured at 1x: 8px above,
+  // 10px below); 2px top padding re-centres them to 9/9.
+  padding: 2px 10px 0;
   border-radius: var(--radius-4);
   cursor: pointer;
   transition:
@@ -204,27 +206,34 @@ $tray-chip-h: 26px;
   gap: 6px;
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.08em;
   color: var(--lime);
   background: var(--ink);
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--ink); // whole px so the input can centre exactly on 1x screens
   box-sizing: border-box;
   height: $tray-chip-h;
   padding: 0 3px 0 10px;
   border-radius: var(--radius-4);
 
+  // Same 1px Fira Code nudge as .home-tray__btn, on the label text only so
+  // the input box stays centred.
+  > span {
+    padding-top: 2px;
+  }
+
   // Inset field so the number reads as editable, not as a label.
   input {
     box-sizing: border-box;
     width: 8ch; // 4 digits plus the native spin arrows
-    height: $tray-chip-h - 7px;
+    height: $tray-chip-h - 6px; // 26 - 2×1px border = 24 → 2px above and below
     font: inherit;
     color: inherit;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid color-mix(in srgb, var(--lime) 45%, transparent);
     border-radius: 2px;
     padding: 0 4px;
+    margin: 0; // reset any framework input margin that would offset it
     outline: none;
     color-scheme: dark; // renders the native spin arrows light-on-dark
     cursor: text;

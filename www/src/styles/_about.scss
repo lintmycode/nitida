@@ -17,7 +17,7 @@
 
 .about-intro__lead {
   font-family: var(--font-sans);
-  font-size: 16.5px;
+  font-size: 16px;
   line-height: 1.65;
   max-width: 600px;
   color: var(--ink);
@@ -68,7 +68,7 @@
 // "Why the grid on the homepage" explainer box.
 .about-grid-box {
   margin-top: 40px;
-  border: 1.5px solid rgba(0, 0, 0, 0.25); // ink-alpha
+  border: 1px solid rgba(0, 0, 0, 0.25); // ink-alpha
   border-radius: var(--radius-8);
   padding: 26px;
   display: grid;
@@ -98,7 +98,7 @@
 
 .about-grid-box__text p {
   font-family: var(--font-sans);
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--ink);
 }

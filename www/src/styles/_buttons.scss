@@ -13,7 +13,7 @@
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  border: 1.5px solid transparent;
+  border: 1px solid transparent; // whole px only: fractional px blur on 1x screens
   transition:
     background-color 150ms ease,
     border-color 150ms ease,
