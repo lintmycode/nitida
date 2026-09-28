@@ -184,9 +184,14 @@ $tray-chip-h: 26px;
   // Each button carries its own ink ground now the tray has none.
   background: var(--ink);
   border: 1px solid var(--ink); // whole px: 1.5px rounds unevenly on 1x screens
-  // Fira Code caps sit 1px high in the line box (measured at 1x: 8px above,
-  // 10px below); 2px top padding re-centres them to 9/9.
-  padding: 2px 10px 0;
+  padding: 0 10px;
+  // Centre the capitals, not the line box. Flex centres the whole line
+  // (ascent + descent + half-leading), and Blink rounds those metrics to
+  // whole px separately; at 1x the uppercase text lands 1px high. Trimming
+  // the box to cap height → baseline makes the centred thing the letters.
+  // Labels are all caps, so nothing is clipped. (No support in Firefox yet:
+  // falls back to the 1px-high rendering.)
+  text-box: trim-both cap alphabetic;
   border-radius: var(--radius-4);
   cursor: pointer;
   transition:
@@ -216,10 +221,10 @@ $tray-chip-h: 26px;
   padding: 0 3px 0 10px;
   border-radius: var(--radius-4);
 
-  // Same 1px Fira Code nudge as .home-tray__btn, on the label text only so
-  // the input box stays centred.
+  // Cap-height trim as on .home-tray__btn, on the label text only so the
+  // input box keeps its own centring.
   > span {
-    padding-top: 2px;
+    text-box: trim-both cap alphabetic;
   }
 
   // Inset field so the number reads as editable, not as a label.
