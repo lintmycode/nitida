@@ -34,6 +34,19 @@ const { title, description, active = null, cta = 'project', stageHeader = false 
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   {description && <meta name="description" content={description}>}
 
+  <!-- Social preview: one shared image for every page (logo on the site blue,
+       1200x630). Crawlers need absolute URLs, hence `site` in astro.config. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NÍTIDA">
+  <meta property="og:title" content={title}>
+  {description && <meta property="og:description" content={description}>}
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)}>
+  <meta property="og:image" content={new URL('/og-image.png', Astro.site)}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="NÍTIDA logo">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">

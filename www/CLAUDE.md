@@ -21,6 +21,7 @@ Phase 1 (Home, Services, Works, About, Contact) is built. Phase 2 (case study pa
   - `cta`: `project`, which shows "START A PROJECT", or `contact`, which shows "CONTACT".
   - `stageHeader`: set on Home only. The page then renders `<Header>` itself, inside the life stage.
   - Layout also imports `src/styles/global.scss` and renders the footer on every page.
+  - Layout also emits Open Graph / Twitter tags on every page: `og:title` and `og:description` come from the props, `og:image` is always `public/og-image.png` (the lime logo at 2x on `--blue`, 1200×630). The URLs are absolute because `site` is set in `astro.config.mjs`.
 - **src/components/Header.astro / Footer.astro**: shared header (with a mobile menu at 640px and below) and footer.
 - **src/pages/**:
   - `index.astro`: Home, the life stage.
