@@ -243,11 +243,22 @@ if (canvas) {
     toggleBtn.textContent = open ? 'CLOSE ✕' : 'CONTROL';
   }
 
+  // GA: one `life_control` event per tray interaction (`control` says which).
+  // gtag only exists on production builds.
+  function track(control, extra) {
+    window.gtag?.('event', 'life_control', { control, ...extra });
+  }
+
   toggleBtn?.addEventListener('click', () => {
-    setTrayOpen(!tray.classList.contains('is-open'));
+    const open = !tray.classList.contains('is-open');
+    setTrayOpen(open);
+    if (open) track('open_tray');
   });
 
-  gliderBtn?.addEventListener('click', spawnGlider);
+  gliderBtn?.addEventListener('click', () => {
+    spawnGlider();
+    track('spawn_glider');
+  });
   // Speed: clamp to 10–1000 ms and restart the interval if it's running.
   // 'input' applies it live (arrows, typing); 'change' also tidies the
   // field on blur/Enter so an out-of-range value snaps to the limit.
@@ -262,7 +273,11 @@ if (canvas) {
     }
   }
   speedInput?.addEventListener('input', () => applySpeed(false));
-  speedInput?.addEventListener('change', () => applySpeed(true));
+  // Tracked on 'change' only: 'input' fires per keystroke/arrow press.
+  speedInput?.addEventListener('change', () => {
+    applySpeed(true);
+    track('set_speed', { value: tickMs });
+  });
 
   // Pause the interval while the tab is hidden; resume if it was running.
   document.addEventListener('visibilitychange', () => {

@@ -72,6 +72,16 @@ npm run build      # production build to dist/
 npm run preview    # preview the build
 ```
 
+## Analytics (GA4, G-2JX2904MC2)
+
+- The tag is in `Layout.astro`, `is:inline` so `window.gtag` is global, and only in production builds (`import.meta.env.PROD`); `npm run dev` sends nothing. All event calls use `window.gtag?.()`.
+- Custom events:
+  - `cta_click` (`cta_location`: header/footer/page, `cta_text`): any `a[href="/contact"]`, via a delegated listener in `Layout.astro`.
+  - `contact_click` (`method: email`, `cta_location`): `mailto:` links, same listener.
+  - `life_control` (`control`: `open_tray` / `spawn_glider` / `set_speed` with `value`): `public/life.js` tray.
+  - `generate_lead` (`method: contact_form`): EmailJS success in `contact.astro`.
+- No cookie banner or Consent Mode yet.
+
 ## Technical Notes
 
 - The contact form keeps the existing EmailJS service and template IDs, and sends through `emailjs.send()`:

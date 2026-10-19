@@ -237,6 +237,8 @@ const needSlugs = ['wordpress', 'shopify', 'app', 'seo', 'ai', 'rescue', 'care',
         if (result.status === 200) {
           statusEl.textContent = 'Message sent. Talk soon.';
           statusEl.setAttribute('data-state', 'success');
+          // GA key event; EmailJS submits by AJAX, which GA's own form_submit misses.
+          window.gtag?.('event', 'generate_lead', { method: 'contact_form' });
           form.reset();
         } else {
           throw new Error('EmailJS failed');

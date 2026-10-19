@@ -51,13 +51,39 @@ const { title, description, active = null, cta = 'project', stageHeader = false 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JX2904MC2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  {import.meta.env.PROD && (
+    <>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JX2904MC2"></script>
+      {/* is:inline so gtag lands on window: Astro would otherwise bundle this
+          as a module and life.js / the click tracking below couldn't call it. */}
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-2JX2904MC2');
+        gtag('config', 'G-2JX2904MC2');
+      </script>
+    </>
+  )}
+
+  <script>
+    // GA events for contact clicks. Delegated, so every /contact CTA
+    // (header, mobile menu, footer, Services card) is caught without markup
+    // changes. gtag is absent in dev builds, hence the optional call.
+    document.addEventListener('click', (e) => {
+      const link = (e.target as Element).closest?.('a[href]') as HTMLAnchorElement | null;
+      if (!link) return;
+      const href = link.getAttribute('href') ?? '';
+      const where = link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'page';
+      if (href === '/contact') {
+        window.gtag?.('event', 'cta_click', {
+          cta_location: where,
+          cta_text: link.textContent?.trim(),
+        });
+      } else if (href.startsWith('mailto:')) {
+        window.gtag?.('event', 'contact_click', { method: 'email', cta_location: where });
+      }
+    });
   </script>
 
   <script>
