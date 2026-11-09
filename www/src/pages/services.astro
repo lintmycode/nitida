@@ -43,7 +43,7 @@ import { services } from '../data/services.ts';
               ))}
             </ul>
             {s.proof && (
-              <a href={`/works#${s.proof.slug}`} class="services-card__proof">
+              <a href={`/works/#${s.proof.slug}`} class="services-card__proof">
                 <span>{s.proof.label}</span>
                 <span>→</span>
               </a>
@@ -64,7 +64,7 @@ import { services } from '../data/services.ts';
             If it lives on a screen, it's probably doable. We love challenges.
           </p>
         </div>
-        <a href="/contact" class="btn btn--primary services-card__cta-btn">ASK ABOUT IT →</a>
+        <a href="/contact/" class="btn btn--primary services-card__cta-btn">ASK ABOUT IT →</a>
       </div>
     </div>
   </section>

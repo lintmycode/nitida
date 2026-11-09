@@ -75,7 +75,8 @@ const { title, description, active = null, cta = 'project', stageHeader = false 
       if (!link) return;
       const href = link.getAttribute('href') ?? '';
       const where = link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'page';
-      if (href === '/contact') {
+      // Links end in a slash since 2026-11-09 (nginx 301s /contact → /contact/); accept both.
+      if (href === '/contact/' || href === '/contact') {
         window.gtag?.('event', 'cta_click', {
           cta_location: where,
           cta_text: link.textContent?.trim(),
