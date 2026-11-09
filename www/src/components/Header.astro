@@ -16,9 +16,9 @@ const { active = null, cta = 'project' } = Astro.props;
 const ctaLabel = cta === 'contact' ? 'CONTACT' : 'START A PROJECT';
 
 const links = [
-  { key: 'services', href: '/services', label: 'SERVICES' },
-  { key: 'works', href: '/works', label: 'WORKS' },
-  { key: 'about', href: '/about', label: 'ABOUT' },
+  { key: 'services', href: '/services/', label: 'SERVICES' },
+  { key: 'works', href: '/works/', label: 'WORKS' },
+  { key: 'about', href: '/about/', label: 'ABOUT' },
 ];
 ---
 
@@ -42,7 +42,7 @@ const links = [
       }
       {/* Mobile-only copy of the header CTA: on phones the CTA lives in the
           menu panel instead of the header row (see _header.scss). */}
-      <a href="/contact" class="btn btn--primary site-header__nav-cta">{ctaLabel}</a>
+      <a href="/contact/" class="btn btn--primary site-header__nav-cta">{ctaLabel}</a>
     </nav>
 
     <div class="site-header__actions">
@@ -55,7 +55,7 @@ const links = [
       >
         MENU
       </button>
-      <a href="/contact" class="btn btn--primary site-header__cta">{ctaLabel}</a>
+      <a href="/contact/" class="btn btn--primary site-header__cta">{ctaLabel}</a>
     </div>
   </div>
 </header>
