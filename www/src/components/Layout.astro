@@ -1,6 +1,7 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import ConsentBanner from './ConsentBanner.astro';
 import '../styles/global.scss';
 
 // Props per redesign-spec.md "Layout.astro":
@@ -51,25 +52,13 @@ const { title, description, active = null, cta = 'project', stageHeader = false 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  {import.meta.env.PROD && (
-    <>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JX2904MC2"></script>
-      {/* is:inline so gtag lands on window: Astro would otherwise bundle this
-          as a module and life.js / the click tracking below couldn't call it. */}
-      <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-2JX2904MC2');
-      </script>
-    </>
-  )}
+  {/* GA4 loads from ConsentBanner.astro, only after the visitor accepts. */}
 
   <script>
     // GA events for contact clicks. Delegated, so every /contact CTA
     // (header, mobile menu, footer, Services card) is caught without markup
-    // changes. gtag is absent in dev builds, hence the optional call.
+    // changes. gtag is absent in dev builds and until cookies are accepted,
+    // hence the optional call.
     document.addEventListener('click', (e) => {
       const link = (e.target as Element).closest?.('a[href]') as HTMLAnchorElement | null;
       if (!link) return;
@@ -99,5 +88,6 @@ const { title, description, active = null, cta = 'project', stageHeader = false 
     <slot />
   </main>
   <Footer />
+  <ConsentBanner />
 </body>
 </html>

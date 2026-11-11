@@ -31,12 +31,12 @@ Phase 1 (Home, Services, Works, About, Contact) is built. Phase 2 (case study pa
   - `contact.astro`: EmailJS form (name, email, needs chips, project text; timeline/budget removed 2026-09-25).
   - `hosting.astro`: Cloudways affiliate page, kept live but not in the nav.
   - `qrn.astro`: WhatsApp redirect.
-  - `privacy.astro`: privacy notice, copied from maumarketing.pt/en/privacy (same controller). Linked from the footer's legal line. Its GA lines say analytics run for everyone, because there's no banner yet; revert to MAU's "only if you accept cookies" wording when a banner lands. Update it whenever a tracker, form provider or host changes.
+  - `privacy.astro`: privacy notice, copied from maumarketing.pt/en/privacy (same controller). Linked from the footer's legal line. Differences from MAU: the form's needs are listed, and GA retention is 2 months (GA default). Update it whenever a tracker, form provider or host changes.
 - **src/content/works/*.md**: portfolio entries. The schema is in `src/content/config.ts`: `title`, `subtitle`, `description`, `technologies`, `services` (the filter keys wordpress/shopify/seo/brand/apps), `order`, `image`, `backgroundPosition`, `link`. Entries sort by `order` ascending, and negative numbers are allowed.
 - **src/data/services.ts**: the seven services and the contact form's "needs" list (ends with "Other"). Each card shows its own `kind` tag (CREATE, SELL, RUN…; no numbers). `title` may contain `<br>` to balance titles on two lines (rendered with `set:html`). `proof` links to a Works card by slug, or is `null`, which hides the proof row.
 - **src/lib/media.ts**: `twoXSrc()` finds `<name>@2x.<ext>` next to a `/media` image to build a 2x srcset.
 - **src/styles/**: SCSS compiled by Astro through `sass`.
-  - `global.scss` pulls in `_tokens`, `_base`, `_buttons`, `_header`, `_footer`, plus one partial per page (`_home`, `_services`, `_works`, `_about`, `_contact`, `_privacy`).
+  - `global.scss` pulls in `_tokens`, `_base`, `_buttons`, `_header`, `_footer`, plus one partial per page (`_home`, `_services`, `_works`, `_about`, `_contact`, `_privacy`, `_consent`).
   - Page styles belong in their own partial, not in global.scss.
 - **public/life.js**: the Game of Life engine and control tray.
   - Two `Uint8Array` buffers, 10px cells, B3/S23 with wraparound edges, 13% random seed, 240ms per generation.
@@ -75,13 +75,14 @@ npm run preview    # preview the build
 
 ## Analytics (GA4, G-2JX2904MC2)
 
-- The tag is in `Layout.astro`, `is:inline` so `window.gtag` is global, and only in production builds (`import.meta.env.PROD`); `npm run dev` sends nothing. All event calls use `window.gtag?.()`.
+- The tag loads from `src/components/ConsentBanner.astro` (ported from maumarketing.pt), only after the visitor clicks Accept, and only in production builds (`import.meta.env.PROD`); `npm run dev` sends nothing. The choice is in `localStorage` (`nitida-consent`); Decline clears `_ga*` cookies. The footer's "Cookies" button (`[data-consent-open]`) reopens the banner. Styles in `_consent.scss`.
+- All event calls use `window.gtag?.()`, so they're dropped until consent.
 - Custom events:
   - `cta_click` (`cta_location`: header/footer/page, `cta_text`): any `a[href="/contact"]`, via a delegated listener in `Layout.astro`.
   - `contact_click` (`method: email`, `cta_location`): `mailto:` links, same listener.
   - `life_control` (`control`: `open_tray` / `spawn_glider` / `set_speed` with `value`): `public/life.js` tray.
   - `generate_lead` (`method: contact_form`): EmailJS success in `contact.astro`.
-- No cookie banner or Consent Mode yet.
+- No Consent Mode: without consent, GA gets nothing at all (not even cookieless pings).
 
 ## Technical Notes
 

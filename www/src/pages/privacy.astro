@@ -3,9 +3,7 @@ import Layout from '../components/Layout.astro';
 
 // Privacy notice, copied from maumarketing.pt/en/privacy (same controller,
 // NÍTIDA DIGITAL) and kept in step with it. Differences from MAU, on purpose:
-// - nitida.pt has no cookie banner yet, so GA4 loads for everyone (see
-//   Layout.astro). The "only if you accept cookies" lines are rewritten to
-//   match; restore MAU's wording if MAU's ConsentBanner is ported here.
+// - GA4 data retention is the GA default, 2 months (MAU's property says 14).
 // - The form also sends the ticked "needs", so they're listed in s2.
 // Bodies are trusted strings that may hold links, hence set:html.
 const EMAIL = 'info@nitida.pt';
@@ -18,27 +16,27 @@ const sections = [
   },
   {
     h: 'What data we collect',
-    p: 'What you give us in the contact form: name, email, the needs you tick and your message. Google Analytics collects usage data: pages viewed, where you came from, device and approximate location. We use no advertising cookies.',
+    p: 'What you give us in the contact form: name, email, the needs you tick and your message. If you accept cookies, Google Analytics collects usage data: pages viewed, where you came from, device and approximate location. We use no advertising cookies.',
   },
   {
     h: 'What it is for',
-    p: 'Replying to your message, preparing proposals, delivering the services you hire and understanding how the site is used. We never sell data to anyone.',
+    p: 'Replying to your message, preparing proposals, delivering the services you hire and, if you accept cookies, understanding how the site is used. We never sell data to anyone.',
   },
   {
     h: 'Legal basis',
-    p: 'Your consent (when you submit the form), pre-contractual steps taken at your request, and our legitimate interest in knowing how the site is used, under the GDPR.',
+    p: 'Your consent (when you submit the form or accept cookies) and pre-contractual steps taken at your request, under the GDPR.',
   },
   {
     h: 'How long we keep it',
-    p: 'Up to 24 months after the last contact. If you become a client, for the duration of the contract and the applicable legal periods (for example, tax). Google Analytics data is kept for at most 14 months.',
+    p: 'Up to 24 months after the last contact. If you become a client, for the duration of the contract and the applicable legal periods (for example, tax). Google Analytics data is kept for 2 months.',
   },
   {
     h: 'Who we share it with',
-    p: 'EmailJS, which sends the form messages (a service based outside the EU); Google, through Google Analytics (it may transfer data outside the EU); our email provider; and the site hosting. Google Fonts loads the site fonts, so your IP address is visible to Google.',
+    p: 'EmailJS, which sends the form messages (a service based outside the EU); Google, through Google Analytics, only if you accept cookies (it may transfer data outside the EU); our email provider; and the site hosting. Google Fonts loads the site fonts, so your IP address is visible to Google.',
   },
   {
     h: 'Cookies',
-    p: 'We only use the Google Analytics cookies (_ga and _ga_*, up to 2 years). You can block them in your browser settings or with Google’s <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">opt-out add-on</a>.',
+    p: 'We only use the Google Analytics cookies (_ga and _ga_*, up to 2 years), and only after you accept them in the notice. Your choice is stored in your browser and you can change it any time under “Cookies” in the footer.',
   },
   {
     h: 'Your rights',
