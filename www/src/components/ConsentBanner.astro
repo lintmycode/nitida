@@ -1,0 +1,80 @@
+---
+// Cookie consent + GA4, ported from maumarketing.pt's ConsentBanner.astro.
+// gtag.js is only injected after "Accept" (or a stored "granted"), so nothing
+// reaches Google before consent. The choice lives in localStorage
+// ("nitida-consent"); the footer's "Cookies" button ([data-consent-open])
+// reopens the banner to change it. GA never loads in `astro dev`
+// (enabled = PROD), so local testing doesn't pollute the stats.
+// Event calls elsewhere (Layout click tracking, life.js, contact.astro) use
+// window.gtag?.(), so they're silently dropped until consent is given.
+// Styles: src/styles/_consent.scss.
+const GA_ID = 'G-2JX2904MC2';
+const enabled = import.meta.env.PROD;
+---
+
+<div class="consent" id="consent" role="region" aria-label="Cookies" hidden>
+  <p>Cookies? Only Google Analytics, so we know whether this works. No advertising. <a href="/privacy/">Learn more</a></p>
+  <div class="consent__actions">
+    <button type="button" class="btn btn--secondary btn--on-dark" data-consent="denied">Decline</button>
+    <button type="button" class="btn btn--primary" data-consent="granted">Accept</button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ GA_ID, enabled }}>
+  (function () {
+    var KEY = 'nitida-consent';
+    var banner = document.getElementById('consent');
+    var loaded = false;
+    // try/catch: storage can throw in private windows or with site data blocked
+    var get = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    var set = function (v) { try { localStorage.setItem(KEY, v); } catch (e) {} };
+
+    // Google's snippet, run on demand instead of in <head>
+    function loadGa() {
+      if (loaded || !enabled) return;
+      loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+    }
+
+    // Withdrawing consent: drop the _ga cookies (set on the bare domain, .nitida.pt)
+    function clearGa() {
+      var domain = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').forEach(function (c) {
+        var name = c.split('=')[0].trim();
+        if (name === '_ga' || name.indexOf('_ga_') === 0) {
+          document.cookie = name + '=; Max-Age=0; path=/; domain=.' + domain;
+          document.cookie = name + '=; Max-Age=0; path=/';
+        }
+      });
+    }
+
+    var choice = get();
+    if (choice === 'granted') loadGa();
+    else if (choice !== 'denied') banner.hidden = false;
+
+    banner.querySelectorAll('[data-consent]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.getAttribute('data-consent');
+        set(v);
+        banner.hidden = true;
+        if (v === 'granted') return loadGa();
+        clearGa();
+        if (loaded) location.reload(); // gtag.js is already running; a reload unloads it
+      });
+    });
+
+    document.querySelectorAll('[data-consent-open]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        banner.hidden = false;
+        banner.querySelector('[data-consent="granted"]').focus();
+      });
+    });
+  })();
+</script>

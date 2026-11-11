@@ -1,0 +1,69 @@
+---
+import Layout from '../components/Layout.astro';
+
+// Privacy notice, copied from maumarketing.pt/en/privacy (same controller,
+// NÍTIDA DIGITAL) and kept in step with it. Differences from MAU, on purpose:
+// - GA4 data retention is the GA default, 2 months (MAU's property says 14).
+// - The form also sends the ticked "needs", so they're listed in s2.
+// Bodies are trusted strings that may hold links, hence set:html.
+const EMAIL = 'info@nitida.pt';
+const mail = `<a href="mailto:${EMAIL}">${EMAIL}</a>`;
+
+const sections = [
+  {
+    h: 'Who handles the data',
+    p: `NÍTIDA DIGITAL. Contact: ${mail}.`,
+  },
+  {
+    h: 'What data we collect',
+    p: 'What you give us in the contact form: name, email, the needs you tick and your message. If you accept cookies, Google Analytics collects usage data: pages viewed, where you came from, device and approximate location. We use no advertising cookies.',
+  },
+  {
+    h: 'What it is for',
+    p: 'Replying to your message, preparing proposals, delivering the services you hire and, if you accept cookies, understanding how the site is used. We never sell data to anyone.',
+  },
+  {
+    h: 'Legal basis',
+    p: 'Your consent (when you submit the form or accept cookies) and pre-contractual steps taken at your request, under the GDPR.',
+  },
+  {
+    h: 'How long we keep it',
+    p: 'Up to 24 months after the last contact. If you become a client, for the duration of the contract and the applicable legal periods (for example, tax). Google Analytics data is kept for 2 months.',
+  },
+  {
+    h: 'Who we share it with',
+    p: 'EmailJS, which sends the form messages (a service based outside the EU); Google, through Google Analytics, only if you accept cookies (it may transfer data outside the EU); our email provider; and the site hosting. Google Fonts loads the site fonts, so your IP address is visible to Google.',
+  },
+  {
+    h: 'Cookies',
+    p: 'We only use the Google Analytics cookies (_ga and _ga_*, up to 2 years), and only after you accept them in the notice. Your choice is stored in your browser and you can change it any time under “Cookies” in the footer.',
+  },
+  {
+    h: 'Your rights',
+    p: `You have the right to access, rectification, erasure, restriction, portability and objection. To exercise any of them, write to ${mail}. You can also complain to the Portuguese data protection authority, CNPD (<a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>), or use the <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener">Complaints Book</a>.`,
+  },
+];
+---
+
+<Layout
+  title="Privacy - NÍTIDA DIGITAL"
+  description="What data we collect, what it is for, who we share it with and what your rights are."
+  cta="contact"
+>
+  <div class="container container--narrow privacy">
+    <header class="privacy__intro">
+      <p class="eyebrow privacy__eyebrow">UPDATED 11/11/2026</p>
+      <h1 class="h1 h1--40">Privacy</h1>
+      <p class="privacy__lede">The boring part. But it matters, so it's here.</p>
+    </header>
+
+    <div class="privacy__sections">
+      {sections.map((s) => (
+        <section>
+          <h2>{s.h}</h2>
+          <p set:html={s.p} />
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>

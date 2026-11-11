@@ -1,6 +1,7 @@
 ---
 // Shared site footer — ink band, shown on every page including Home
 // (redesign-spec.md §Footer). No NIF: dropped from the design.
+// "Cookies" reopens the consent banner (ConsentBanner.astro).
 const year = new Date().getFullYear();
 ---
 
@@ -29,7 +30,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="site-footer__legal">
-      &copy; {year} NÍTIDA DIGITAL
+      &copy; {year} NÍTIDA DIGITAL · <a href="/privacy/">Privacy</a> · <button type="button" data-consent-open>Cookies</button>
     </div>
   </div>
 </footer>

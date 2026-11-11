@@ -73,13 +73,22 @@
   font-size: 11px;
   color: rgba(255, 255, 255, 0.4);
 
-  a {
+  // The Cookies button is reset to look like the Privacy link next to it.
+  a,
+  button {
+    all: unset;
+    cursor: pointer;
     color: inherit;
     text-decoration: underline;
     transition: color 150ms ease;
 
     &:hover {
       color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
     }
   }
 }
