@@ -1,0 +1,55 @@
+// Privacy page. Narrow container like About; MAU's hairline-separated
+// sections, redrawn in ink on the blue ground.
+
+.privacy {
+  padding-block: 56px 64px;
+}
+
+.privacy__eyebrow {
+  margin-bottom: 18px;
+}
+
+.privacy__lede {
+  margin-top: 20px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.privacy__sections {
+  margin-top: 40px;
+  max-width: 720px;
+  border-top: 1px solid rgba(0, 0, 0, 0.25); // ink-alpha, as on About's grid box
+
+  section {
+    padding-block: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 1.25;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 640px) {
+  .privacy {
+    padding-block: 40px 48px;
+  }
+}
