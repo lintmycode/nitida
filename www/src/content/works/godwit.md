@@ -1,6 +1,6 @@
 ---
 title: "Godwit"
-subtitle: "Own product · WordPress plugin"
+subtitle: "Product · WordPress plugin"
 description: "Tour booking for WooCommerce. Trip pages, departures and seats, sold in the operator's own store with no platform taking a cut. Free on WordPress.org, Pro for the busy ones."
 technologies: ["WordPress", "WooCommerce", "PHP"]
 services: ["wordpress", "apps"]
