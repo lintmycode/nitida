@@ -32,3 +32,4 @@ npm run build    # static output in dist/
 | Date | Change |
 |---|---|
 | 2026-09-22 | Redesign phase 1: flat blue system, new Home, Services, Works (with filters), About and Contact pages, SCSS design system. CINCA added to works. |
+| 2026-11-24 | Godwit (own WordPress plugin, live on WordPress.org) added to works, first in the grid. |
